@@ -1,0 +1,115 @@
+.image{
+    position: absolute;
+    background-image: url(../images/xyz.jpg);
+    height: 80%;
+    width: 80%;
+    margin-left: 10%;
+}
+.image h1{
+    position: absolute;
+    top: 70%;
+    left: 38%;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: aliceblue;
+    font-size: 75px;
+}
+.image .about-content {
+    position: absolute;
+    top: 110%;
+    left: 4%;
+    right: 4%;
+    /* font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+}
+.image .motive{
+    position: absolute;
+    top: 146%;
+    color: black;
+
+}
+
+.motive-content {
+    position: absolute;
+    top: 168%;
+    left: 4%;
+}
+
+.image .founder{
+    position: absolute;
+    top: 179%;
+    color: black;
+    left: 36%;
+}
+
+.image .f1{
+    position: absolute;
+    background-image: url(../images/Darshanaf1.jpg);
+    top: 201%;
+    left: 6%;
+    height: 80%;
+    width: 40%;
+}
+
+.image .f1 h1{
+    position: absolute;
+    color: black;
+    left: 120%;
+    top: 33%;
+}
+
+.image .f2{
+    position: absolute;
+    background-image: url(../images/Shivamf2.jpeg);
+    top: 285%;
+    right: 8%;
+    height: 68%;
+    width: 35%;
+}
+
+.image .f2 h1{
+    position: absolute;
+    color: black;
+    left: -120%;
+    top: 35%;
+    right: 110%;
+}
+
+.image .f3{
+    position: absolute;
+    background-image: url(../images/Ashif3.jpeg);
+    top: 357%;
+    left: 6%;
+    height: 80%;
+    width: 40%;
+}
+
+.image .f3 .f31{
+    position: absolute;
+    color: black;
+    left: 128%;
+    top: 45%;
+}
+.image .f3 .f32{
+    position: absolute;
+    color: black;
+    left: 163%;
+    top: 45%;
+}
+
+
+.image .f4{
+    position: absolute;
+    background-image: url(../images/Yashf4.jpeg);
+    top: 441%;
+    right: 8%;
+    height: 80%;
+    width: 35%;
+}
+
+.image .f4 h1{
+    position: absolute;
+    color: black;
+    left: -127%;
+    top: 55%;
+    right: 110%;
+}
