@@ -2,6 +2,8 @@ package com.onlineshopping.controller;
 
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -99,5 +101,39 @@ public class UserController {
 //		System.out.println("response sent!!!");
 //		return ResponseEntity.ok(deliveryPersons);
 //	}
+	@PostMapping("Wallet/pay")
+	public String payAmount(@RequestBody Map<String, String> payData) {
+		
+		String email = payData.get("email");
+		String tempAmount=payData.get("amount");
+		Integer amount=Integer.parseInt(tempAmount);
+		
+		User user = userDao.findByEmailId(email);
+		if(user!=null) {
+			if(user.getBalance()>amount) {
+				user.setBalance(user.getBalance()-amount);
+				userDao.save(user);
+				return "Amount Payed";
+			}
+		}
+		return "Patyment Failed";
+	}
 	
+	@PostMapping("Wallet/addMoney")
+	public String  addAmount(@RequestBody Map<String, String> payData) {
+		
+		String email = payData.get("email");
+		String tempAmount=payData.get("amount");
+		Integer amount=Integer.parseInt(tempAmount);
+		
+		User user = userDao.findByEmailId(email);
+		if(user!=null) {
+			
+				user.setBalance(amount);
+				userDao.save(user);
+				return "Amount added";
+			
+		}
+		return "Sorry";
+	}
 }

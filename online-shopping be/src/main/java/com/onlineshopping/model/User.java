@@ -31,6 +31,17 @@ public class User {
 	
 	private String role;
 	
+    private Integer walletBalance;
+	
+	public Integer getBalance() {
+		return walletBalance;
+	}
+
+	public void setBalance(Integer balance) {
+		this.walletBalance = balance;
+	}
+
+	
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
