@@ -59,7 +59,7 @@ const AddUserForm = () => {
           class="card form-card border-color text-color custom-bg"
           style={{ width: "25rem" }}
         >
-          <div className="card-header bg-color custom-bg-text text-center">
+          <div className="card-header custom-bg bg-color-text text-center">
             <h5 class="card-title">Add User</h5>
           </div>
           <div class="card-body">

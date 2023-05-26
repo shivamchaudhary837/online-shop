@@ -5,16 +5,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color:#e7fdfd
+  background-color:#FFFFFF
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+.card-color{
+  background-color:#FFFFFF
+}
 .custom-bg {
-  background-color: #e7fdfd;
+  background-color: #fac44b;
 } 
 
 .text-color {
@@ -31,6 +33,7 @@ code {
 
 .bg-color {
   background-color: #25493F;
+  /* background-color: #FFFF00; */
 }
 
 .rounded-card {
@@ -57,4 +60,7 @@ code {
   justify-content: center; /* Horizontally center */
   align-items: center; /* Vertically center */
   /* Add any additional styling as needed */
+}
+.vertical-down {
+  margin-top: 100px;
 }

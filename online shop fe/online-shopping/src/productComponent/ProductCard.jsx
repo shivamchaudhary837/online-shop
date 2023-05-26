@@ -5,11 +5,11 @@ import CategoryNavigator from "./CategoryNavigator";
 const ProductCard = (product) => {
   return (
     <div className="col">
-    <div class="card border-color rounded-card card-hover product-card custom-bg h-100">
+    <div className="card border-color rounded-card card-hover product-card card-color h-100">
       <Link to="/user/product/productdetail">
       <img
         src={"http://localhost:8080/api/product/" + product.item.imageName}
-        class="card-img-top rounded mx-auto d-block m-2"
+        className="card-img-top rounded mx-auto d-block m-2"
         alt="img"
         style={{
           maxHeight: "270px",
@@ -18,8 +18,8 @@ const ProductCard = (product) => {
         }}
       />
       </Link>
-      <div class="card-body text-color">
-        <h5 class="card-title d-flex justify-content-between">
+      <div className="card-body text-color">
+        <h5 className="card-title d-flex justify-content-between">
           <div>
             <b>{product.item.title}</b>
           </div>
@@ -34,7 +34,7 @@ const ProductCard = (product) => {
           <b>{product.item.description}</b>
         </p>
       </div>
-      <div class="card-footer">
+      <div className="card-footer">
         <div className="text-center text-color">
           <p>
             <span>
@@ -50,7 +50,7 @@ const ProductCard = (product) => {
             Add to Cart
           </Link>
 
-          <p class="text-color">
+          <p className="text-color">
             <b>
               <i>Stock :</i> {product.item.quantity}
             </b>

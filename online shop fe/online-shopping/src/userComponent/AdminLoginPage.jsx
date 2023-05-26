@@ -53,14 +53,14 @@ const AdminLoginPage = () => {
   return (
     <div>
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
-        <div className="card form-card border-color" style={{ width: "25rem" }}>
-          <div className="card-header bg-color text-center custom-bg-text">
+        <div className="card vertical-down custom-bg form-card border-color" style={{ width: "25rem" }}>
+          <div className="card-header custom-bg  text-center bg-color-text">
             <h4 className="card-title">Admin Login</h4>
           </div>
           <div className="card-body">
             <form>
               <div className="mb-3">
-                <label htmlFor="emailId" class="form-label custom-bg-text">
+                <label htmlFor="emailId" class="form-label bg-color-text">
                   Email Id
                 </label>
                 <input
@@ -74,7 +74,7 @@ const AdminLoginPage = () => {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="password" className="form-label custom-bg-text">
+                <label htmlFor="password" className="form-label bg-color-text">
                   Password
                 </label>
                 <input

@@ -22,19 +22,19 @@ const GetAllCategories = () => {
   }, []);
 
   return (
-    <div class="list-group form-card border-color">
+    <div className="list-group form-card card-color">
       <Link
         to="/home/all/product/categories"
-        class="list-group-item list-group-item-action bg-color custom-bg-text"
+        className="list-group-item list-group-item-action custom-bg custom-bg-text"
       >
-        <b>All Categories</b>
+        <b style={{color:"black"}}>All Categories</b>
       </Link>
 
       {categories.map((category) => {
         return (
           <Link
             to={`/home/product/category/${category.id}/${category.title}`}
-            class="list-group-item list-group-item-action text-color custom-bg"
+            className="list-group-item list-group-item-action text-color card-color"
           >
             <b>{category.title}</b>
           </Link>

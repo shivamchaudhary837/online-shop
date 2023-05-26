@@ -49,13 +49,13 @@ const MyCart = () => {
   return (
     <div className="mt-3">
       <div
-        className="card form-card ms-2 me-2 mb-5 custom-bg border-color"
+        className="card form-card ms-2 me-2 mb-5 card-color border-color"
         style={{
           height: "45rem",
         }}
       >
-        <div className="card-header text-center bg-color custom-bg-text">
-          <h2>My Cart</h2>
+        <div className="card-header text-center card-color custom-bg-text">
+          <h2 style={{color:"black"}}>My Cart</h2>
         </div>
         <div
           className="card-body"
@@ -64,8 +64,8 @@ const MyCart = () => {
           }}
         >
           <div className="table-responsive">
-            <table className="table table-hover custom-bg-text text-center">
-              <thead className="bg-color table-bordered border-color">
+            <table className="table table-hover bg-color-text text-center">
+              <thead className="custom-bg table-bordered border-color">
                 <tr>
                   <th scope="col">Product</th>
                   <th scope="col">Name</th>
@@ -115,7 +115,7 @@ const MyCart = () => {
             </table>
           </div>
         </div>
-        <div className="card-footer custom-bg">
+        <div className="card-footer card-color">
           <div className="float-right">
             <div
               className="text-color me-2"

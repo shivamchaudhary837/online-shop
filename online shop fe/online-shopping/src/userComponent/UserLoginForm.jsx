@@ -56,51 +56,46 @@ const UserLoginForm = () => {
   };
 
   return (
-    <div className="container">
-
-      <div className="mt-2 d-flex aligns-items-center justify-content-center"
-       >
+    <div className="vertical-down container">
+      <div className="mt-2 d-flex aligns-items-center justify-content-center">
         <div
           className="card form-card border-color custom-bg"
           style={{ width: "25rem" }}
         >
-          <div className="card-header bg-color text-center custom-bg-text">
+          <div className="card-header custom-bg text-center bg-color-text ">
             <h4 className="card-title">User Login</h4>
           </div>
           <div className="card-body">
             <form>
-              
-
-              
-            <div className="mb">
-                  <label for="emailId" class="form-label">
-                    {/* <b>Email Id </b> */}
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="emailId"
-                    name="emailId"
-                    placeholder="Email ID"
-                    onChange={handleUserInput}
-                    value={loginRequest.emailId}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label for="password" className="form-label">
-                    {/* <b>Password</b> */}
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={handleUserInput}
-                    value={loginRequest.password}
-                    autoComplete="on"
-                  />
-                </div>
+              <div className="mb">
+                <label for="emailId" className="form-label">
+                  {/* <b>Email Id </b> */}
+                </label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="emailId"
+                  name="emailId"
+                  placeholder="Email ID"
+                  onChange={handleUserInput}
+                  value={loginRequest.emailId}
+                />
+              </div>
+              <div className="mb-3">
+                <label for="password" className="form-label">
+                  {/* <b>Password</b> */}
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={handleUserInput}
+                  value={loginRequest.password}
+                  autoComplete="on"
+                />
+              </div>
               <button
                 type="submit"
                 className="btn bg-color custom-bg-text"

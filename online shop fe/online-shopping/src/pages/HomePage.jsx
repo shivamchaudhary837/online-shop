@@ -56,6 +56,7 @@ const HomePage = () => {
           <div className="col-md-2">
             <GetAllCategories />
           </div>
+          
           <div className="col-md-10">
             <div className="row row-cols-1 row-cols-md-4 g-4">
               
