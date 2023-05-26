@@ -20,28 +20,39 @@ const HeaderUser = () => {
   };
 
   return (
-    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
-      <li class="nav-item">
-        <Link to="/user/mycart" class="nav-link active" aria-current="page">
+    <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
+      <li className="nav-item">
+        <Link to="/user/mycart"  className="nav-link active" aria-current="page">
+        {/* <img src="../images/e_logo.png"  width="100" height="120" /> */}
           <b className="text-color">My Cart</b>
         </Link>
       </li>
 
-      <li class="nav-item">
-        <Link to="/user/myorder" class="nav-link active" aria-current="page">
+      <li className="nav-item">
+        <Link to="/user/myorder" className="nav-link active" aria-current="page">
           <b className="text-color">My Order</b>
         </Link>
       </li>
 
-      <li class="nav-item">
+      <li className="nav-item">
+        <Link to="/user/myprofile" className="nav-link active" aria-current="page">
+          <b className="text-color">My Profile</b>
+          
+        </Link>
+      </li>
+
+      <li className="nav-item">
         <Link
           to=""
-          class="nav-link active"
+          className="nav-link active"
           aria-current="page"
           onClick={userLogout}
         >
           <b className="text-color">Logout</b>
         </Link>
+
+        
+
         <ToastContainer />
       </li>
     </ul>

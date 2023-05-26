@@ -54,7 +54,7 @@ const AdminLoginPage = () => {
     <div>
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
         <div className="card form-card border-color" style={{ width: "25rem" }}>
-          <div className="card-header bg-color text-center">
+          <div className="card-header bg-color text-center custom-bg-text">
             <h4 className="card-title">Admin Login</h4>
           </div>
           <div className="card-body">
@@ -68,6 +68,7 @@ const AdminLoginPage = () => {
                   className="form-control"
                   id="emailId"
                   name="emailId"
+                  placeholder="Email Id"
                   onChange={handleUserInput}
                   value={loginRequest.emailId}
                 />
@@ -81,6 +82,7 @@ const AdminLoginPage = () => {
                   className="form-control"
                   id="password"
                   name="password"
+                  placeholder="Password"
                   onChange={handleUserInput}
                   value={loginRequest.password}
                   autoComplete="on"
@@ -89,7 +91,7 @@ const AdminLoginPage = () => {
 
               <button
                 type="submit"
-                className="btn custom-bg text-color"
+                className="btn bg-color custom-bg-text"
                 onClick={loginAction}
               >
                 Login

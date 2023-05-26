@@ -6,6 +6,7 @@ const ProductCard = (product) => {
   return (
     <div className="col">
     <div class="card border-color rounded-card card-hover product-card custom-bg h-100">
+      <Link to="/user/product/productdetail">
       <img
         src={"http://localhost:8080/api/product/" + product.item.imageName}
         class="card-img-top rounded mx-auto d-block m-2"
@@ -16,7 +17,7 @@ const ProductCard = (product) => {
           width: "auto",
         }}
       />
-
+      </Link>
       <div class="card-body text-color">
         <h5 class="card-title d-flex justify-content-between">
           <div>

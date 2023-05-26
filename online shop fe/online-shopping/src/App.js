@@ -19,6 +19,8 @@ import AddDeliveryPerson from "./userComponent/AddDeliveryPerson";
 import DeliveryPersonLogin from "./userComponent/DeliveryPersonLogin";
 import AssignDeliveryToOrders from "./userComponent/AssignDeliveryToOrders";
 import MyDeliveries from "./userComponent/MyDeliveries";
+import MyProfile from "./userComponent/MyProfile";
+import ProductDetail from "./productComponent/ProductDetail";
 
 function App() {
   return (
@@ -37,8 +39,8 @@ function App() {
         <Route path="/user/login" element={<UserLoginForm />} />
         <Route path="/user/admin/register" element={<RegisterAdminForm />} />
         <Route path="/user/admin/login" element={<AdminLoginPage />} />
-        <Route
-          path="/user/deliveryperson/register"
+
+        <Route path="/user/deliveryperson/register"
           element={<AddDeliveryPerson />}
         />
         <Route
@@ -56,6 +58,9 @@ function App() {
         <Route path="/user/mycart" element={<MyCart />} />
         <Route path="/user/order/payment" element={<AddCardDetails />} />
         <Route path="/user/myorder" element={<MyOrder />} />
+
+        <Route path="/user/myprofile" element={<MyProfile/>} />
+
         <Route path="/user/admin/allorder" element={<AllOrders />} />
         <Route path="/user/admin/searchOrder" element={<SearchOrder />} />
         <Route
@@ -63,6 +68,7 @@ function App() {
           element={<AssignDeliveryToOrders />}
         />
         <Route path="/user/delivery/myorders" element={<MyDeliveries />} />
+        <Route path="/user/product/productdetail" element={<ProductDetail/>} />
       </Routes>
     </div>
   );

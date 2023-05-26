@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserLoginForm = () => {
   let navigate = useNavigate();
@@ -56,8 +56,10 @@ const UserLoginForm = () => {
   };
 
   return (
-    <div>
-      <div className="mt-2 d-flex aligns-items-center justify-content-center">
+    <div className="container">
+
+      <div className="mt-2 d-flex aligns-items-center justify-content-center"
+       >
         <div
           className="card form-card border-color custom-bg"
           style={{ width: "25rem" }}
@@ -67,49 +69,38 @@ const UserLoginForm = () => {
           </div>
           <div className="card-body">
             <form>
-              {/* <div class="mb-3 text-color">
-                <label htmlFor="role" class="form-label">
-                  <b>User Role</b>
-                </label>
-                <select
-                  onChange={handleUserInput}
-                  className="form-control"
-                  name="role"
-                >
-                  <option value="0">Select Role</option>
-                  <option value="Admin"> Admin </option>
-                  <option value="Customer"> Customer </option>
-                  <option value="Delivery"> Delivery Person </option>
-                </select>
-              </div> */}
+              
 
-              <div className="mb-3 text-color">
-                <label htmlFor="emailId" class="form-label">
-                  <b>Email Id</b>
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="emailId"
-                  name="emailId"
-                  onChange={handleUserInput}
-                  value={loginRequest.emailId}
-                />
-              </div>
-              <div className="mb-3 text-color">
-                <label htmlFor="password" className="form-label">
-                  <b>Password</b>
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  name="password"
-                  onChange={handleUserInput}
-                  value={loginRequest.password}
-                  autoComplete="on"
-                />
-              </div>
+              
+            <div className="mb">
+                  <label for="emailId" class="form-label">
+                    {/* <b>Email Id </b> */}
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="emailId"
+                    name="emailId"
+                    placeholder="Email ID"
+                    onChange={handleUserInput}
+                    value={loginRequest.emailId}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label for="password" className="form-label">
+                    {/* <b>Password</b> */}
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={handleUserInput}
+                    value={loginRequest.password}
+                    autoComplete="on"
+                  />
+                </div>
               <button
                 type="submit"
                 className="btn bg-color custom-bg-text"

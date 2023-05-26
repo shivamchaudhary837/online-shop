@@ -52,3 +52,9 @@ code {
 .card:hover .product-card  {
   transform: scale(1.02);
 }
+.container {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  /* Add any additional styling as needed */
+}
