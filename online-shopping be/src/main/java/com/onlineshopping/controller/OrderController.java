@@ -23,6 +23,7 @@ import com.onlineshopping.dao.ProductDao;
 import com.onlineshopping.dao.UserDao;
 import com.onlineshopping.dto.MyOrderResponse;
 import com.onlineshopping.dto.OrderDataResponse;
+import com.onlineshopping.dto.PayRequest;
 import com.onlineshopping.dto.UpdateDeliveryStatusRequest;
 import com.onlineshopping.model.Cart;
 import com.onlineshopping.model.Orders;
@@ -52,13 +53,21 @@ public class OrderController {
 	private ObjectMapper objectMapper = new ObjectMapper();
 
 	@PostMapping("order")
-	public ResponseEntity customerOrder(@RequestParam("userId") int userId) throws JsonProcessingException {
+	public ResponseEntity customerOrder(@RequestBody PayRequest pRequest) throws JsonProcessingException {
 
-		System.out.println("request came for ORDER FOR CUSTOMER ID : " + userId);
-
+		int userId=pRequest.getUserId();
+		Optional<User> user=userDao.findById(userId);
+		
+		System.out.println("request came for ORDER FOR CUSTOMER ID : " + pRequest.getUserId());
+		System.out.println("User  " + user.get());
+	    System.out.println("Payment Type: " + pRequest.getPaymentType());
+	    System.out.println("Amount: " + pRequest.getPriceToPay());
 		String orderId = Helper.getAlphaNumericOrderId();
 
+		
 		List<Cart> userCarts = cartDao.findByUser_id(userId);
+		
+		
 
 		LocalDateTime currentDateTime = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -76,6 +85,16 @@ public class OrderController {
 			order.setDeliveryStatus(DeliveryStatus.PENDING.value());
 			order.setDeliveryTime(DeliveryTime.DEFAULT.value());
 			order.setDeliveryAssigned(IsDeliveryAssigned.NO.value());
+			order.setPaymentStatus(pRequest.getPaymentType());
+			if(user.isPresent() &&pRequest.getPaymentType().equals("wallet")) {
+				//&& pRequest.getPaymentType()=="wallet"
+				User temp=user.get();
+				System.out.println("inside user"+user.get());
+				if(temp.getBalance()>pRequest.getPriceToPay() ) {
+					temp.setBalance(temp.getBalance()-(int)pRequest.getPriceToPay());
+				}
+				userDao.save(temp);
+			}
 
 			orderDao.save(order);
 			cartDao.delete(cart);

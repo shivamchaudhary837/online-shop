@@ -41,7 +41,7 @@ public class Cart {
 	}
 
 	public int getQuantity() {
-		return 2;
+		return this.quantity;
 	}
 
 	public void setQuantity(int quantity) {

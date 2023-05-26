@@ -19,6 +19,8 @@ public class AddUserRequest {
 	private int pincode;
 	
 	private String role;
+	
+	
 
 	public String getFirstName() {
 		return firstName;

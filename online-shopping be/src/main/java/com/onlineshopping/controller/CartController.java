@@ -48,6 +48,7 @@ public class CartController {
 		
 		System.out.println("request came for ADD PRODUCT TO CART");
 		System.out.println(addToCartRequest);
+		System.out.println("Quantity  "+addToCartRequest.getQuantity());
 		Optional<User> optionalUser = userDao.findById(addToCartRequest.getUserId());
 		User user = null;
 		if(optionalUser.isPresent()) {
@@ -88,6 +89,7 @@ public class CartController {
 			cartData.setProductDescription(cart.getProduct().getDescription());
 			cartData.setProductName(cart.getProduct().getTitle());
 			cartData.setProductImage(cart.getProduct().getImageName());
+			//System.out.println("item quanityt "+ cart.getQuantity());
 			cartData.setQuantity(cart.getQuantity());
 			cartData.setProductId(cart.getProduct().getId());
 			

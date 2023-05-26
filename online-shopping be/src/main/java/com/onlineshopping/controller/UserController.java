@@ -2,18 +2,29 @@ package com.onlineshopping.controller;
 
 
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.onlineshopping.dao.AddressDao;
 import com.onlineshopping.dao.UserDao;
 import com.onlineshopping.dto.AddUserRequest;
+import com.onlineshopping.dto.DuplicateUserExecption;
 import com.onlineshopping.dto.UserLoginRequest;
 import com.onlineshopping.model.Address;
 import com.onlineshopping.model.User;
@@ -33,10 +44,19 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@ExceptionHandler(DuplicateUserExecption.class)
+    public ResponseEntity<?> handleDuplicateUserException(DuplicateUserExecption ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+	
 	@PostMapping("register")
-	public ResponseEntity<?> registerUser(@RequestBody AddUserRequest userRequest) {
+	public ResponseEntity<?> registerUser(@RequestBody AddUserRequest userRequest) throws DuplicateUserExecption{
 		System.out.println("recieved request for REGISTER USER");
 		System.out.println(userRequest);
+		User user1=userDao.findByEmailId(userRequest.getEmailId());
+		if(user1!=null) {
+			throw new DuplicateUserExecption("User with this email exist");
+		}
 		
 		Address address = new Address();
 		address.setCity(userRequest.getCity());
@@ -53,6 +73,7 @@ public class UserController {
 		user.setPhoneNo(userRequest.getPhoneNo());
 		user.setPassword(userRequest.getPassword());
 		user.setRole(userRequest.getRole());
+		user.setBalance(0);
 		//User addUser = userDao.save(user);
 		
 		User addUser = userService.registerUser(user);
@@ -129,11 +150,32 @@ public class UserController {
 		User user = userDao.findByEmailId(email);
 		if(user!=null) {
 			
-				user.setBalance(amount);
+				user.setBalance(user.getBalance()+amount);
 				userDao.save(user);
 				return "Amount added";
 			
 		}
 		return "Sorry";
 	}
+	
+	@GetMapping ("/checkwalletbalance")
+	public String checkBalance(@RequestParam("userId") int userId) {
+		Optional<User> user=userDao.findById(userId);
+		int walletBalance=0;
+		if(user.isPresent()) {
+		   walletBalance=user.get().getBalance();
+				   
+		}
+		return ""+walletBalance;
+	}
+	
+	@Transactional
+	@DeleteMapping("/email/{email}")
+    public void deleteUsersByEmail(@PathVariable String email) {
+        userDao.deleteAllByEmailId(email);
+    }
+	
+	@GetMapping("/allUsers")
+    public List<User> getAllDonors(){
+        return userDao.findAll();}
 }
