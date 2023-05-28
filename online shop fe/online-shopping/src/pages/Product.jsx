@@ -133,11 +133,11 @@ const Product = () => {
               <div class="text-left mt-3">
                 <h3>Description :</h3>
               </div>
-              <h4 class="card-text">{product.description}</h4>
+              <h4 class="card-text" style={{marginLeft:"1rem",marginTop:"1rem"}}>{product.description}</h4>
             </div>
 
             <div class="card-footer custom-bg">
-              <div className="text-center text-color">
+              <div className="text-center text-color" style={{marginLeft:"43rem"}}>
                 <p>
                   <span>
                     <h4>Price : &#8377;{product.price}</h4>
@@ -147,7 +147,7 @@ const Product = () => {
               <div className="d-flex justify-content-between">
                 <div>
                   <form class="row g-3" onSubmit={addToCart}>
-                    <div class="col-auto">
+                    <div class="col-auto" >
                       <input
                         type="number"
                         class="form-control"
@@ -158,7 +158,7 @@ const Product = () => {
                         required
                       />
                     </div>
-                    <div class="col-auto">
+                    <div class="col-auto" >
                       <input
                         type="submit"
                         className="btn bg-color custom-bg-text mb-3"
@@ -169,7 +169,7 @@ const Product = () => {
                   </form>
                 </div>
 
-                <p class="ml-2 text-color">
+                <p class="ml-2 text-color" style={{marginRight:"2rem"}}>
                   <b>Stock : {product.quantity}</b>
                 </p>
               </div>
@@ -195,4 +195,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default Product;

@@ -1,10 +1,14 @@
 package com.onlineshopping.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.onlineshopping.dao.UserDao;
 import com.onlineshopping.dto.UserLoginRequest;
+import com.onlineshopping.dto.UserProfileRequest;
+import com.onlineshopping.model.Address;
 import com.onlineshopping.model.User;
 
 @Service
@@ -42,6 +46,47 @@ public class UserServiceImpl implements UserService{
 				(loginRequest.getEmailId(), loginRequest.getPassword(), loginRequest.getRole());
 		
 		return user;
+	}
+
+	@Override
+	public UserProfileRequest getUserProfileById(Integer userId) {
+		// TODO Auto-generated method stub
+		
+		UserProfileRequest upr=new UserProfileRequest();
+		Optional<User> res = userDao.findById(userId);
+		
+		User user=res.get();
+		upr.setFirstName(user.getFirstName());
+		upr.setLastName(user.getLastName());
+		upr.setEmailId(user.getEmailId());
+		upr.setPhoneNo(user.getPhoneNo());
+		upr.setAddress(user.getAddress());
+		upr.setWalletAmount(user.getBalance());
+		
+		return upr;
+	}
+
+	@Override
+	public void updateProfile(Integer userId, UserProfileRequest userProfile) {
+		// TODO Auto-generated method stub
+		User user=userDao.getById(userId);
+		
+		user.setFirstName(userProfile.getFirstName());
+		user.setLastName(userProfile.getLastName());
+		user.setEmailId(user.getEmailId());
+		user.setPhoneNo(userProfile.getPhoneNo());
+		
+		Address add=user.getAddress();
+		
+		add.setStreet(userProfile.getAddress().getStreet());
+		add.setCity(userProfile.getAddress().getCity());
+		add.setPincode(userProfile.getAddress().getPincode());
+		
+		user.setAddress(add);
+		
+		user.setBalance(userProfile.getWalletAmount());
+		
+		userDao.save(user);
 	}
 
 }

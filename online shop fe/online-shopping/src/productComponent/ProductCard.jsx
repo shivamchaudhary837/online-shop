@@ -6,7 +6,7 @@ const ProductCard = (product) => {
   return (
     <div className="col">
     <div className="card border-color rounded-card card-hover product-card card-color h-100">
-      <Link to="/user/product/productdetail">
+      <Link to={`/user/product/productdetail/${product.item.id}`}>
       <img
         src={"http://localhost:8080/api/product/" + product.item.imageName}
         className="card-img-top rounded mx-auto d-block m-2"
@@ -26,7 +26,7 @@ const ProductCard = (product) => {
           <CategoryNavigator
             item={{
               id: product.item.category.id,
-              title: product.item.category.title,
+              title: "",
             }}
           />
         </h5>

@@ -37,6 +37,18 @@ public class Orders {
 	private String deliveryAssigned;
 	
 	private int deliveryPersonId;
+	
+	private String paymentStatus;
+
+	
+
+	public String getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
 
 	public int getId() {
 		return id;

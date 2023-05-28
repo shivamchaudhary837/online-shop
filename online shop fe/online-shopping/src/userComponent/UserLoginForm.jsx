@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
+import { MarkGithubIcon } from '@primer/octicons-react';
 
 const UserLoginForm = () => {
   let navigate = useNavigate();
@@ -54,7 +55,12 @@ const UserLoginForm = () => {
     });
     e.preventDefault();
   };
-
+ 
+  const loginWithGithub = () => {
+    // Handle login with GitHub logic here
+    // Redirect user to GitHub OAuth login page or use GitHub API for authentication
+    // After successful login, handle the response and store user data
+  };
   return (
     <div className="vertical-down container">
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
@@ -102,6 +108,15 @@ const UserLoginForm = () => {
                 onClick={loginAction}
               >
                 Login
+              </button>
+              
+              <button
+                className="btn bg-color custom-bg-text ml-2"
+                onClick={loginWithGithub}
+
+                style={{  marginLeft: '10px' }}
+              >
+                 <MarkGithubIcon size={16} className="mr-2" /> Login via GitHub
               </button>
               <ToastContainer />
             </form>

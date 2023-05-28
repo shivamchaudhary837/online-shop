@@ -68,7 +68,7 @@ function App() {
           element={<AssignDeliveryToOrders />}
         />
         <Route path="/user/delivery/myorders" element={<MyDeliveries />} />
-        <Route path="/user/product/productdetail" element={<ProductDetail/>} />
+        <Route path="/user/product/productdetail/:productId" element={<ProductDetail/>} />
       </Routes>
     </div>
   );

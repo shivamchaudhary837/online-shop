@@ -1,4 +1,6 @@
-import carousel1 from "../images/namkeen.jpg";
+import carousel1 from "../images/namkeen3.jpg";
+import carousel2 from "../images/namkeen2.jpg";
+import carousel3 from "../images/namkeen4.jpg";
 
 const Carousel = () => {
   return (
@@ -31,13 +33,14 @@ const Carousel = () => {
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src={carousel1} class="d-block w-100" alt="..." />
+          <img src={carousel1} class="d-block w-100 " alt="..." height="500" />
         </div>
         <div class="carousel-item">
-          <img src={carousel1} class="d-block w-100" alt="..." />
+          <img src={carousel2} class="d-block w-100" alt="..." height="500"  />
+          <h1 >Ghar Jainsa swad</h1>
         </div>
         <div class="carousel-item">
-          <img src={carousel1} class="d-block w-100" alt="..." />
+          <img src={carousel3} class="d-block w-100" alt="..." height="500"  />
         </div>
       </div>
       <button
@@ -62,4 +65,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default Carousel;

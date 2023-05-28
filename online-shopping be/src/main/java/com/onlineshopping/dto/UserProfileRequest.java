@@ -12,7 +12,16 @@ public class UserProfileRequest {
 	
 	private String phoneNo;
 	private Address address;
+	private Integer walletAmount;
 	
+	public Integer getWalletAmount() {
+		return walletAmount;
+	}
+
+	public void setWalletAmount(Integer walletAmount) {
+		this.walletAmount = walletAmount;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
