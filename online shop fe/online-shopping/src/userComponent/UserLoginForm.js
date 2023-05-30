@@ -2,7 +2,8 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
-
+import  bg from "../images/bg_img.jpg"
+// import "./UserLoginForm.css"
 
 const UserLoginForm = () => {
   let navigate = useNavigate();
@@ -75,12 +76,16 @@ const UserLoginForm = () => {
     // After successful login, handle the response and store user data
   };
   return (
+    <>
     <div className="vertical-down container">
+
+     
+
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
         <div
           className="card form-card border-color custom-bg"
           style={{ width: "35rem" }}
-        >
+          >
           <div className="card-header custom-bg text-center bg-color-text ">
             <h4 className="card-title">User Login</h4>
           </div>
@@ -136,7 +141,9 @@ const UserLoginForm = () => {
           </div>
         </div>
       </div>
+      
     </div>
+    </>
   );
 };
 

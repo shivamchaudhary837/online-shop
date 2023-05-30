@@ -208,4 +208,15 @@ public class UserController {
 	User getUser(@PathVariable Integer userId) {
 		return userDao.getById(userId);
 	}
+@GetMapping("/address/{userId}")
+	public ResponseEntity<?> getAddress(@PathVariable("userId") Integer userId) {
+	    Optional<User> userOptional = userDao.findById(userId);
+	    if (userOptional.isPresent()) {
+	        User user = userOptional.get();
+	        Address address = user.getAddress();
+	        return ResponseEntity.ok(address);
+	    } else {
+	        return ResponseEntity.notFound().build();
+	    }
+	}
 }

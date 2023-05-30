@@ -21,6 +21,7 @@ import AssignDeliveryToOrders from "./userComponent/AssignDeliveryToOrders";
 import MyDeliveries from "./userComponent/MyDeliveries";
 import MyProfile from "./userComponent/MyProfile";
 import ProductDetail from "./productComponent/ProductDetail";
+import SuccessPage from "./userComponent/SuccessPage";
 
 function App() {
   return (
@@ -69,6 +70,8 @@ function App() {
         />
         <Route path="/user/delivery/myorders" element={<MyDeliveries />} />
         <Route path="/user/product/productdetail/:productId" element={<ProductDetail/>} />
+
+        <Route path="/user/order/payment/successpage" element={<SuccessPage/>} />
       </Routes>
     </div>
   );
