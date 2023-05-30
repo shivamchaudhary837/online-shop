@@ -27,7 +27,7 @@ const AddCategoryForm = () => {
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
         <div
           className="card form-card border-color custom-bg"
-          style={{ width: "25rem" }}
+          style={{ width: "35rem",marginTop:"80px" }}
         >
           <div className="card-header bg-color text-center custom-bg-text">
             <h5 className="card-title">Add Category</h5>

@@ -44,6 +44,18 @@ const AdminLoginPage = () => {
 
         navigate("/home");
         window.location.reload(true);
+      }).catch((error) => {
+        console.error(error);
+        // Handle the error here, such as displaying an error message to the user
+        toast.error("Wrong Email Id or Password,Try Again", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
     });
 
@@ -53,7 +65,7 @@ const AdminLoginPage = () => {
   return (
     <div>
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
-        <div className="card vertical-down custom-bg form-card border-color" style={{ width: "25rem" }}>
+        <div className="card vertical-down custom-bg form-card border-color" style={{ width: "35rem" }}>
           <div className="card-header custom-bg  text-center bg-color-text">
             <h4 className="card-title">Admin Login</h4>
           </div>

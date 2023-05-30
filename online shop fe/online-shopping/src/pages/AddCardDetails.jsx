@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -21,18 +21,12 @@ const AddCardDetails = () => {
   };
 
   const payAndOrder = () => {
-    const requestData = {
-      userId: user.id,
-      priceToPay: priceToPay,
-      paymentType: paymentType,
-    };
-    fetch("http://localhost:8080/api/user/order", {
+    fetch("http://localhost:8080/api/user/order?userId=" + user.id, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(requestData),
     }).then((result) => {
       console.log("result", result);
       result.json().then((res) => {
@@ -57,73 +51,78 @@ const AddCardDetails = () => {
     navigate("/home");
   };
 
-  const [paymentType,setPaymentType] = useState("wallet");
-
-  const [balance, setBalance] = useState(0);
-
-  useEffect(() => {
-    // Fetch user's balance
-    fetch(`http://localhost:8080/api/user/checkwalletbalance?userId=${user.id}`)
-      .then((response) => response.text())
-      .then((data) => {
-        setBalance(parseInt(data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [user.id]);
-
-  const checkBalance = () => {
-    // Show balance in a toast
-    toast.info(`Wallet Balance: $${balance}`, {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
   return (
     <div>
-      <div class="mt-2 pt-5 d-flex aligns-items-center justify-content-center">
-        <div class="card form-card t-5  border-color" style={{ width: "25rem" }}>
-    
+      <div class="mt-2 d-flex aligns-items-center justify-content-center">
+        <div class="card form-card border-color" style={{ width: "25rem" }}>
           <div className="card-header bg-color custom-bg-text">
             <h5 class="card-title text-center">Payment Details</h5>
           </div>
           <div class="card-body text-color custom-bg">
-          <div className="mb-3">
-  <label htmlFor="paymentType" className="form-label">
-    <b>Payment Type</b>
-  </label>
-  <select
-    className="form-control"
-    id="paymentType"
-    name="paymentType"
-    onChange={(e) => setPaymentType(e.target.value)}
-    value={paymentType}
-    required
-  >
-    <option value="cod">Cash on Delivery</option>
-    <option value="wallet">Wallet Pay</option>
-  </select>
-</div>
-{paymentType === "wallet" && (
-            <div className="mb-3">
-              <button className="btn custom-bg-text bg-color" onClick={checkBalance}>
-                Check Balance
-              </button>
-            </div>
-          )}
             <form onSubmit={payForOrder}>
+              <div class="mb-3">
+                <label for="name" class="form-label">
+                  <b> Name on Card</b>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="cardName"
+                  onChange={handleCardInput}
+                  value={card.cardName}
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="cardNumber" class="form-label">
+                  <b> Card Number</b>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cardNumber"
+                  name="cardNumber"
+                  onChange={handleCardInput}
+                  value={card.cardNumber}
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="validThrough" class="form-label">
+                  <b>Valid Through</b>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="validThrough"
+                  name="validThrough"
+                  onChange={handleCardInput}
+                  value={card.validThrough}
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="cvv" class="form-label">
+                  <b>CVV</b>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cvv"
+                  name="cvv"
+                  onChange={handleCardInput}
+                  value={card.cvv}
+                  required
+                />
+              </div>
 
               <input
                 type="submit"
                 class="btn custom-bg-text bg-color"
-                value={paymentType ==="wallet" ? "Pay" + priceToPay : "Proceed"}
+                value={"Pay Rs" + priceToPay}
               />
 
               <ToastContainer />

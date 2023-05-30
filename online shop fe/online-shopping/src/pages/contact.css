@@ -1,0 +1,73 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+.imagee{
+    position: absolute;
+    background-image: url(../images/abc.jpeg);
+    height: 55%;
+    width: 79%;
+    
+    left: 10%;
+}
+.icons{
+    height: 70px;
+    width: 70px;
+}
+.Phone{
+    color:darkslategray;
+    margin-top: 28%;
+    margin-left: 20%;
+
+}
+
+.whatsapp{
+    color: rgb(29, 185, 94);
+    margin-top: 28%;
+    margin-left: 22%;
+}
+.instagram{
+    color: rgb(202, 39, 115);
+    margin-top: 28%;
+    margin-left: 24%;
+}
+.mailbulk{
+    color: rgb(202, 50, 39);
+    margin-top: 6%;
+    margin-left: 33%;
+}
+.twitter{
+    color: rgb(39,148, 202);
+    margin-top: 6%;
+    margin-left: 23.5%;
+}
+.phoneno{
+    position: absolute;
+    top: 76%;
+    left: 15%;
+}
+.phoneno2{
+    position: absolute;
+    top: 80%;
+    left: 15%;
+}
+.whatsappno{
+    position: absolute;
+    top: 76%;
+    left: 42%;
+}   
+.instaid{
+    position: absolute;
+    top: 76%;
+    left: 72%;
+} 
+.mailid{
+    position:absolute;
+    top: 97%;
+    left: 27%;
+} 
+.twitterid{
+    position: absolute;
+    top:97%;
+    left:59%;
+};

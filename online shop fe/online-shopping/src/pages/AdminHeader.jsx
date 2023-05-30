@@ -46,7 +46,7 @@ const AdminHeader = () => {
         </Link>
       </li>
 
-      {/* <li class="nav-item">
+      <li class="nav-item">
         <Link
           to="/user/admin/assigndelivery"
           class="nav-link active"
@@ -54,7 +54,7 @@ const AdminHeader = () => {
         >
           <b className="text-color">Assign Order Delivery</b>
         </Link>
-      </li> */}
+      </li>
 
       <li class="nav-item">
         <Link

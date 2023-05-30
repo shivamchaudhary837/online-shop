@@ -31,7 +31,7 @@ public class User {
 	
 	private String role;
 	
-    private Integer walletBalance=1000;
+    private Integer walletBalance;
 
 	@OneToOne
 	@JoinColumn(name = "address_id")

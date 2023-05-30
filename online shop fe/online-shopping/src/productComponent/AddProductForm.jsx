@@ -59,7 +59,7 @@ const AddProductForm = () => {
       <div class="mt-2 d-flex aligns-items-center justify-content-center">
         <div
           class="card form-card border-color custom-bg"
-          style={{ width: "25rem" }}
+          style={{ width: "35rem" }}
         >
           <div className="card-header bg-color custom-bg-text text-center">
             <h5 class="card-title">Add Product</h5>
@@ -77,6 +77,7 @@ const AddProductForm = () => {
                   name="title"
                   onChange={handleInput}
                   value={product.title}
+                  required
                 />
               </div>
               <div class="mb-3">
@@ -90,6 +91,7 @@ const AddProductForm = () => {
                   rows="3"
                   onChange={handleInput}
                   value={product.description}
+                  required
                 />
               </div>
 
@@ -124,6 +126,7 @@ const AddProductForm = () => {
                   name="quantity"
                   onChange={handleInput}
                   value={product.quantity}
+                  required
                 />
               </div>
 
@@ -138,6 +141,7 @@ const AddProductForm = () => {
                   name="price"
                   onChange={handleInput}
                   value={product.price}
+                  required
                 />
               </div>
 
@@ -152,6 +156,7 @@ const AddProductForm = () => {
                   name="photo"
                   value={product.photo}
                   onChange={(e) => setSelectedPhoto(e.target.files[0])}
+                  required
                 />
               </div>
 

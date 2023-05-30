@@ -9,7 +9,9 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -54,11 +56,14 @@ public class UserController {
 	public ResponseEntity<?> registerUser(@RequestBody AddUserRequest userRequest) throws DuplicateUserExecption{
 		System.out.println("recieved request for REGISTER USER");
 		System.out.println(userRequest);
+		
 		User user1=userDao.findByEmailId(userRequest.getEmailId());
+		
 		if(user1!=null) {
 			throw new DuplicateUserExecption("User with this email exist");
 		}
 		
+        
 		Address address = new Address();
 		address.setCity(userRequest.getCity());
 		address.setPincode(userRequest.getPincode());
@@ -72,10 +77,18 @@ public class UserController {
 		user.setFirstName(userRequest.getFirstName());
 		user.setLastName(userRequest.getLastName());
 		user.setPhoneNo(userRequest.getPhoneNo());
-		user.setPassword(userRequest.getPassword());
+		
+
+		//password encoding
+		String password = userRequest.getPassword();
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(password);
+
+        
+		user.setPassword(hashedPassword);
 		user.setRole(userRequest.getRole());
-		user.setBalance(0);
-		//User addUser = userDao.save(user);
+		user.setBalance(1000);
+		
 		
 		User addUser = userService.registerUser(user);
 				
@@ -88,13 +101,12 @@ public class UserController {
 		System.out.println("recieved request for LOGIN USER");
 		System.out.println(loginRequest);
 		
-		User user = new User();
-	
-		user=userService.loginUser(loginRequest);
-				
-		System.out.println("response sent!!!");
+		if(loginRequest.getRole().equals("Customer") == false) return null;
+		 
+		User user=userService.loginUser(loginRequest);
 		
 		return ResponseEntity.ok(user);
+		
 	}
 	
 	@PostMapping("admin/login")
@@ -102,24 +114,23 @@ public class UserController {
 		
 		System.out.println("recieved request for LOGIN ADMIN USER");
 		System.out.println(loginRequest);
+		if(loginRequest.getRole().equals("Admin") == false) return null;
 		
-		User userAdmin = new User();
-
-		
-		userAdmin =userService.loginAdmin(loginRequest);
+		User userAdmin  =userService.loginAdmin(loginRequest);
 		
 		return ResponseEntity.ok(userAdmin);
 	}
 	
-//	@GetMapping("deliveryperson/all")
-//	public ResponseEntity<?> getAllDeliveryPersons() {
-//		System.out.println("recieved request for getting ALL Delivery Persons!!!");
-//		
-//		List<User> deliveryPersons = this.userDao.findByRole("Delivery");
-//		//List<User> deliveryPersons = this.userService.getAllDeliveryPerson();
-//		System.out.println("response sent!!!");
-//		return ResponseEntity.ok(deliveryPersons);
-//	}
+	@GetMapping("deliveryperson/all")
+	public ResponseEntity<?> getAllDeliveryPersons() {
+		System.out.println("recieved request for getting ALL Delivery Persons!!!");
+	
+	List<User> deliveryPersons = this.userDao.findByRole("Delivery");
+	//List<User> deliveryPersons = this.userService.getAllDeliveryPerson();
+		System.out.println("response sent!!!");
+		return ResponseEntity.ok(deliveryPersons);
+	}
+	
 	@PostMapping("Wallet/pay")
 	public String payAmount(@RequestBody Map<String, String> payData) {
 		

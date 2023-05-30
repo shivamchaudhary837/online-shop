@@ -57,7 +57,7 @@ const AddUserForm = () => {
       <div class="mt-2 d-flex aligns-items-center justify-content-center ms-2 me-2 mb-2">
         <div
           class="card form-card border-color text-color custom-bg"
-          style={{ width: "25rem" }}
+          style={{ width: "35rem" }}
         >
           <div className="card-header custom-bg bg-color-text text-center">
             <h5 class="card-title">Add User</h5>
@@ -91,6 +91,7 @@ const AddUserForm = () => {
                   name="firstName"
                   onChange={handleUserInput}
                   value={user.firstName}
+                  required
                 />
               </div>
               <div class="mb-3 text-color">
@@ -104,6 +105,7 @@ const AddUserForm = () => {
                   name="lastName"
                   onChange={handleUserInput}
                   value={user.lastName}
+                  required
                 />
               </div>
 
@@ -118,6 +120,7 @@ const AddUserForm = () => {
                   name="emailId"
                   onChange={handleUserInput}
                   value={user.emailId}
+                  required
                 />
               </div>
 
@@ -132,6 +135,7 @@ const AddUserForm = () => {
                   name="password"
                   onChange={handleUserInput}
                   value={user.password}
+                  required
                 />
               </div>
 
@@ -146,6 +150,7 @@ const AddUserForm = () => {
                   name="phoneNo"
                   onChange={handleUserInput}
                   value={user.phoneNo}
+                  required
                 />
               </div>
 

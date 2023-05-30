@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
-import { MarkGithubIcon } from '@primer/octicons-react';
+
 
 const UserLoginForm = () => {
   let navigate = useNavigate();
@@ -48,11 +48,24 @@ const UserLoginForm = () => {
           draggable: true,
           progress: undefined,
         });
-
+        
         navigate("/home");
         window.location.reload(true);
+      }).catch((error) => {
+        console.error(error);
+        // Handle the error here, such as displaying an error message to the user
+        toast.error("Wrong Email Id or Password,Try Again", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
     });
+    
     e.preventDefault();
   };
  
@@ -66,7 +79,7 @@ const UserLoginForm = () => {
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
         <div
           className="card form-card border-color custom-bg"
-          style={{ width: "25rem" }}
+          style={{ width: "35rem" }}
         >
           <div className="card-header custom-bg text-center bg-color-text ">
             <h4 className="card-title">User Login</h4>
@@ -116,7 +129,7 @@ const UserLoginForm = () => {
 
                 style={{  marginLeft: '10px' }}
               >
-                 <MarkGithubIcon size={16} className="mr-2" /> Login via GitHub
+                  Login via GitHub
               </button>
               <ToastContainer />
             </form>

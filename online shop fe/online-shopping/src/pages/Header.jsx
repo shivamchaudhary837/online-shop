@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import RoleNav from "./RoleNav";
-import logo from "../images/e_logo.png";
+import logo from "../images/nv2.png";
 
 const Header = () => {
   return (
@@ -9,14 +9,14 @@ const Header = () => {
         <div class="container-fluid text-color">
           <img
             src={logo}
-            width="35"
+            width="45"
             height="35"
             class="d-inline-block align-top"
             alt=""
           />
           <Link to="/" class="navbar-brand">
             <i>
-              <b className="text-color">NamkeenNook</b>
+              <b className="text-color">NamkeenVilla</b>
             </i>
           </Link>
 

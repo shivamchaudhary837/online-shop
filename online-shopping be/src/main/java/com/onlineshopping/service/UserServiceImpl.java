@@ -3,6 +3,7 @@ package com.onlineshopping.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.onlineshopping.dao.UserDao;
@@ -26,26 +27,39 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User loginAdmin(UserLoginRequest loginRequest) {
 		// TODO Auto-generated method stub
-        User userAdmin = new User();
+        
 		
-		userAdmin = userDao.
-				findByEmailIdAndPasswordAndRole
-			    (loginRequest.getEmailId(), loginRequest.getPassword(), "Admin");
+        String rawPassword = loginRequest.getPassword();
+		User userAdmin = userDao.findByEmailIdAndRole(loginRequest.getEmailId(), loginRequest.getRole());
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
-		return userAdmin;
+		boolean isMatch = passwordEncoder.matches(rawPassword, userAdmin.getPassword());
+
+		if (isMatch) {
+		    return userAdmin;
+		} else {
+		    return null;
+		}
+		
 	}
 
 	@Override
 	public User loginUser(UserLoginRequest loginRequest) {
 		// TODO Auto-generated method stub
 		
-		User user = new User();
 		
-		user = userDao.
-				findByEmailIdAndPasswordAndRole
-				(loginRequest.getEmailId(), loginRequest.getPassword(), loginRequest.getRole());
+		String rawPassword = loginRequest.getPassword();
+		User user = userDao.findByEmailIdAndRole(loginRequest.getEmailId(), loginRequest.getRole());
+
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		boolean isMatch = passwordEncoder.matches(rawPassword, user.getPassword());
+
+		if (isMatch) {
+		    return user;
+		} else {
+		    return null;
+		}
 		
-		return user;
 	}
 
 	@Override
