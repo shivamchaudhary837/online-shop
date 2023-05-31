@@ -23,43 +23,45 @@ const AdminHeader = () => {
   };
 
   return (
-    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
-      <li class="nav-item">
-        <Link to="/addcategory" class="nav-link active" aria-current="page">
-          <b className="text-color"> Add Category</b>
-        </Link>
-      </li>
-
-      <li class="nav-item">
-        <Link to="/addproduct" class="nav-link active" aria-current="page">
-          <b className="text-color">Add Product</b>
-        </Link>
-      </li>
-
-      <li class="nav-item">
+    <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
+      <li className="nav-item dropdown">
         <Link
-          to="/user/admin/allorder"
-          class="nav-link active"
-          aria-current="page"
+          className="nav-link dropdown-toggle"
+          to="#"
+          id="navbarDropdown"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
         >
-          <b className="text-color">All Orders</b>
+          <b className="text-color">MyAccount</b>
         </Link>
+        <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li>
+            <Link to="/addcategory" className="dropdown-item">
+              Add Category
+            </Link>
+          </li>
+          <li>
+            <Link to="/addproduct" className="dropdown-item">
+              Add Product
+            </Link>
+          </li>
+          <li>
+            <Link to="/user/admin/allorder" className="dropdown-item">
+              All Orders
+            </Link>
+          </li>
+          <li>
+            <Link to="/user/admin/assigndelivery" className="dropdown-item">
+              Assign Order Delivery
+            </Link>
+          </li>
+        </ul>
       </li>
-
-      <li class="nav-item">
-        <Link
-          to="/user/admin/assigndelivery"
-          class="nav-link active"
-          aria-current="page"
-        >
-          <b className="text-color">Assign Order Delivery</b>
-        </Link>
-      </li>
-
-      <li class="nav-item">
+      <li className="nav-item">
         <Link
           to=""
-          class="nav-link active"
+          className="nav-link active"
           aria-current="page"
           onClick={adminLogout}
         >

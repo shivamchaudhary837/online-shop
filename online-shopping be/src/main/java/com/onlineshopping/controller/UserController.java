@@ -121,6 +121,19 @@ public class UserController {
 		return ResponseEntity.ok(userAdmin);
 	}
 	
+	@PostMapping("deliveryperson/login")
+	public ResponseEntity<?> loginDeliveryPerson(@RequestBody UserLoginRequest loginRequest){
+		
+		System.out.println("recieved request for LOGIN delivery person ");
+		System.out.println(loginRequest);
+		
+		if(loginRequest.getRole().equals("Delivery") == false) return null;
+		
+		User userDelivery  =userService.loginDelivery(loginRequest);
+		
+		return ResponseEntity.ok(userDelivery);
+	}
+	
 	@GetMapping("deliveryperson/all")
 	public ResponseEntity<?> getAllDeliveryPersons() {
 		System.out.println("recieved request for getting ALL Delivery Persons!!!");
@@ -226,4 +239,5 @@ public class UserController {
 	    	  
 	    }
 	
+	 
 }

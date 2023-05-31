@@ -103,4 +103,21 @@ public class UserServiceImpl implements UserService{
 		userDao.save(user);
 	}
 
+	@Override
+	public User loginDelivery(UserLoginRequest loginRequest) {
+		// TODO Auto-generated method stub
+
+        String rawPassword = loginRequest.getPassword();
+		User userDeilvery = userDao.findByEmailIdAndRole(loginRequest.getEmailId(), loginRequest.getRole());
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
+		boolean isMatch = passwordEncoder.matches(rawPassword, userDeilvery.getPassword());
+
+		if (isMatch) {
+		    return userDeilvery;
+		} else {
+		    return null;
+		}
+	}
+
 }

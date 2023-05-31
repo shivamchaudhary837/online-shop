@@ -16,4 +16,6 @@ public interface UserService {
 	public UserProfileRequest getUserProfileById(Integer userId);
 
 	public void updateProfile(Integer userId, UserProfileRequest userProfile);
+
+	public User loginDelivery(UserLoginRequest loginRequest);
 }

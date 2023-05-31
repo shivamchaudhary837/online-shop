@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
-
-const AssignDeliveryToOrders = () => {
+ 
+const AssignDeliveryToOrders = (props) => {
   
   const [orderId, setOrderId] = useState("");
   const [allOrderData, setAllOrderData] = useState([]);
@@ -51,6 +51,7 @@ const AssignDeliveryToOrders = () => {
   };
 
   const searchOrderById = (e) => {
+    console.log("this is order",props.orderId)
     getAllOrder();
     setOrderId("");
     e.preventDefault();

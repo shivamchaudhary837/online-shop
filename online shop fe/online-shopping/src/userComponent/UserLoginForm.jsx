@@ -184,24 +184,23 @@ const UserLoginForm = () => {
                     autoComplete="on"
                   />
                 </div>
+                
                 <button
                   type="submit"
                   className="btn bg-color custom-bg-text"
                   onClick={loginAction}
-                  style={{marginTop:"20px"}}
+                  style={{marginTop:"1px"}}
                 >
                   Login
                 </button>
-
+                 <div>
+                 <h5  style={{
+                     color:"#25493F",
+                     marginTop:"20px",
+                }}>Sign With:</h5>
                 <button
-                 className="btn  custom-bg-text ml-2"
-                  // onClick={loginWithGoogle}
-
-                  // style={{ marginLeft: "10px" }}
                   style={{
-                    height: "2.5rem",
-                    width: "11.50rem",
-                    marginLeft: "10px",
+                  
                     marginTop:"10px",
                   }}
                 >
@@ -223,6 +222,7 @@ const UserLoginForm = () => {
                     </GoogleLogin>
                   </GoogleOAuthProvider>
                 </button>
+                </div>
                 <ToastContainer />
               </form>
             </div>

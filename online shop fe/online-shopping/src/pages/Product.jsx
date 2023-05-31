@@ -101,6 +101,7 @@ const Product = () => {
     }
   };
 
+  
   return (
     <div className="container-fluid">
       <div class="row">

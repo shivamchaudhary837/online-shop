@@ -7,6 +7,7 @@ const DeliveryPersonLogin = () => {
   const [loginRequest, setLoginRequest] = useState({
     emailId: "",
     password: "",
+    role:"Delivery"
   });
 
   const [response, setResponse] = useState({});
@@ -43,9 +44,9 @@ const DeliveryPersonLogin = () => {
 
   return (
     <div>
-      <div className="mt-2 d-flex aligns-items-center justify-content-center">
-        <div className="card form-card border-color" style={{ width: "25rem" }}>
-          <div className="card-header bg-color text-center">
+      <div className="mt-2 d-flex aligns-items-center justify-content-center" >
+        <div className="card form-card border-color" style={{ width: "35rem" ,marginTop:"100px"}} >
+          <div className="card-header custom-bg text-center" >
             <h4 className="card-title">Delivery Person Login</h4>
           </div>
           <div className="card-body">
@@ -61,6 +62,7 @@ const DeliveryPersonLogin = () => {
                   name="emailId"
                   onChange={handleUserInput}
                   value={loginRequest.emailId}
+                  placeholder="email"
                 />
               </div>
               <div className="mb-3">
@@ -75,6 +77,7 @@ const DeliveryPersonLogin = () => {
                   onChange={handleUserInput}
                   value={loginRequest.password}
                   autoComplete="on"
+                  placeholder="password"
                 />
               </div>
 
