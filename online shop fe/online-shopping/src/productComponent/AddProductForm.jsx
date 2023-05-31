@@ -58,10 +58,10 @@ const AddProductForm = () => {
     <div>
       <div class="mt-2 d-flex aligns-items-center justify-content-center">
         <div
-          class="card form-card border-color custom-bg"
+          class="card form-card border-color card-color"
           style={{ width: "35rem" }}
         >
-          <div className="card-header bg-color custom-bg-text text-center">
+          <div className="card-header custom-bg text-color text-center">
             <h5 class="card-title">Add Product</h5>
           </div>
           <div class="card-body text-color">

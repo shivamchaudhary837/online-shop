@@ -83,14 +83,12 @@ const AssignDeliveryToOrders = () => {
   return (
     <div>
       <div
-        className="card form-card mt-1 ms-2 me-2 mb-2 custom-bg border-color"
+        className="card form-card mt-1 ms-2 me-2 mb-2 card-color border-color"
         style={{
           height: "35rem",
         }}
       >
-        <div className="card-header text-center bg-color custom-bg-text">
-          <h4>Searh Customer Orders</h4>
-        </div>
+        
         <div
           className="card-body"
           style={{
@@ -120,7 +118,7 @@ const AssignDeliveryToOrders = () => {
           </form>
           <div className="table-responsive">
             <table className="table table-hover text-center">
-              <thead className="table-bordered border-color bg-color custom-bg-text">
+              <thead className="table-bordered border-color custom-bg text-color">
                 <tr>
                   <th scope="col">Order Id</th>
                   <th scope="col">Product</th>
@@ -213,8 +211,8 @@ const AssignDeliveryToOrders = () => {
       </div>
 
       <div>
-        <div className="card form-card ms-2 me-2 mb-2 border-color custom-bg">
-          <div className="card-header text-center bg-color custom-bg-text">
+        <div className="card form-card ms-2 me-2 mb-2 border-color card-color">
+          <div className="card-header text-center custom-bg text-color">
             <h4>Assign Delivery To Orders</h4>
           </div>
           <div className="card-body text-color">

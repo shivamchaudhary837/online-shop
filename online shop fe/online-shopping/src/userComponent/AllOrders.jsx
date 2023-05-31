@@ -27,12 +27,12 @@ const AllOrders = () => {
   return (
     <div className="mt-3">
       <div
-        className="card form-card ms-2 me-2 mb-5 custom-bg border-color "
+        className="card form-card ms-2 me-2 mb-5 card-color border-color "
         style={{
           height: "45rem",
         }}
       >
-        <div className="card-header custom-bg-text text-center bg-color">
+        <div className="card-header text-color text-center custom-bg">
           <h2>All Orders</h2>
         </div>
         <div
@@ -43,7 +43,7 @@ const AllOrders = () => {
         >
           <div className="table-responsive">
             <table className="table table-hover text-color text-center">
-              <thead className="table-bordered border-color bg-color custom-bg-text">
+              <thead className="table-bordered border-color custom-bg text-color">
                 <tr>
                   <th scope="col">Order Id</th>
                   <th scope="col">Product</th>

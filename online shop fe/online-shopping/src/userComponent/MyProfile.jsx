@@ -17,7 +17,7 @@ const MyProfile = () => {
       city: "",
       pincode: "",
     },
-    wallet:""
+    walletAmount:0
   });
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const MyProfile = () => {
       const profileResult = await retrieveUser();
 
       if (profileResult) {
-        console.log("my profile is present");
+        console.log("my profile is present",profileResult);
       }
       setProfile(profileResult);
     };
@@ -73,7 +73,12 @@ const MyProfile = () => {
     }));
   };
   
-
+  const handleWallet=(e)=>{
+       setProfile((prevProfile) => ({
+           ...prevProfile,
+           walletAmount:e.target.value,
+       }))
+  };
   const handleAddress = (e) => {
     setProfile((prevProfile) => ({
       ...prevProfile,
@@ -104,7 +109,7 @@ const MyProfile = () => {
     }));
   };
   
-
+ 
   const handleSaveButton = async () => {
     try {
       // setProfile(profile)
@@ -119,8 +124,10 @@ const MyProfile = () => {
       console.error(error);
       
     }
-      
-    // window.location.reload(true);
+      // setTimeout(()=>{
+      //   window.location.reload(true);
+      // },2000)
+     
   };
 
   return (
@@ -223,7 +230,8 @@ const MyProfile = () => {
                   <h5>Wallet Amount:</h5>
                 
                 </label>
-                <input type="text"   value="1000" />
+                <input type="text"  className="form-control" value={profile.walletAmount} 
+                onChange={handleWallet} />
               </div>
               <div className="col-12" style={{ marginTop: "10px" }}>
                 <button type="submit" className="btn bg-color btn-primary" 

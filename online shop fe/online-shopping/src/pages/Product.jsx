@@ -108,7 +108,7 @@ const Product = () => {
           <GetAllCategories />
         </div>
         <div class="col-sm-3 mt-2 admin">
-          <div class="card form-card border-color custom-bg">
+          <div class="card form-card border-color">
             <img
               src={"http://localhost:8080/api/product/" + product.imageName}
               style={{
@@ -122,10 +122,10 @@ const Product = () => {
           </div>
         </div>
         <div class="col-sm-7 mt-2">
-          <div class="card form-card border-color custom-bg">
-            <div class="card-header bg-color">
+          <div class="card form-card border-color card-color">
+            <div class="card-header custom-bg">
               <div className="d-flex justify-content-between">
-                <h1 className="custom-bg-text">{product.title}</h1>
+                <h1 className="text-color">{product.title}</h1>
               </div>
             </div>
 
@@ -136,7 +136,7 @@ const Product = () => {
               <h4 class="card-text" style={{marginLeft:"1rem",marginTop:"1rem"}}>{product.description}</h4>
             </div>
 
-            <div class="card-footer custom-bg">
+            <div class="card-footer card-color">
               <div className="text-center text-color" style={{marginLeft:"43rem"}}>
                 <p>
                   <span>
