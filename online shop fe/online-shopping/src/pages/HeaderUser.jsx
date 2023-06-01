@@ -16,7 +16,9 @@ const HeaderUser = () => {
       progress: undefined,
     });
     sessionStorage.removeItem("active-user");
+    navigate("/home")
     window.location.reload(true);
+    
   };
 
   return (

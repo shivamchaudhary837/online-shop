@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 const DeliveryPersonLogin = () => {
   let navigate = useNavigate();
-  
+
   const [loginRequest, setLoginRequest] = useState({
     emailId: "",
     password: "",
-    role:"Delivery"
+    role: "Delivery",
   });
 
   const [response, setResponse] = useState({});
@@ -29,66 +29,82 @@ const DeliveryPersonLogin = () => {
     }).then((result) => {
       console.log("result", result);
       result.json().then((res) => {
-        sessionStorage.setItem("active-delivery", JSON.stringify(res));
-        toast.success("logged in successfully!!!", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        navigate("/user/delivery/myorders");
-        window.location.reload(true);
+
+        if(res && res.role === "Delivery"){
+          sessionStorage.setItem("active-delivery", JSON.stringify(res));
+          toast.success("logged in successfully!!!", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          navigate("/user/delivery/myorders");
+          window.location.reload(true);
+        }
+        else{
+              
+          toast.error("Invalid email and password", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          return;
+        }
+        
       });
     });
     e.preventDefault();
   };
 
   return (
-    <div>
-      <div className="mt-2 d-flex aligns-items-center justify-content-center" >
-        <div className="card form-card border-color" style={{ width: "35rem" ,marginTop:"100px"}} >
-          <div className="card-header custom-bg text-center" >
+    <div  style={{ marginTop: "100px" }}>
+      <div
+        className="mt-2 d-flex aligns-items-center justify-content-center"
+        
+      >
+        <div className="card form-card border-color" style={{ width: "25rem" }}>
+          <div className="card-header custom-bg text-center">
             <h4 className="card-title">Delivery Person Login</h4>
           </div>
           <div className="card-body">
-            <form>
-              <div className="mb-3">
-                <label for="emailId" class="form-label custom-bg-text">
-                  
-                </label>
+            <form onSubmit={loginAction}>
+              <div className="form-floating mb-3">
                 <input
                   type="email"
                   className="form-control"
                   id="emailId"
                   name="emailId"
                   onChange={handleUserInput}
-                  value={loginRequest.emailId}
+                  required
                   placeholder="Email Id"
                 />
+                <label htmlFor="emailId">Email Id</label>
               </div>
-              <div className="mb-3">
-                <label for="password" className="form-label custom-bg-text">
-                 
-                </label>
+              <div className="form-floating mb-3">
                 <input
                   type="password"
                   className="form-control"
                   id="password"
                   name="password"
                   onChange={handleUserInput}
-                  value={loginRequest.password}
+                  required
                   autoComplete="on"
                   placeholder="Password"
                 />
+                <label htmlFor="password">Password</label>
               </div>
 
               <button
                 type="submit"
                 className="btn bg-color custom-bg-text"
-                onClick={loginAction}
+                // onClick={loginAction}
               >
                 Login
               </button>

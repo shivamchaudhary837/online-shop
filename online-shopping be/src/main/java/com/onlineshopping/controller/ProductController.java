@@ -123,6 +123,7 @@ public class ProductController {
 		System.out.println("request came for fetching product pic");
 		System.out.println("Loading file: " + productImageName);
 		Resource resource = storageService.load(productImageName);
+		
 		if(resource != null) {
 			try(InputStream in = resource.getInputStream()) {
 				ServletOutputStream out = resp.getOutputStream();

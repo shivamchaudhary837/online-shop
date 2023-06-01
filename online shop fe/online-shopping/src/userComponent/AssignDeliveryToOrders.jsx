@@ -2,8 +2,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
  
+import AllOrders from "./AllOrders";
+import { useParams } from "react-router-dom";
+
 const AssignDeliveryToOrders = (props) => {
   
+   let pathOrderId=useParams()
+   
+ 
   const [orderId, setOrderId] = useState("");
   const [allOrderData, setAllOrderData] = useState([]);
   const [deliveryPersons, setDeliveryPersons] = useState([]);
@@ -12,6 +18,19 @@ const AssignDeliveryToOrders = (props) => {
     orderId: "",
     deliveryId: "",
   });
+
+  useEffect(() => {
+    // Update the assignDelivery state with the orderId
+    setAssignDelivery((prevState) => ({
+      ...prevState,
+      orderId: pathOrderId.orderId.toString(), // Convert orderId to a string if necessary
+    }));
+
+    
+
+  }, []);
+
+  
 
   const handleInput = (e) => {
     setAssignDelivery({ ...assignDelivery, [e.target.name]: e.target.value });
@@ -25,6 +44,7 @@ const AssignDeliveryToOrders = (props) => {
   };
 
   useEffect(() => {
+    
     const getAllDeliveryPerson = async () => {
       const allDeliveryStatus = await retrieveAllDeliveryPerson();
       if (allDeliveryStatus) {
@@ -51,7 +71,7 @@ const AssignDeliveryToOrders = (props) => {
   };
 
   const searchOrderById = (e) => {
-    console.log("this is order",props.orderId)
+    // console.log("this is order",props.orderId)
     getAllOrder();
     setOrderId("");
     e.preventDefault();
@@ -83,6 +103,62 @@ const AssignDeliveryToOrders = (props) => {
 
   return (
     <div>
+
+<div>
+        <div className="card form-card ms-2 me-2 mb-2 border-color card-color" style={{marginTop:"20px"}}>
+          
+           
+         
+          <div className="card-body text-color" >
+            <form class="row g-3">
+              <div class="col-auto">
+                <label>
+                  <b>Order Id</b>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="orderIdBox"
+                  placeholder="Enter Order Id..."
+                  name="orderId"
+                  value={assignDelivery.orderId}
+                  onChange={handleInput}
+                  
+                />
+              </div>
+
+              <div className="col-auto">
+                <label>
+                  <b>Delivery Person</b>
+                </label>
+                <select
+                  onChange={handleInput}
+                  className="form-control"
+                  name="deliveryId"
+                >
+                  <option value="">Select Delivery Person</option>
+
+                  {deliveryPersons.map((person) => {
+                    return (
+                      <option value={person.id}> {person.firstName} </option>
+                    );
+                  })}
+                </select>
+              </div>
+
+              <div class="col-auto">
+                <button
+                  type="submit"
+                  class="btn bg-color custom-bg-text mt-4"
+                  onClick={assignDeliveryToOrders}
+                >
+                  Assign Delivery Person
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
       <div
         className="card form-card mt-1 ms-2 me-2 mb-2 card-color border-color"
         style={{
@@ -97,7 +173,7 @@ const AssignDeliveryToOrders = (props) => {
           }}
         >
           <form class="row g-3">
-            <div class="col-auto">
+            {/* <div class="col-auto">
               <input
                 type="text"
                 class="form-control"
@@ -115,7 +191,7 @@ const AssignDeliveryToOrders = (props) => {
               >
                 Search
               </button>
-            </div>
+            </div> */}
           </form>
           <div className="table-responsive">
             <table className="table table-hover text-center">
@@ -124,7 +200,6 @@ const AssignDeliveryToOrders = (props) => {
                   <th scope="col">Order Id</th>
                   <th scope="col">Product</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Description</th>
                   <th scope="col">Quantity</th>
                   <th scope="col">Total Price</th>
                   <th scope="col">Customer Name</th>
@@ -161,9 +236,6 @@ const AssignDeliveryToOrders = (props) => {
                       </td>
                       <td>
                         <b>{orderData.productName}</b>
-                      </td>
-                      <td>
-                        <b>{orderData.productDescription}</b>
                       </td>
                       <td>
                         <b>{orderData.quantity}</b>
@@ -211,60 +283,7 @@ const AssignDeliveryToOrders = (props) => {
         </div>
       </div>
 
-      <div>
-        <div className="card form-card ms-2 me-2 mb-2 border-color card-color">
-          <div className="card-header text-center custom-bg text-color">
-            <h4>Assign Delivery To Orders</h4>
-          </div>
-          <div className="card-body text-color">
-            <form class="row g-3">
-              <div class="col-auto">
-                <label>
-                  <b>Order Id</b>
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputPassword2"
-                  placeholder="Enter Order Id..."
-                  name="orderId"
-                  onChange={handleInput}
-                  value={assignDelivery.orderId}
-                />
-              </div>
-
-              <div className="col-auto">
-                <label>
-                  <b>Delivery Person</b>
-                </label>
-                <select
-                  onChange={handleInput}
-                  className="form-control"
-                  name="deliveryId"
-                >
-                  <option value="">Select Delivery Person</option>
-
-                  {deliveryPersons.map((person) => {
-                    return (
-                      <option value={person.id}> {person.firstName} </option>
-                    );
-                  })}
-                </select>
-              </div>
-
-              <div class="col-auto">
-                <button
-                  type="submit"
-                  class="btn bg-color custom-bg-text mt-4"
-                  onClick={assignDeliveryToOrders}
-                >
-                  Assign Delivery Person
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+     
     </div>
   );
 };

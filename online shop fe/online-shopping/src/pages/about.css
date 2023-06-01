@@ -5,36 +5,41 @@
     width: 80%;
     margin-left: 10%;
 }
-.image h1{
+.about{
     position: absolute;
     top: 70%;
     left: 38%;
     font-style: italic;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* font-family: 'Abril Fatface', cursive; */
+    font-family: 'Rubik Puddles', cursive;
+
     color: aliceblue;
     font-size: 75px;
 }
 .image .about-content {
     position: absolute;
-    top: 110%;
+    top: 127%;
     left: 4%;
     right: 4%;
+    font-family: Georgia, serif;
     /* font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 .image .motive{
     position: absolute;
     top: 146%;
     color: black;
-
+    left:39%;
+    font-size: 60px;
 }
 
 .motive-content {
     position: absolute;
-    top: 168%;
+    top: 164%;
     left: 4%;
+    font-family: Georgia, serif;
 }
 
-.image .founder{
+/* .image .founder{
     position: absolute;
     top: 179%;
     color: black;
@@ -81,15 +86,15 @@
     left: 6%;
     height: 80%;
     width: 40%;
-}
+} */
 
-.image .f3 .f31{
+/* .image .f3 .f31{
     position: absolute;
     color: black;
     left: 128%;
     top: 45%;
-}
-.image .f3 .f32{
+} */
+/* .image .f3 .f32{
     position: absolute;
     color: black;
     left: 163%;
@@ -104,13 +109,82 @@
     right: 8%;
     height: 80%;
     width: 35%;
-}
+} */
 
-.image .f4 h1{
+/* .image .f4 h1{
     position: absolute;
     color: black;
     left: -127%;
     top: 55%;
     right: 110%;
+} */
+
+.Welcome{
+    position: absolute;
+    top: 106.5%;
+    left: 11.5%;
+    font-style: italic;
+    color: black;
+    font-size: 75px;
+
 }
 
+.image .qna{
+    position: absolute;
+    top: 189%;
+    color: black;
+    left:25%;
+    font-size: 60px;
+}
+
+.qna-content {
+    position: absolute;
+    top: 210%;
+    left: 4%;
+    font-family: Georgia, serif;
+}
+
+.image .services{
+    position: absolute;
+    top: 235%;
+    color: black;
+    left:24%;
+    font-size: 60px;
+
+}
+
+.services-content {
+    position: absolute;
+    top: 257%;
+    left: 4%;
+    font-family: Georgia, serif;
+}
+
+.image .joinus{
+    position: absolute;
+    top: 280%;
+    color: black;
+    left:43%;
+    font-size: 60px;
+}
+
+.joinus-content {
+    position: absolute;
+    top: 299.5%;
+    left: 4%;
+    font-family: Georgia, serif;
+}
+
+.thank {
+    position: absolute;
+    top: 322%;
+    left: 4%;
+    font-family: Georgia, serif;
+}
+.wish{
+    position: absolute;
+    top: 333%;
+    left: 4%;
+    font-family: 'Satisfy', cursive;
+    font-family: Georgia, serif;
+}

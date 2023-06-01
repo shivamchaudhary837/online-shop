@@ -114,6 +114,7 @@ public class UserController {
 		
 		System.out.println("recieved request for LOGIN ADMIN USER");
 		System.out.println(loginRequest);
+		
 		if(loginRequest.getRole().equals("Admin") == false) return null;
 		
 		User userAdmin  =userService.loginAdmin(loginRequest);

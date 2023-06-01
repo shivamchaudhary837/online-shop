@@ -11,7 +11,7 @@ const Product = () => {
 
   let user = JSON.parse(sessionStorage.getItem("active-user"));
 
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState();
 
   const [products, setProducts] = useState([]);
 
@@ -91,7 +91,13 @@ const Product = () => {
   };
 
   const addToCart = (e) => {
-    if (user == null) {
+    
+    console.log("Quantity",quantity)
+    
+    if (quantity === '0' ) {
+      alert("Enter a valid quantity");
+      //e.preventDefault();
+    } else if (user === null) {
       alert("Please login to buy the products!!!");
       e.preventDefault();
     } else {
@@ -100,8 +106,17 @@ const Product = () => {
       e.preventDefault();
     }
   };
-
   
+
+  const handleQuantity=(e)=>{
+
+          setQuantity((prevQuantity)=>({
+                ...prevQuantity,
+                quantity:e.target.value,
+          }))
+         
+  };
+
   return (
     <div className="container-fluid">
       <div class="row">
@@ -113,7 +128,7 @@ const Product = () => {
             <img
               src={"http://localhost:8080/api/product/" + product.imageName}
               style={{
-                maxHeight: "500px",
+                maxHeight: "300px",
                 maxWidth: "100%",
                 width: "auto",
               }}
@@ -154,8 +169,8 @@ const Product = () => {
                         class="form-control"
                         id="addToCart"
                         placeholder="Enter Quantity..."
-                        onChange={(e) => setQuantity(e.target.value)}
-                        value={quantity}
+                        onChange={handleQuantity}
+                        // value={quantity}
                         required
                       />
                     </div>

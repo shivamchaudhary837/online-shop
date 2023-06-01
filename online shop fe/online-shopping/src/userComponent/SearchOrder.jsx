@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
+import { useParams } from "react-router-dom";
 
 const SearchOrder = () => {
+  let pathOrderId=useParams()
+
   const [allOrderData, setAllOrderData] = useState([]);
   const [orderId, setOrderId] = useState("");
 
@@ -15,6 +18,15 @@ const SearchOrder = () => {
     deliveryTime: "",
     deliveryDate: "",
   });
+
+  useEffect(() => {
+    // Update the assignDelivery state with the orderId
+    setOrderDeliveryStatus((prevState) => ({
+      ...prevState,
+      orderId: pathOrderId.orderId.toString(), // Convert orderId to a string if necessary
+    }));
+
+  }, []);
 
   const handleOrderDelivery = (e) => {
     setOrderDeliveryStatus({
@@ -73,6 +85,92 @@ const SearchOrder = () => {
 
   return (
     <div>
+
+         <div  >
+        <div className="card form-card ms-2 me-2 mb-2 card-color" style={{marginTop:"40px"}}>
+          
+          <div className="card-body" >
+            <form class="row g-3">
+              <div class="col-auto">
+                <label className="text-color">
+                  <b>Order Id</b>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputPassword2"
+                  placeholder="Enter Order Id..."
+                  name="orderId"
+                  onChange={handleOrderDelivery}
+                  value={orderDeliveryStatus.orderId}
+                />
+              </div>
+              <div class="col-auto">
+                <label className="text-color">
+                  <b>Select Delivery Date</b>
+                </label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="inputPassword2"
+                  name="deliveryDate"
+                  placeholder="dd-mm-yyyy"
+                  min="1997-01-01"
+                  max="2030-12-31"
+                  value={handleOrderDelivery.deliveryDate}
+                  onChange={handleOrderDelivery}
+                />
+              </div>
+              <div class="col-auto">
+                <label className="text-color">
+                  <b>Delivery Time</b>
+                </label>
+
+                <select
+                  name="deliveryTime"
+                  value={handleOrderDelivery.deliveryTime}
+                  onChange={handleOrderDelivery}
+                  className="form-control"
+                >
+                  <option value="">Select Delivery Time</option>
+
+                  {deliveryTime.map((time) => {
+                    return <option value={time}> {time} </option>;
+                  })}
+                </select>
+              </div>
+              <div class="col-auto">
+                <label className="text-color">
+                  <b>Delivery Status</b>
+                </label>
+                <select
+                  name="deliveryStatus"
+                  value={handleOrderDelivery.deliveryStatus}
+                  onChange={handleOrderDelivery}
+                  className="form-control"
+                >
+                  <option value="">Select Delivery Status</option>
+
+                  {deliveryStatus.map((status) => {
+                    return <option value={status}> {status} </option>;
+                  })}
+                </select>
+              </div>
+              <div class="col-auto">
+                <button
+                  type="submit"
+                  class="btn bg-color custom-bg-text mt-4"
+                  onClick={updateDeliveryStatus}
+                >
+                  Update Delivery Status
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
       <div
         className="card form-card mt-1 ms-2 me-2 mb-2 card-color"
         style={{
@@ -86,27 +184,7 @@ const SearchOrder = () => {
             overflowY: "auto",
           }}
         >
-          <form class="row g-3">
-            <div class="col-auto">
-              <input
-                type="text"
-                class="form-control"
-                id="inputPassword2"
-                placeholder="Enter Order Id..."
-                onChange={(e) => setOrderId(e.target.value)}
-                value={orderId}
-              />
-            </div>
-            <div class="col-auto">
-              <button
-                type="submit"
-                class="btn bg-color custom-bg-text mb-3"
-                onClick={searchOrderById}
-              >
-                Search
-              </button>
-            </div>
-          </form>
+          
           <div className="table-responsive">
             <table className="table table-hover text-color text-center">
               <thead className="custom-bg table-bordered border-color">
@@ -199,91 +277,7 @@ const SearchOrder = () => {
         </div>
       </div>
 
-      <div>
-        <div className="card form-card ms-2 me-2 mb-2 card-color">
-          <div className="card-header text-center custom-bg text-color">
-            <h4>Update Delivery Status</h4>
-          </div>
-          <div className="card-body">
-            <form class="row g-3">
-              <div class="col-auto">
-                <label className="text-color">
-                  <b>Order Id</b>
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputPassword2"
-                  placeholder="Enter Order Id..."
-                  name="orderId"
-                  onChange={handleOrderDelivery}
-                  value={handleOrderDelivery.orderId}
-                />
-              </div>
-              <div class="col-auto">
-                <label className="text-color">
-                  <b>Select Delivery Date</b>
-                </label>
-                <input
-                  type="date"
-                  class="form-control"
-                  id="inputPassword2"
-                  name="deliveryDate"
-                  placeholder="dd-mm-yyyy"
-                  min="1997-01-01"
-                  max="2030-12-31"
-                  value={handleOrderDelivery.deliveryDate}
-                  onChange={handleOrderDelivery}
-                />
-              </div>
-              <div class="col-auto">
-                <label className="text-color">
-                  <b>Delivery Time</b>
-                </label>
-
-                <select
-                  name="deliveryTime"
-                  value={handleOrderDelivery.deliveryTime}
-                  onChange={handleOrderDelivery}
-                  className="form-control"
-                >
-                  <option value="">Select Delivery Time</option>
-
-                  {deliveryTime.map((time) => {
-                    return <option value={time}> {time} </option>;
-                  })}
-                </select>
-              </div>
-              <div class="col-auto">
-                <label className="text-color">
-                  <b>Delivery Status</b>
-                </label>
-                <select
-                  name="deliveryStatus"
-                  value={handleOrderDelivery.deliveryStatus}
-                  onChange={handleOrderDelivery}
-                  className="form-control"
-                >
-                  <option value="">Select Delivery Status</option>
-
-                  {deliveryStatus.map((status) => {
-                    return <option value={status}> {status} </option>;
-                  })}
-                </select>
-              </div>
-              <div class="col-auto">
-                <button
-                  type="submit"
-                  class="btn bg-color custom-bg-text mt-4"
-                  onClick={updateDeliveryStatus}
-                >
-                  Update Delivery Status
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 };

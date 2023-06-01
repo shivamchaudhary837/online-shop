@@ -64,9 +64,9 @@ function App() {
         <Route path="/user/myprofile" element={<MyProfile/>} />
 
         <Route path="/user/admin/allorder" element={<AllOrders />} />
-        <Route path="/user/admin/searchOrder" element={<SearchOrder />} />
+        <Route path="/user/admin/searchOrder/:orderId" element={<SearchOrder />} />
         <Route
-          path="/user/admin/assigndelivery"
+          path="/user/admin/assigndelivery/:orderId"
           element={<AssignDeliveryToOrders />}
         />
         <Route path="/user/delivery/myorders" element={<MyDeliveries />} />

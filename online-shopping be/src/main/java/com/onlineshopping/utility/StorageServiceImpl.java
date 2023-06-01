@@ -44,6 +44,7 @@ public class StorageServiceImpl implements StorageService {
 	@Override
 	public Resource load(String fileName) {
 		File filePath = new File(BASEPATH, fileName);
+		
 		if(filePath.exists())
 			return new FileSystemResource(filePath);
 		return null;

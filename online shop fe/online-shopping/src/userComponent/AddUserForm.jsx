@@ -54,152 +54,139 @@ const AddUserForm = () => {
 
   return (
     <div>
-      <div class="mt-2 d-flex aligns-items-center justify-content-center ms-2 me-2 mb-2">
+      <div className="mt-2 d-flex aligns-items-center justify-content-center ms-2 me-2 mb-2">
         <div
-          class="card form-card border-color text-color card-color"
+          className="card form-card border-color text-color card-color"
           style={{ width: "35rem" }}
         >
           <div className="card-header custom-bg bg-color-text text-center">
-            <h5 class="card-title">Add User</h5>
+            <h5 className="card-title">Add User</h5>
           </div>
-          <div class="card-body">
+          <div className="card-body">
             <form onSubmit={saveUser}>
-              <div class="mb-3 text-color">
-                <label for="role" class="form-label">
-                  <b>User Role</b>
-                </label>
+              <div className="form-floating mb-3 text-color">
                 <select
                   onChange={handleUserInput}
-                  className="form-control"
+                  className="form-select"
                   name="role"
+                  id="floatingRole"
+                  value={user.role}
+                  required
                 >
                   <option value="0">Select Role</option>
-                  <option value="Admin"> Admin </option>
-                  <option value="Customer"> Customer </option>
-                  <option value="Delivery"> Delivery Person </option>
+                  <option value="Admin">Admin</option>
+                  <option value="Customer">Customer</option>
+                  <option value="Delivery">Delivery Person</option>
                 </select>
+                <label htmlFor="floatingRole">User Role</label>
               </div>
 
-              <div class="mb-3 text-color">
-                <label for="title" class="form-label">
-                  <b> First Name</b>
-                </label>
+              <div className="form-floating mb-3">
                 <input
                   type="text"
-                  class="form-control"
-                  id="firstName"
+                  className="form-control"
+                  id="floatingFirstName"
                   name="firstName"
+                  placeholder="First Name"
                   onChange={handleUserInput}
                   value={user.firstName}
                   required
-                  placeholder=""
                 />
-              </div>
-              <div class="mb-3 text-color">
-                <label for="description" class="form-label">
-                  <b>Last Name</b>
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lastName"
-                  name="lastName"
-                  onChange={handleUserInput}
-                  value={user.lastName}
-                  required
-                />
+                <label htmlFor="floatingFirstName">First Name *</label>
               </div>
 
-              <div className="mb-3 text-color">
-                <b>
-                  <label className="form-label">Email Id</label>
-                </b>
+              <div className="form-floating mb-3 text-color">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="floatingLastName"
+                  name="lastName"
+                  placeholder="Last Name"
+                  onChange={handleUserInput}
+                  required
+                />
+                <label htmlFor="floatingLastName">Last Name *</label>
+              </div>
+
+              <div className="form-floating mb-3 text-color">
                 <input
                   type="email"
-                  class="form-control"
-                  id="emailId"
+                  className="form-control"
+                  id="floatingEmailId"
                   name="emailId"
+                  placeholder="Email Id"
                   onChange={handleUserInput}
-                  value={user.emailId}
                   required
                 />
+                <label htmlFor="floatingEmailId">Email Id *</label>
               </div>
 
-              <div className="mb-3 mt-1">
-                <label for="quantity" class="form-label">
-                  <strong>Password</strong> 
-                </label>
+              <div className="form-floating mb-3 mt-1 text-color">
                 <input
                   type="password"
-                  class="form-control"
-                  id="password"
+                  className="form-control"
+                  id="floatingPassword"
                   name="password"
+                  placeholder="Password"
                   onChange={handleUserInput}
-                  value={user.password}
                   required
                 />
+                <label htmlFor="floatingPassword">Password *</label>
               </div>
 
-              <div class="mb-3">
-                <label for="price" class="form-label">
-                  <b>Mobile No</b>
-                </label>
+              <div className="form-floating mb-3">
                 <input
                   type="number"
-                  class="form-control"
-                  id="phoneNo"
+                  className="form-control"
+                  id="floatingPhoneNo"
                   name="phoneNo"
+                  placeholder="Mobile No"
                   onChange={handleUserInput}
-                  value={user.phoneNo}
                   required
                 />
+                <label htmlFor="floatingPhoneNo">Mobile No</label>
               </div>
 
-              <div class="mb-3">
-                <label for="description" class="form-label">
-                  <b> Street</b>
-                </label>
+              <div className="form-floating mb-3">
                 <textarea
-                  class="form-control"
-                  id="street"
+                  className="form-control"
+                  id="floatingStreet"
                   name="street"
                   rows="3"
+                  placeholder="Street"
                   onChange={handleUserInput}
                   value={user.street}
-                />
+                ></textarea>
+                <label htmlFor="floatingStreet">Street</label>
               </div>
 
-              <div class="mb-3">
-                <label for="price" class="form-label">
-                  <b>City</b>
-                </label>
+              <div className="form-floating mb-3">
                 <input
                   type="text"
-                  class="form-control"
-                  id="city"
+                  className="form-control"
+                  id="floatingCity"
                   name="city"
+                  placeholder="City"
                   onChange={handleUserInput}
-                  value={user.city}
                 />
+                <label htmlFor="floatingCity">City</label>
               </div>
 
-              <div class="mb-3">
-                <label for="pincode" class="form-label">
-                  <b>Pincode</b>
-                </label>
+              <div className="form-floating mb-3">
                 <input
                   type="number"
-                  class="form-control"
-                  id="pincode"
+                  className="form-control"
+                  id="floatingPincode"
                   name="pincode"
+                  placeholder="Pincode"
                   onChange={handleUserInput}
-                  value={user.pincode}
                 />
+                <label htmlFor="floatingPincode">Pincode</label>
               </div>
 
               <input
                 type="submit"
-                class="btn bg-color custom-bg-text"
+                className="btn bg-color custom-bg-text"
                 value="Register User"
               />
 

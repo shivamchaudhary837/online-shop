@@ -71,8 +71,11 @@ const AllOrders = () => {
                       <td>
                         <b>{orderData.orderId}</b>
                       </td>
+
                       <td>
-                      <Link  to="/user/admin/assigndelivery">
+                       
+                      <Link  to={`/user/admin/assigndelivery/${orderData.orderId}`} >
+                       
                         <img
                           src={`http://localhost:8080/api/product/${orderData.productImage}`}
                           className="img-fluid"
@@ -82,6 +85,7 @@ const AllOrders = () => {
                           }}
                         />
                         </Link>
+                        
                       </td>
                       <td>
                         <b>{orderData.productName}</b>

@@ -19,7 +19,9 @@ const DeliveryPersonHeader = () => {
       progress: undefined,
     });
     sessionStorage.removeItem("active-delivery");
-    window.location.reload(true);
+     navigate("user/deliveryperson/login")
+     window.location.reload(true);
+    
   };
 
   return (
@@ -34,7 +36,7 @@ const DeliveryPersonHeader = () => {
         </Link>
       </li>
 
-      <li class="nav-item">
+      {/* <li class="nav-item">
         <Link
           to="/user/admin/searchOrder"
           class="nav-link active"
@@ -42,7 +44,7 @@ const DeliveryPersonHeader = () => {
         >
           <b className="text-color">Update Order Delivery</b>
         </Link>
-      </li>
+      </li> */}
 
       <li class="nav-item">
         <Link

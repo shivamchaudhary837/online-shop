@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MyDeliveries = () => {
   const delivery = JSON.parse(sessionStorage.getItem("active-delivery"));
@@ -28,6 +29,7 @@ const MyDeliveries = () => {
     return response.data;
   };
 
+  
   return (
     <div className="mt-3">
       <div
@@ -70,12 +72,13 @@ const MyDeliveries = () => {
               <tbody className="text-color">
                 {myOrderData.map((orderData) => {
                   return (
-                    <tr>
+                    <tr >
                       <td>
                         <b>{orderData.orderId}</b>
                       </td>
                       <td>
-                        <img
+                      <Link  to={`/user/admin/searchOrder/${orderData.orderId}`}>
+                        <img     
                           src={
                             "http://localhost:8080/api/product/" +
                             orderData.productImage
@@ -86,6 +89,7 @@ const MyDeliveries = () => {
                             maxWidth: "90px",
                           }}
                         />
+                        </Link>
                       </td>
                       <td>
                         <b>{orderData.productName}</b>

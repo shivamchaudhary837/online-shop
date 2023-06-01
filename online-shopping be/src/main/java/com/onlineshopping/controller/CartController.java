@@ -44,7 +44,7 @@ public class CartController {
 	ObjectMapper objectMapper = new ObjectMapper();
 	
 	@PostMapping("cart/add")
-	public ResponseEntity add(@RequestBody AddToCartRequest addToCartRequest) {
+	public ResponseEntity<?> add(@RequestBody AddToCartRequest addToCartRequest) {
 		
 		System.out.println("request came for ADD PRODUCT TO CART");
 		System.out.println(addToCartRequest);
@@ -67,7 +67,7 @@ public class CartController {
 		
 		cartDao.save(cart);
 		
-		return new ResponseEntity(HttpStatus.OK);
+		return  ResponseEntity.ok(user);
 		
 	}
 	

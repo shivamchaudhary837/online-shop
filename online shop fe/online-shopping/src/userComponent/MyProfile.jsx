@@ -39,25 +39,25 @@ const MyProfile = () => {
   };
 
   const handleFirstName = (e) => {
-    const { value } = e.target;
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      firstName: value,
-    }));
+    // const { value } = e.target;
+    // setProfile((prevProfile) => ({
+    //   ...prevProfile,
+    //   firstName: value,
+    // }));
   };
 
   const handleLastName = (e) => {
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      lastName: e.target.value,
-    }));
+    // setProfile((prevProfile) => ({
+    //   ...prevProfile,
+    //   lastName: e.target.value,
+    // }));
   };
 
   const handleEmailId = (e) => {
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      emailId: e.target.value,
-    }));
+    // setProfile((prevProfile) => ({
+    //   ...prevProfile,
+    //   emailId: e.target.value,
+    // }));
   };
 
   const handlePhoneNo = (e) => {

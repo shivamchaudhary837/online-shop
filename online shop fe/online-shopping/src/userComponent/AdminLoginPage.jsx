@@ -9,7 +9,7 @@ const AdminLoginPage = () => {
   const [loginRequest, setLoginRequest] = useState({
     emailId: "",
     password: "",
-    role:"Admin"
+    role: "Admin",
   });
 
   const [response, setResponse] = useState({});
@@ -27,84 +27,109 @@ const AdminLoginPage = () => {
       },
       body: JSON.stringify(loginRequest),
     }).then((result) => {
-      console.log("result", result);
-      result.json().then((res) => {
-        sessionStorage.setItem("active-admin", JSON.stringify(res));
-        console.log("Working fine:)");
-
-        toast.success("logged in successfully!!!", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
+      console.log("RESULT", result);
+      result
+        .json()
+        .then((res) => {
+          if (res  && res.role==="Admin") {
+            
+            sessionStorage.setItem("active-admin", JSON.stringify(res));
+            console.log("Working fine:)");
+    
+            toast.success("logged in successfully!!!", {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+    
+            navigate("/home");
+            window.location.reload(true);
+            
+          }
+          else{
+          
+            toast.error("Wrong Email Id or Password, Try Again", {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+        }
+        })
+        .catch((error) => {
+          console.error(error);
+          // Handle the error here, such as displaying an error message to the user
+          toast.error("Wrong Email Id or Password, Try Again", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         });
-
-        navigate("/home");
-        window.location.reload(true);
-      }).catch((error) => {
-        console.error(error);
-        // Handle the error here, such as displaying an error message to the user
-        toast.error("Wrong Email Id or Password,Try Again", {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
     });
-
+  
     e.preventDefault();
   };
+  
 
   return (
     <div>
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
-        <div className="card vertical-down card-color form-card border-color" style={{ width: "35rem" }}>
+        <div
+          className="card vertical-down card-color form-card border-color"
+          style={{ width: "35rem" }}
+        >
           <div className="card-header custom-bg  text-center bg-color-text">
             <h4 className="card-title">Admin Login</h4>
           </div>
           <div className="card-body">
-            <form>
+            <form  onSubmit={loginAction}>
               <div className="mb-3">
-                <label htmlFor="emailId" class="form-label bg-color-text">
-                  Email Id
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="emailId"
-                  name="emailId"
-                  placeholder="Email Id"
-                  onChange={handleUserInput}
-                  value={loginRequest.emailId}
-                />
+                <div className="form-floating">
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="emailId"
+                    name="emailId"
+                    placeholder="Email Id"
+                    onChange={handleUserInput}
+                    // value={loginRequest.emailId}
+                    required
+                  />
+                  <label htmlFor="emailId">Email Id</label>
+                </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="password" className="form-label bg-color-text">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  onChange={handleUserInput}
-                  value={loginRequest.password}
-                  autoComplete="on"
-                />
+                <div className="form-floating">
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={handleUserInput}
+                    // value={loginRequest.password}
+                    autoComplete="on"
+                    required
+                  />
+                  <label htmlFor="password">Password</label>
+                </div>
               </div>
               
               <button
                 type="submit"
                 className="btn bg-color custom-bg-text"
-                onClick={loginAction}
+                // onClick={loginAction}
               >
                 Login
               </button>
