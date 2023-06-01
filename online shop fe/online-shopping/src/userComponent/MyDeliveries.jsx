@@ -31,12 +31,12 @@ const MyDeliveries = () => {
   return (
     <div className="mt-3">
       <div
-        className="card form-card ms-2 me-2 mb-5 custom-bg border-color"
+        className="card form-card ms-2 me-2 mb-5 card-color border-color"
         style={{
           height: "45rem",
         }}
       >
-        <div className="card-header text-center bg-color custom-bg-text">
+        <div className="card-header text-center custom-bg text-color">
           <h2>My Deliveries</h2>
         </div>
         <div
@@ -46,8 +46,8 @@ const MyDeliveries = () => {
           }}
         >
           <div className="table-responsive">
-            <table className="table table-hover custom-bg-text text-center">
-              <thead className="bg-color table-bordered border-color">
+            <table className="table table-hover text-color text-center">
+              <thead className="custom-bg table-bordered border-color">
                 <tr>
                   <th scope="col">Order Id</th>
                   <th scope="col">Product</th>

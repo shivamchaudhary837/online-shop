@@ -29,20 +29,7 @@ const AboutUs = () => {
         <h5 className="motive-content">To provide the homely taste and feeling away from home.
         And to make People aware about the varity of flavours originated from various places of India.</h5>  
       
-        <h1 className="founder">Founders </h1>
-        <div className="f1">
-          <h1>Darshana Jain</h1>
-        </div>
-        <div className="f2">
-          <h1>Shivam Chaudhary</h1>
-        </div>
-        <div className="f3">
-          <h1 className="f31">Ashi </h1>
-          <h1 className="f32">seth</h1>
-        </div>
-        <div className="f4">
-          <h1>Yash Awadh</h1>
-        </div>
+        
         
 
       

@@ -49,8 +49,10 @@ public class ProductController {
 	
 	@PostMapping("add")
 	public ResponseEntity<?> addProduct(ProductAddRequest productDto) {
+		
 		System.out.println("recieved request for ADD PRODUCT");
 		System.out.println(productDto);
+		
 		Product product=ProductAddRequest.toEntity(productDto);
 		
 		Optional<Category> optional = categoryDao.findById(productDto.getCategoryId());

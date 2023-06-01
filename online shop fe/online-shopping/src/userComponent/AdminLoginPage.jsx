@@ -65,7 +65,7 @@ const AdminLoginPage = () => {
   return (
     <div>
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
-        <div className="card vertical-down custom-bg form-card border-color" style={{ width: "35rem" }}>
+        <div className="card vertical-down card-color form-card border-color" style={{ width: "35rem" }}>
           <div className="card-header custom-bg  text-center bg-color-text">
             <h4 className="card-title">Admin Login</h4>
           </div>
@@ -100,7 +100,7 @@ const AdminLoginPage = () => {
                   autoComplete="on"
                 />
               </div>
-
+              
               <button
                 type="submit"
                 className="btn bg-color custom-bg-text"

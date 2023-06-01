@@ -38,6 +38,7 @@ const MyCart = () => {
     );
 
     console.log(response);
+    window.location.reload(true);
   };
 
   const checkout = (e) => {

@@ -34,12 +34,12 @@ const HeaderUser = () => {
         </Link>
         <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
           <li>
-            <Link to="/addcategory" className="dropdown-item">
+            <Link to="/user/mycart" className="dropdown-item">
               My Cart
             </Link>
           </li>
           <li>
-            <Link to="/addproduct" className="dropdown-item">
+            <Link to="/user/myprofile" className="dropdown-item">
               My Profile
             </Link>
           </li>

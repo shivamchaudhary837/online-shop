@@ -42,7 +42,7 @@ const AddCategoryForm = () => {
                   type="text"
                   className="form-control"
                   id="title"
-                  placeholder="enter title.."
+                  placeholder="Enter title"
                   onChange={(e) => {
                     setTitle(e.target.value);
                   }}
@@ -57,7 +57,7 @@ const AddCategoryForm = () => {
                   className="form-control"
                   id="description"
                   rows="3"
-                  placeholder="enter description.."
+                  placeholder="Enter description"
                   onChange={(e) => {
                     setDescription(e.target.value);
                   }}

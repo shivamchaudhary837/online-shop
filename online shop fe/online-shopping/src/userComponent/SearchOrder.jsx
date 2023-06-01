@@ -74,14 +74,12 @@ const SearchOrder = () => {
   return (
     <div>
       <div
-        className="card form-card mt-1 ms-2 me-2 mb-2 custom-bg"
+        className="card form-card mt-1 ms-2 me-2 mb-2 card-color"
         style={{
           height: "35rem",
         }}
       >
-        <div className="card-header text-center bg-color custom-bg-text">
-          <h4>Searh Customer Orders</h4>
-        </div>
+        
         <div
           className="card-body"
           style={{
@@ -110,13 +108,13 @@ const SearchOrder = () => {
             </div>
           </form>
           <div className="table-responsive">
-            <table className="table table-hover custom-bg-text text-center">
-              <thead className="bg-color table-bordered border-color">
+            <table className="table table-hover text-color text-center">
+              <thead className="custom-bg table-bordered border-color">
                 <tr>
                   <th scope="col">Order Id</th>
                   <th scope="col">Product</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Description</th>
+
                   <th scope="col">Quantity</th>
                   <th scope="col">Total Price</th>
                   <th scope="col">Customer Name</th>
@@ -128,7 +126,7 @@ const SearchOrder = () => {
                   <th scope="col">Delivery Date</th>
                   <th scope="col">Delivery Status</th>
                   <th scope="col">Delivery Person</th>
-                  <th scope="col">Delivery Mobile No</th>
+                  {/* <th scope="col">Delivery Mobile No</th> */}
                 </tr>
               </thead>
               <tbody className="text-color">
@@ -154,9 +152,7 @@ const SearchOrder = () => {
                       <td>
                         <b>{orderData.productName}</b>
                       </td>
-                      <td>
-                        <b>{orderData.productDescription}</b>
-                      </td>
+                      
                       <td>
                         <b>{orderData.quantity}</b>
                       </td>
@@ -191,9 +187,9 @@ const SearchOrder = () => {
                       <td>
                         <b>{orderData.deliveryPersonName}</b>
                       </td>
-                      <td>
+                      {/* <td>
                         <b>{orderData.deliveryPersonContact}</b>
-                      </td>
+                      </td> */}
                     </tr>
                   );
                 })}
@@ -204,8 +200,8 @@ const SearchOrder = () => {
       </div>
 
       <div>
-        <div className="card form-card ms-2 me-2 mb-2 custom-bg">
-          <div className="card-header text-center bg-color custom-bg-text">
+        <div className="card form-card ms-2 me-2 mb-2 card-color">
+          <div className="card-header text-center custom-bg text-color">
             <h4>Update Delivery Status</h4>
           </div>
           <div className="card-body">

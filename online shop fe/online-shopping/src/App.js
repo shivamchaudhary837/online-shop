@@ -22,6 +22,7 @@ import MyDeliveries from "./userComponent/MyDeliveries";
 import MyProfile from "./userComponent/MyProfile";
 import ProductDetail from "./productComponent/ProductDetail";
 import SuccessPage from "./userComponent/SuccessPage";
+import AddressModification from "./userComponent/AddressModification";
 
 function App() {
   return (
@@ -59,7 +60,7 @@ function App() {
         <Route path="/user/mycart" element={<MyCart />} />
         <Route path="/user/order/payment" element={<AddCardDetails />} />
         <Route path="/user/myorder" element={<MyOrder />} />
-
+        <Route path="/user/AddressModification" element={<AddressModification/>}/>
         <Route path="/user/myprofile" element={<MyProfile/>} />
 
         <Route path="/user/admin/allorder" element={<AllOrders />} />

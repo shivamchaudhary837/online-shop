@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const MyProfile = () => {
- 
-  
-
   const user = JSON.parse(sessionStorage.getItem("active-user"));
 
   const [profile, setProfile] = useState({
@@ -17,25 +14,22 @@ const MyProfile = () => {
       city: "",
       pincode: "",
     },
-    walletAmount:0
+    walletAmount: 0,
   });
 
   useEffect(() => {
     const getMyProfile = async () => {
-
       const profileResult = await retrieveUser();
 
       if (profileResult) {
-        console.log("my profile is present",profileResult);
+        console.log("my profile is present", profileResult);
       }
       setProfile(profileResult);
     };
-    
-    getMyProfile();
 
+    getMyProfile();
   }, []);
 
- 
   const retrieveUser = async () => {
     const res = await axios.get(
       "http://localhost:8080/api/user/profile/" + user.id
@@ -51,33 +45,33 @@ const MyProfile = () => {
       firstName: value,
     }));
   };
- 
+
   const handleLastName = (e) => {
     setProfile((prevProfile) => ({
       ...prevProfile,
       lastName: e.target.value,
     }));
   };
-  
+
   const handleEmailId = (e) => {
     setProfile((prevProfile) => ({
       ...prevProfile,
       emailId: e.target.value,
     }));
   };
-  
+
   const handlePhoneNo = (e) => {
     setProfile((prevProfile) => ({
       ...prevProfile,
       phoneNo: e.target.value,
     }));
   };
-  
-  const handleWallet=(e)=>{
-       setProfile((prevProfile) => ({
-           ...prevProfile,
-           walletAmount:e.target.value,
-       }))
+
+  const handleWallet = (e) => {
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      walletAmount: e.target.value,
+    }));
   };
   const handleAddress = (e) => {
     setProfile((prevProfile) => ({
@@ -88,7 +82,7 @@ const MyProfile = () => {
       },
     }));
   };
-  
+
   const handlePincode = (e) => {
     setProfile((prevProfile) => ({
       ...prevProfile,
@@ -98,7 +92,7 @@ const MyProfile = () => {
       },
     }));
   };
-  
+
   const handleCity = (e) => {
     setProfile((prevProfile) => ({
       ...prevProfile,
@@ -108,32 +102,27 @@ const MyProfile = () => {
       },
     }));
   };
-  
- 
+
   const handleSaveButton = async () => {
     try {
       // setProfile(profile)
       const response = await axios.post(
-        "http://localhost:8080/api/user/profile/"+user.id,
+        "http://localhost:8080/api/user/profile/" + user.id,
         profile
       );
       console.log(response.data);
-
-      
     } catch (error) {
       console.error(error);
-      
     }
-      // setTimeout(()=>{
-      //   window.location.reload(true);
-      // },2000)
-     
+    // setTimeout(()=>{
+    //   window.location.reload(true);
+    // },2000)
   };
 
   return (
     <div className="container">
       <div className="vertical-down">
-        <div className="card" style={{borderRadius:"10px"}}>
+        <div className="card" style={{ borderRadius: "10px" }}>
           <div className="card-header custom-bg">
             <h2>Profile Page</h2>
           </div>
@@ -148,7 +137,7 @@ const MyProfile = () => {
                   className="form-control"
                   id="firstName"
                   value={profile.firstName}
-                   onChange={handleFirstName}
+                  onChange={handleFirstName}
                 />
               </div>
               <div className="col-md-6">
@@ -160,10 +149,10 @@ const MyProfile = () => {
                   className="form-control"
                   id="inputPassword4"
                   value={profile.lastName}
-                   onChange={handleLastName}
+                  onChange={handleLastName}
                 />
               </div>
-              <div className="col-12">
+              <div className="col-6">
                 <label htmlFor="inputEmailId" className="form-label">
                   Email Id
                 </label>
@@ -173,7 +162,7 @@ const MyProfile = () => {
                   id="inputEmailId"
                   placeholder="1234 Main St"
                   value={profile.emailId || ""}
-                   onChange={handleEmailId}
+                  onChange={handleEmailId}
                 />
               </div>
               <div className="col-12">
@@ -186,7 +175,7 @@ const MyProfile = () => {
                   id="inputAddress2"
                   placeholder="Apartment, studio, or floor"
                   value={profile.address.street}
-                   onChange={handleAddress}
+                  onChange={handleAddress}
                 />
               </div>
               <div className="col-md-6">
@@ -198,7 +187,7 @@ const MyProfile = () => {
                   className="form-control"
                   id="inputCity"
                   value={profile.address.city}
-                   onChange={handleCity}
+                  onChange={handleCity}
                 />
               </div>
               <div className="col-md-4">
@@ -210,7 +199,7 @@ const MyProfile = () => {
                   className="form-control"
                   id="inputstate"
                   value={profile.phoneNo}
-                   onChange={handlePhoneNo}
+                  onChange={handlePhoneNo}
                 />
               </div>
               <div className="col-md-2">
@@ -222,23 +211,35 @@ const MyProfile = () => {
                   className="form-control"
                   id="inputZip"
                   value={profile.address.pincode}
-                   onChange={handlePincode}
+                  onChange={handlePincode}
                 />
               </div>
-              <div style={{ marginTop: "30px" }}>
-                  <label htmlFor="inputZip" className="form-label">
+              
+              <div className="col-6" style={{ marginTop: "30px" }}>
+                <label htmlFor="inputZip" className="form-label">
+                 
                   <h5>Wallet Amount:</h5>
-                
                 </label>
-                <input type="text"  className="form-control" value={profile.walletAmount} 
-                onChange={handleWallet} />
+                <input
+                  type="text"
+                  className="form-control"
+                  value={profile.walletAmount}
+                  onChange={handleWallet}
+                  readOnly
+                />
+                 
               </div>
-              <div className="col-12" style={{ marginTop: "10px" }}>
-                <button type="submit" className="btn bg-color btn-primary" 
-                onClick={handleSaveButton}>
-                  Save
-                </button>
-              </div>
+              <div className="col-12" >
+                <div className="d-flex justify-content-end">
+                  <button
+                    type="submit"
+                    className="btn bg-color btn-primary"
+                    onClick={handleSaveButton}
+                  >
+                    Save
+                  </button>
+                </div>
+                </div>
             </form>
           </div>
         </div>

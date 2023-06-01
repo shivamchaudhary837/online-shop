@@ -56,7 +56,7 @@ const AddUserForm = () => {
     <div>
       <div class="mt-2 d-flex aligns-items-center justify-content-center ms-2 me-2 mb-2">
         <div
-          class="card form-card border-color text-color custom-bg"
+          class="card form-card border-color text-color card-color"
           style={{ width: "35rem" }}
         >
           <div className="card-header custom-bg bg-color-text text-center">
@@ -92,6 +92,7 @@ const AddUserForm = () => {
                   onChange={handleUserInput}
                   value={user.firstName}
                   required
+                  placeholder=""
                 />
               </div>
               <div class="mb-3 text-color">
@@ -124,9 +125,9 @@ const AddUserForm = () => {
                 />
               </div>
 
-              <div class="mb-3 mt-1">
+              <div className="mb-3 mt-1">
                 <label for="quantity" class="form-label">
-                  Password
+                  <strong>Password</strong> 
                 </label>
                 <input
                   type="password"

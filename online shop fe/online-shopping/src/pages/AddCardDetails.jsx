@@ -1,9 +1,11 @@
 import { useState,useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import {FaEdit} from 'react-icons/fa'
+import { icons } from 'react-icons'
+import {FaEdit,FaWallet,FaMoneyBillWave, FaMoneyCheckAlt} from 'react-icons/fa'
+import { Link } from "react-router-dom";
 
 const AddCardDetails = () => {
   const location = useLocation();
@@ -64,7 +66,7 @@ const AddCardDetails = () => {
       progress: undefined,
     });
   
-    navigate("/user/order/payment/successpage");
+    navigate("/home");
   };
 
   const [paymentType,setPaymentType] = useState("wallet");
@@ -136,25 +138,26 @@ const AddCardDetails = () => {
   return (
     <div>
       <div class="mt-2 pt-5 d-flex aligns-items-center justify-content-center">
-        <div class="card form-card t-5  border-color" style={{ width: "30rem" , marginTop: "7rem"}}>
+        <div class="card form-card t-5  border-color" style={{ width: "40rem" , marginTop: "7rem"}}>
     
-          <div className="card-header bg-color custom-bg-text">
-            <h5 class="card-title text-center">Address Confirmation</h5>
+          <div className="card-header custom-bg text-color">
+            <h5 class="card-title text-center">Payment Details</h5>
           </div>
           
-          <div class="card-body text-color custom-bg">
+          <div class="card-body text-color card-color">
 
           <div className="form-check">
+            <h6 style={{fontStyle:"bold"}}>Drop-Off Address</h6>
       <input
         className="form-check-input"
         placeholder="CONFIRM ADDRESS"
         value={address.street+", "+address.city+", "+address.pincode}
-        style={{ width: "80%",height:"20%", padding: "0.5rem", border: "3px solid darkgreen", borderRadius: "3px" ,backgroundColor:"lightgray",marginLeft:"0.1rem"}}
+        style={{ width: "80%",height:"20%", padding: "0.5rem", border: "3px solid darkgreen", borderRadius: "3px" ,backgroundColor:"whitesmoke",marginLeft:"0.1rem",marginTop:"0.3rem"}}
         
 
       />
     
-    <Link to={`/user/myprofile?`}><FaEdit className="icons edit" style={{width:"2.8rem",height:"2.8rem",marginLeft:"2rem",marginTop:"-0.1rem", color:"rgba(16, 65, 50, 0.87)"}}/></Link>  
+    <Link to={`/user/AddressModification`}><FaEdit className="icons edit" style={{width:"2.8rem",height:"2.8rem",marginLeft:"2rem",marginTop:"-0.1rem", color:"rgba(16, 65, 50, 0.87)"}}/></Link>  
     
     {/* <button
   className="btn btn-primary btn-sm ml-auto"
@@ -173,7 +176,7 @@ const AddCardDetails = () => {
 
           <div className="mb-3" style={{marginTop:"2rem"}}>
   <label htmlFor="paymentType" className="form-label" style={{marginLeft:"1.6rem"}}>
-    <b>Payment Type</b>
+    <h6 style={{fontStyle:"bold"}}>Payment Type</h6>
   </label>
   <div>
     <div className="form-check" style={{marginLeft:"2.5rem"}}>
@@ -187,9 +190,11 @@ const AddCardDetails = () => {
         onChange={(e) => setPaymentType(e.target.value)}
         
       />
+      
       <label className="form-check-label" htmlFor="cod">
         Cash on Delivery
       </label>
+      <FaMoneyBillWave style={{width:"2rem",marginLeft:1}} />
     </div>
     <div className="form-check" style={{marginLeft:"2.5rem"}}>
       <input
@@ -205,6 +210,7 @@ const AddCardDetails = () => {
       <label className="form-check-label" htmlFor="wallet">
         Wallet Pay
       </label>
+      <FaWallet style={{width:"2rem",marginLeft:1}}/>
     </div>
     
     
@@ -212,33 +218,29 @@ const AddCardDetails = () => {
   </div>
 </div>
 <div className="xyz" style={{display: "flex"}}>  
-{paymentType === "wallet" && (
+            <form onSubmit={payForOrder}>
+               <input 
+                type="submit"
+                class="btn custom-bg-text bg-color"
+                value={paymentType ==="wallet" ? "Buy Now" : "Proceed"}
+                
+                style={{display: "flex", flexDirection: "row" ,marginTop:"1.1rem",marginLeft:"14.5rem",width:"10rem",paddingInline:"3.2rem"}}
+              />
+               <ToastContainer />
+            </form>
+            
+            {paymentType === "wallet" && (
             <div className="mb-3"
               style={{display:"inline-block"}}
               >
               
               
-              <button className="btn custom-bg-text bg-color" style={{marginLeft:"1.6rem",marginTop:"1rem",width:"10rem"}}  onClick={checkBalance}>
-                Check Balance
+              <button className="btn " style={{marginTop:"-6rem",border:"none",marginLeft:"7.4rem",fontSize:"2.5rem"}}  onClick={checkBalance}>
+              <FaMoneyCheckAlt style={{ color:"rgba(16, 65, 50, 0.87)"}}/>
               </button>
             </div>
-          )}
-          
-             <form onSubmit={payForOrder}>
+            )}
             
-              
-              
-              <input 
-                type="submit"
-                class="btn custom-bg-text bg-color"
-                value={paymentType ==="wallet" ? "PAY  IT" : "Proceed"}
-                
-                style={{display: "flex", flexDirection: "row" ,marginTop:"1.05rem",
-                marginLeft:"5.4rem",width:"10rem",paddingInline:"3.2rem"}}
-              />
-               
-              <ToastContainer />
-            </form>
             </div>
           </div>
         </div>

@@ -147,10 +147,12 @@ const UserLoginForm = () => {
       <div className="vertical-down container">
         <div className="mt-2 d-flex aligns-items-center justify-content-center">
           <div
-            className="card form-card border-color custom-bg"
-            style={{ width: "35rem" }}
+            className="card form-card border-color card-color"
+            style={{ width: "25rem" }}
           >
-            <div className="card-header custom-bg text-center bg-color-text ">
+            <div className="card-header custom-bg text-center bg-color-text " 
+             
+            >
               <h4 className="card-title">User Login</h4>
             </div>
             <div className="card-body">
@@ -167,11 +169,11 @@ const UserLoginForm = () => {
                     placeholder="Email ID"
                     onChange={handleUserInput}
                     value={loginRequest.emailId}
+                    required
                   />
                 </div>
                 <div className="mb-3">
                   <label for="password" className="form-label">
-                    {/* <b>Password</b> */}
                   </label>
                   <input
                     type="password"
@@ -182,46 +184,40 @@ const UserLoginForm = () => {
                     onChange={handleUserInput}
                     value={loginRequest.password}
                     autoComplete="on"
+                    required
                   />
                 </div>
-                
-                <button
-                  type="submit"
-                  className="btn bg-color custom-bg-text"
-                  onClick={loginAction}
-                  style={{marginTop:"1px"}}
-                >
-                  Login
-                </button>
-                 <div>
-                 <h5  style={{
-                     color:"#25493F",
-                     marginTop:"20px",
-                }}>Sign With:</h5>
-                <button
-                  style={{
-                  
-                    marginTop:"10px",
-                  }}
-                >
-                  <GoogleOAuthProvider clientId="668976964137-tljnqvmeh5jq54u9ldevost06cn878pl.apps.googleusercontent.com">
-                    <GoogleLogin
-                      onSuccess={(credentialResponse) => {
-                        const details = jwt_decode(
-                          credentialResponse.credential
-                        );
-                        console.log("","detail of user",details);
-                        // console.log(credentialResponse);
-                        loginWithGoogle(details)
-                      }}
-                      onError={() => {
-                        console.log("Login Failed");
-                      }}
-                    >
-                      Login Via Google
-                    </GoogleLogin>
-                  </GoogleOAuthProvider>
-                </button>
+              
+                 <div className="d-flex justify-content-between align-items-center">
+                  <button
+                    type="submit"
+                    className="btn bg-color custom-bg-text"
+                    onClick={loginAction}
+                    style={{ marginTop: "1px" }}
+                  >
+                    Login
+                  </button>
+                  <button
+                    
+                  >
+                    <GoogleOAuthProvider clientId="668976964137-tljnqvmeh5jq54u9ldevost06cn878pl.apps.googleusercontent.com">
+                      <GoogleLogin
+                        onSuccess={(credentialResponse) => {
+                          const details = jwt_decode(
+                            credentialResponse.credential
+                          );
+                          console.log("", "detail of user", details);
+                          // console.log(credentialResponse);
+                          loginWithGoogle(details);
+                        }}
+                        onError={() => {
+                          console.log("Login Failed");
+                        }}
+                      >
+                        Login Via Google
+                      </GoogleLogin>
+                    </GoogleOAuthProvider>
+                  </button>
                 </div>
                 <ToastContainer />
               </form>

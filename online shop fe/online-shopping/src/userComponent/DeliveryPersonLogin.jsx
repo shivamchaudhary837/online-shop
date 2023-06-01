@@ -4,6 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const DeliveryPersonLogin = () => {
+  let navigate = useNavigate();
+  
   const [loginRequest, setLoginRequest] = useState({
     emailId: "",
     password: "",
@@ -37,6 +39,8 @@ const DeliveryPersonLogin = () => {
           draggable: true,
           progress: undefined,
         });
+        navigate("/user/delivery/myorders");
+        window.location.reload(true);
       });
     });
     e.preventDefault();
@@ -53,7 +57,7 @@ const DeliveryPersonLogin = () => {
             <form>
               <div className="mb-3">
                 <label for="emailId" class="form-label custom-bg-text">
-                  Email Id
+                  
                 </label>
                 <input
                   type="email"
@@ -62,12 +66,12 @@ const DeliveryPersonLogin = () => {
                   name="emailId"
                   onChange={handleUserInput}
                   value={loginRequest.emailId}
-                  placeholder="email"
+                  placeholder="Email Id"
                 />
               </div>
               <div className="mb-3">
                 <label for="password" className="form-label custom-bg-text">
-                  Password
+                 
                 </label>
                 <input
                   type="password"
@@ -77,13 +81,13 @@ const DeliveryPersonLogin = () => {
                   onChange={handleUserInput}
                   value={loginRequest.password}
                   autoComplete="on"
-                  placeholder="password"
+                  placeholder="Password"
                 />
               </div>
 
               <button
                 type="submit"
-                className="btn custom-bg text-color"
+                className="btn bg-color custom-bg-text"
                 onClick={loginAction}
               >
                 Login
