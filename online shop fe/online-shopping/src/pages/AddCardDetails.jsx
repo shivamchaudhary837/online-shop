@@ -66,7 +66,8 @@ const AddCardDetails = () => {
       progress: undefined,
     });
   
-    navigate("/home");
+    navigate("/user/order/payment/successpage");
+    window.location.reload(true);
   };
 
   const [paymentType,setPaymentType] = useState("wallet");

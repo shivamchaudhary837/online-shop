@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import bg from "../images/bg_img.jpg";
-// import "./UserLoginForm.css"
+import "./UserLoginForm.css"
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
@@ -150,16 +150,17 @@ const UserLoginForm = () => {
 
   return (
     <>
+    <div className="login-img">
       <div className="vertical-down container">
         <div className="mt-2 d-flex aligns-items-center justify-content-center">
           <div
-            className="card form-card border-color card-color"
-            style={{ width: "25rem" }}
+            className="card"
+            style={{ width: "25rem" ,marginLeft:"-52rem", marginTop:"3.7rem"}}
           >
             <div
-              className="card-header custom-bg text-center bg-color-text"
+              className="card-header"
             >
-              <h4 className="card-title">User Login</h4>
+              <h4 className="card-title" style={{marginLeft:"7.6rem",fontStyle:"italic"}}><b>User Login</b></h4>
             </div>
             <div className="card-body">
               <form onSubmit={loginAction}>
@@ -174,8 +175,9 @@ const UserLoginForm = () => {
                       onChange={handleUserInput}
                       value={loginRequest.emailId}
                       required
+                      style={{marginTop:"1rem",height:"3rem"}}
                     />
-                    <label htmlFor="emailId">Email ID</label>
+                    <label htmlFor="emailId">Email ID *</label>
                   </div>
                 </div>
                 <div className="mb-3">
@@ -190,8 +192,9 @@ const UserLoginForm = () => {
                       value={loginRequest.password}
                       autoComplete="on"
                       required
+                      style={{marginTop:"0.5rem",height:"3rem"}}
                     />
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Password *</label>
                   </div>
                 </div>
 
@@ -200,11 +203,12 @@ const UserLoginForm = () => {
                     type="submit"
                     className="btn bg-color custom-bg-text"
                     // onClick={loginAction}
-                    style={{ marginTop: "1px" }}
+                    style={{ marginTop: "1.5rem" }}
                   >
                     Login
                   </button>
-                  <button>
+                  <button
+                   style={{marginTop:"1.5rem"}}>
                     <GoogleOAuthProvider clientId="668976964137-tljnqvmeh5jq54u9ldevost06cn878pl.apps.googleusercontent.com">
                       <GoogleLogin
                         onSuccess={(credentialResponse) => {
@@ -218,6 +222,7 @@ const UserLoginForm = () => {
                         onError={() => {
                           console.log("Login Failed");
                         }}
+                       
                       >
                         Login Via Google
                       </GoogleLogin>
@@ -229,6 +234,7 @@ const UserLoginForm = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

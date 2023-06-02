@@ -3,9 +3,23 @@
     padding: 0%;
     
 }
-/* .vertical-down{
+.login-img{
     position: absolute;
-    background-image: url(../images/bg_img.jpg);
-    height: 93%;
+    background-image: url(../images/bg_login1.jpg);
+    height: 100%;
     width: 100%;
-} */
+    background-repeat: no-repeat ;
+    /* margintop */
+}
+.card{
+    background-color: rgba(255, 255, 255,.2);
+}
+.card-header{
+    background-color: rgba(165, 97, 42, 0.733) ;
+    
+    /* rgba(168, 38, 38, 0.473)*/
+}
+.card-title{
+    /* position: absolute; */
+    margin-left: "25%";
+}

@@ -54,7 +54,7 @@ const MyDeliveries = () => {
                   <th scope="col">Order Id</th>
                   <th scope="col">Product</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Description</th>
+                  
                   <th scope="col">Quantity</th>
                   <th scope="col">Total Price</th>
                   <th scope="col">Customer Name</th>
@@ -94,9 +94,7 @@ const MyDeliveries = () => {
                       <td>
                         <b>{orderData.productName}</b>
                       </td>
-                      <td>
-                        <b>{orderData.productDescription}</b>
-                      </td>
+                      
                       <td>
                         <b>{orderData.quantity}</b>
                       </td>

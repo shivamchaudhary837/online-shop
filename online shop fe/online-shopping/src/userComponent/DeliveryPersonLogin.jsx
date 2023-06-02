@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import "./deliverypersonlogin.css";
 
 const DeliveryPersonLogin = () => {
   let navigate = useNavigate();
@@ -64,14 +65,14 @@ const DeliveryPersonLogin = () => {
   };
 
   return (
-    <div  style={{ marginTop: "100px" }}>
+    <div className="delivery-img" >
       <div
         className="mt-2 d-flex aligns-items-center justify-content-center"
         
       >
-        <div className="card form-card border-color" style={{ width: "25rem" }}>
-          <div className="card-header custom-bg text-center">
-            <h4 className="card-title">Delivery Person Login</h4>
+        <div className="card form-card border-color" style={{ width: "25rem" ,marginLeft:"-52rem", marginTop:"10rem"}}>
+          <div className="card-header">
+            <h4 className="card-title" style={{marginLeft:"3.3rem",fontStyle:"italic"}}>Delivery Person Login</h4>
           </div>
           <div className="card-body">
             <form onSubmit={loginAction}>
@@ -84,8 +85,9 @@ const DeliveryPersonLogin = () => {
                   onChange={handleUserInput}
                   required
                   placeholder="Email Id"
+                  style={{height:"3rem",marginTop:"1rem"}}
                 />
-                <label htmlFor="emailId">Email Id</label>
+                <label htmlFor="emailId">Email Id *</label>
               </div>
               <div className="form-floating mb-3">
                 <input
@@ -97,14 +99,16 @@ const DeliveryPersonLogin = () => {
                   required
                   autoComplete="on"
                   placeholder="Password"
+                  style={{height:"3rem"}}
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Password *</label>
               </div>
 
               <button
                 type="submit"
                 className="btn bg-color custom-bg-text"
                 // onClick={loginAction}
+                style={{marginLeft:"9rem",marginTop:"1rem"}}
               >
                 Login
               </button>

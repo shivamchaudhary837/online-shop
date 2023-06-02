@@ -65,6 +65,17 @@ public class CartController {
 		cart.setQuantity(addToCartRequest.getQuantity());
 		cart.setUser(user);
 		
+		if(product!=null) {
+			
+			int diff=product.getQuantity()-(int)addToCartRequest.getQuantity();
+			
+			if(diff < 0) {
+				return ResponseEntity.ok(null);
+			}
+			product.setQuantity(diff);
+			productDao.save(product);
+		}
+		
 		cartDao.save(cart);
 		
 		return  ResponseEntity.ok(user);

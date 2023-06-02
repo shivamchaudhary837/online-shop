@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import "./adduserform.css";
 
 const AddUserForm = () => {
   const [user, setUser] = useState({
@@ -53,14 +54,15 @@ const AddUserForm = () => {
   };
 
   return (
-    <div>
+    <>
+    <div className="img">
       <div className="mt-2 d-flex aligns-items-center justify-content-center ms-2 me-2 mb-2">
         <div
-          className="card form-card border-color text-color card-color"
-          style={{ width: "35rem" }}
+          className="card "
+          style={{ width: "30rem" , marginLeft:"39rem", marginTop:"3.5rem"}}
         >
-          <div className="card-header custom-bg bg-color-text text-center">
-            <h5 className="card-title">Add User</h5>
+          <div className="card-header">
+            <h5 className="card-title" style={{marginLeft:"12rem",fontStyle:"italic"}}><b>Sign-Up</b></h5>
           </div>
           <div className="card-body">
             <form onSubmit={saveUser}>
@@ -187,7 +189,8 @@ const AddUserForm = () => {
               <input
                 type="submit"
                 className="btn bg-color custom-bg-text"
-                value="Register User"
+                value="Register"
+                style={{marginLeft:"11.5rem"}}
               />
 
               <ToastContainer />
@@ -196,6 +199,7 @@ const AddUserForm = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

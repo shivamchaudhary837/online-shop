@@ -65,7 +65,7 @@ const AddProductForm = () => {
             <h5 class="card-title">Add Product</h5>
           </div>
           <div class="card-body text-color">
-            <form>
+            <form onSubmit={saveProduct}>
               <div class="mb-3">
                 <label for="title" class="form-label">
                   <b>Product Title</b>
@@ -163,7 +163,7 @@ const AddProductForm = () => {
               <button
                 type="submit"
                 class="btn bg-color custom-bg-text"
-                onClick={saveProduct}
+                // onClick={saveProduct}
               >
                 Add Product
               </button>

@@ -11,7 +11,7 @@ const Product = () => {
 
   let user = JSON.parse(sessionStorage.getItem("active-user"));
 
-  const [quantity, setQuantity] = useState();
+  const [quantity, setQuantity] = useState("");
 
   const [products, setProducts] = useState([]);
 
@@ -73,7 +73,8 @@ const Product = () => {
       }),
     }).then((result) => {
       console.log("result", result);
-
+      
+      if(result!=null){
       toast.success("Products added to Cart Successfully!!!", {
         position: "top-center",
         autoClose: 1000,
@@ -83,7 +84,18 @@ const Product = () => {
         draggable: true,
         progress: undefined,
       });
-
+      }
+      else{
+        toast.success("Something went wrong", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
       result.json().then((res) => {
         console.log("response", res);
       });
@@ -91,13 +103,20 @@ const Product = () => {
   };
 
   const addToCart = (e) => {
-    
-    console.log("Quantity",quantity)
-    
-    if (quantity === '0' ) {
-      alert("Enter a valid quantity");
-      //e.preventDefault();
-    } else if (user === null) {
+    console.log(quantity);
+
+    // if(quantity === 0){
+    //   toast.success("Add right quantity", {
+    //     position: "top-center",
+    //     autoClose: 1000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //   });
+    // }
+      if (user == null) {
       alert("Please login to buy the products!!!");
       e.preventDefault();
     } else {
@@ -105,16 +124,6 @@ const Product = () => {
       setQuantity("");
       e.preventDefault();
     }
-  };
-  
-
-  const handleQuantity=(e)=>{
-
-          setQuantity((prevQuantity)=>({
-                ...prevQuantity,
-                quantity:e.target.value,
-          }))
-         
   };
 
   return (
@@ -124,7 +133,7 @@ const Product = () => {
           <GetAllCategories />
         </div>
         <div class="col-sm-3 mt-2 admin">
-          <div class="card form-card border-color">
+          <div class="card form-card border-color custom-bg">
             <img
               src={"http://localhost:8080/api/product/" + product.imageName}
               style={{
@@ -138,10 +147,10 @@ const Product = () => {
           </div>
         </div>
         <div class="col-sm-7 mt-2">
-          <div class="card form-card border-color card-color">
-            <div class="card-header custom-bg">
+          <div class="card form-card border-color custom-bg">
+            <div class="card-header bg-color">
               <div className="d-flex justify-content-between">
-                <h1 className="text-color">{product.title}</h1>
+                <h1 className="custom-bg-text">{product.title}</h1>
               </div>
             </div>
 
@@ -152,7 +161,7 @@ const Product = () => {
               <h4 class="card-text" style={{marginLeft:"1rem",marginTop:"1rem"}}>{product.description}</h4>
             </div>
 
-            <div class="card-footer card-color">
+            <div class="card-footer custom-bg">
               <div className="text-center text-color" style={{marginLeft:"43rem"}}>
                 <p>
                   <span>
@@ -169,8 +178,8 @@ const Product = () => {
                         class="form-control"
                         id="addToCart"
                         placeholder="Enter Quantity..."
-                        onChange={handleQuantity}
-                        // value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                        value={quantity}
                         required
                       />
                     </div>

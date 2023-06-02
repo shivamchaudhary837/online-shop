@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import "./adminlogin.css";
 
 const AdminLoginPage = () => {
   let navigate = useNavigate();
@@ -83,14 +84,14 @@ const AdminLoginPage = () => {
   
 
   return (
-    <div>
+    <div className="admin-img">
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
         <div
-          className="card vertical-down card-color form-card border-color"
-          style={{ width: "35rem" }}
+          className="card"
+          style={{ width: "25rem" ,marginLeft:"-52rem", marginTop:"11.5rem"}}
         >
-          <div className="card-header custom-bg  text-center bg-color-text">
-            <h4 className="card-title">Admin Login</h4>
+          <div className="card-header ">
+            <h4 className="card-title" style={{marginLeft:"6.3rem",fontStyle:"italic"}}>Admin Login</h4>
           </div>
           <div className="card-body">
             <form  onSubmit={loginAction}>
@@ -105,8 +106,9 @@ const AdminLoginPage = () => {
                     onChange={handleUserInput}
                     // value={loginRequest.emailId}
                     required
+                    style={{height:"3rem",marginTop:"1rem"}}
                   />
-                  <label htmlFor="emailId">Email Id</label>
+                  <label htmlFor="emailId">Email Id *</label>
                 </div>
               </div>
               <div className="mb-3">
@@ -121,8 +123,9 @@ const AdminLoginPage = () => {
                     // value={loginRequest.password}
                     autoComplete="on"
                     required
+                    style={{height:"3rem",marginTop:"1rem"}}
                   />
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">Password *</label>
                 </div>
               </div>
               
@@ -130,6 +133,7 @@ const AdminLoginPage = () => {
                 type="submit"
                 className="btn bg-color custom-bg-text"
                 // onClick={loginAction}
+                style={{marginLeft:"9rem",marginTop:"1rem"}}
               >
                 Login
               </button>

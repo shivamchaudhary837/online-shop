@@ -100,8 +100,9 @@ const AddressModification = () => {
     }
 
     
-    navigate("/user/mycart"); 
-    window.location.reload(true);
+    // navigate("/user/mycart"); 
+    // window.location.reload(true);
+    window.history.back();
   };
 
   return (

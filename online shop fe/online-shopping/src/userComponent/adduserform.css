@@ -1,0 +1,25 @@
+.img{
+    position: absolute;
+    background-image: url(../images/bg_register.jpg);
+    height: 130%;
+    width: 100%;
+    /* margin-left: 10%; */
+}
+.card {
+    /* margin-left: "35rem";
+    width: "35%"; */
+    background-color: rgba(255, 255, 255,.2);
+}
+.card-header{
+    background-color: rgba(165, 97, 42, 0.733) ;
+    
+    /* rgba(168, 38, 38, 0.473)*/
+}
+.card-title{
+    /* position: absolute; */
+    margin-left: "25%";
+}
+/* .form-floating{
+    box-shadow: inset;
+    box-sizing: content-box;
+} */

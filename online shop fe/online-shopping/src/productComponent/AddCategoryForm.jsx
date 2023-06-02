@@ -47,6 +47,7 @@ const AddCategoryForm = () => {
                     setTitle(e.target.value);
                   }}
                   value={title}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -62,6 +63,7 @@ const AddCategoryForm = () => {
                     setDescription(e.target.value);
                   }}
                   value={description}
+                  required
                 />
               </div>
 
