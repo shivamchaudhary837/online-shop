@@ -116,7 +116,8 @@ const Product = () => {
     //     progress: undefined,
     //   });
     // }
-      if (user == null) {
+    
+      if (user === null) {
       alert("Please login to buy the products!!!");
       e.preventDefault();
     } else {
@@ -128,12 +129,12 @@ const Product = () => {
 
   return (
     <div className="container-fluid">
-      <div class="row">
-        <div class="col-sm-2 mt-2">
+      <div className="row">
+        <div className="col-sm-2 mt-2">
           <GetAllCategories />
         </div>
-        <div class="col-sm-3 mt-2 admin">
-          <div class="card form-card border-color custom-bg">
+        <div className="col-sm-3 mt-2 admin">
+          <div className="card form-card border-color card-color">
             <img
               src={"http://localhost:8080/api/product/" + product.imageName}
               style={{
@@ -141,27 +142,27 @@ const Product = () => {
                 maxWidth: "100%",
                 width: "auto",
               }}
-              class="card-img-top rounded mx-auto d-block m-2"
+              className="card-img-top rounded mx-auto d-block m-2"
               alt="img"
             />
           </div>
         </div>
-        <div class="col-sm-7 mt-2">
-          <div class="card form-card border-color custom-bg">
-            <div class="card-header bg-color">
+        <div className="col-sm-7 mt-2">
+          <div className="card form-card border-color card-color">
+            <div className="card-header custom-bg">
               <div className="d-flex justify-content-between">
-                <h1 className="custom-bg-text">{product.title}</h1>
+                <h1 className="text-color">{product.title}</h1>
               </div>
             </div>
 
-            <div class="card-body text-left text-color">
-              <div class="text-left mt-3">
+            <div className="card-body text-left text-color">
+              <div className="text-left mt-3">
                 <h3>Description :</h3>
               </div>
-              <h4 class="card-text" style={{marginLeft:"1rem",marginTop:"1rem"}}>{product.description}</h4>
+              <h4 className="card-text" style={{marginLeft:"1rem",marginTop:"1rem"}}>{product.description}</h4>
             </div>
 
-            <div class="card-footer custom-bg">
+            <div className="card-footer card-color">
               <div className="text-center text-color" style={{marginLeft:"43rem"}}>
                 <p>
                   <span>
@@ -171,11 +172,11 @@ const Product = () => {
               </div>
               <div className="d-flex justify-content-between">
                 <div>
-                  <form class="row g-3" onSubmit={addToCart}>
-                    <div class="col-auto" >
+                  <form className="row g-3" onSubmit={addToCart}>
+                    <div className="col-auto" >
                       <input
                         type="number"
-                        class="form-control"
+                        className="form-control"
                         id="addToCart"
                         placeholder="Enter Quantity..."
                         onChange={(e) => setQuantity(e.target.value)}
@@ -183,7 +184,7 @@ const Product = () => {
                         required
                       />
                     </div>
-                    <div class="col-auto" >
+                    <div className="col-auto" >
                       <input
                         type="submit"
                         className="btn bg-color custom-bg-text mb-3"
@@ -194,7 +195,7 @@ const Product = () => {
                   </form>
                 </div>
 
-                <p class="ml-2 text-color" style={{marginRight:"2rem"}}>
+                <p className="ml-2 text-color" style={{marginRight:"2rem"}}>
                   <b>Stock : {product.quantity}</b>
                 </p>
               </div>

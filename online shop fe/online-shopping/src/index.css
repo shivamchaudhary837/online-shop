@@ -61,7 +61,16 @@ code {
   justify-content: center; /* Horizontally center */
   align-items: center; /* Vertically center */
   /* Add any additional styling as needed */
+  
+  
+}
+.gd{
+  /* background-image: linear-gradient(to right,rgb(255, 255, 255),rgb(240, 240, 222)); */
+  /* background-image: linear-gradient(to right,blue,red); */
+  width:100%;
+  height:100%;
 }
 .vertical-down {
   margin-top: 100px;
 }
+

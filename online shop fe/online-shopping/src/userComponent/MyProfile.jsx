@@ -120,8 +120,9 @@ const MyProfile = () => {
   };
 
   return (
+    <div className="gd">
     <div className="container">
-      <div className="vertical-down">
+      <div  style={{marginTop:"60px"}}>
         <div className="card" style={{ borderRadius: "10px" }}>
           <div className="card-header custom-bg">
             <h2>Profile Page</h2>
@@ -138,10 +139,11 @@ const MyProfile = () => {
                   id="firstName"
                   value={profile.firstName}
                   onChange={handleFirstName}
+                  style={{background:"#e8ecef"}}
                 />
               </div>
               <div className="col-md-6">
-                <label htmlFor="inputPassword4" className="form-label">
+                <label htmlFor="inputPassword4" className="form-label ">
                   Last Name
                 </label>
                 <input
@@ -150,6 +152,7 @@ const MyProfile = () => {
                   id="inputPassword4"
                   value={profile.lastName}
                   onChange={handleLastName}
+                  style={{background:"#e8ecef"}}
                 />
               </div>
               <div className="col-6">
@@ -163,6 +166,7 @@ const MyProfile = () => {
                   placeholder="1234 Main St"
                   value={profile.emailId || ""}
                   onChange={handleEmailId}
+                  style={{background:"#e8ecef"}}
                 />
               </div>
               <div className="col-12">
@@ -226,6 +230,7 @@ const MyProfile = () => {
                   value={profile.walletAmount}
                   onChange={handleWallet}
                   readOnly
+                  style={{background:"#e8ecef"}}
                 />
                  
               </div>
@@ -244,6 +249,7 @@ const MyProfile = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

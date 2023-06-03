@@ -53,6 +53,7 @@ const DeliveryPersonHeader = () => {
           aria-current="page"
           onClick={userLogout}
         >
+           <i class="fa-sharp fa-solid fa-power-off" style={{marginRight:"4px"}}></i>
           <b className="text-color">Logout</b>
         </Link>
         <ToastContainer />

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaWindows } from "react-icons/fa";
+import "./addressmodify.css"
 
 const AddressModification = () => {
  
@@ -106,18 +107,19 @@ const AddressModification = () => {
   };
 
   return (
+    <div className="address-img">
     <div className="container">
       <div className="vertical-down" >
-        <div className="card" style={{borderRadius:"10px", width:"55rem",height:"19rem"}}>
-          <div className="card-header custom-bg">
-            <h2  style={{marginLeft:"18rem"}}>Drop-Off Details</h2>
+        <div className="card" style={{borderRadius:"10px", width:"40rem",height:"19rem",marginTop:"1rem",marginLeft:"45rem"}}>
+          <div className="card-header custom-bg" style={{backgroundColor:"#e06a70",color:"whitesmoke",fontStyle:"italic"}}>
+            <h2  style={{marginLeft:"11.6rem"}}>Drop-Off Details</h2>
           </div>
           <div className="card-body">
             <form className="row g-3">
               
               <div className="col-12">
                 <label htmlFor="inputAddress2" className="form-label">
-                  Street
+                  <b>Street</b>
                 </label>
                 <input
                   type="text"
@@ -126,11 +128,12 @@ const AddressModification = () => {
                   placeholder="Apartment, studio, or floor"
                   value={profile.address.street}
                    onChange={handleAddress}
+                  //  style={{width:"37rem"}}
                 />
               </div>
               <div className="col-md-6">
                 <label htmlFor="inputCity" className="form-label">
-                  City
+                  <b>City</b>
                 </label>
                 <input
                   type="text"
@@ -138,11 +141,12 @@ const AddressModification = () => {
                   id="inputCity"
                   value={profile.address.city}
                    onChange={handleCity}
+                  //  style={{marginLeft:"1rem",width:"17.5rem"}}
                 />
               </div>
               <div className="col-md-2">
                 <label htmlFor="inputZip" className="form-label">
-                  Pincode
+                  <b>Pincode</b>
                 </label>
                 <input
                   type="text"
@@ -150,11 +154,12 @@ const AddressModification = () => {
                   id="inputZip"
                   value={profile.address.pincode}
                    onChange={handlePincode}
+                  //  style={{marginLeft:"1rem"}}
                 />
               </div>
 
-              <div className="col-12" style={{ marginTop: "23px", marginLeft:"300px" }}>
-                <button type="submit" className="btn bg-color btn-primary" style={{marginLeft:50}}
+              <div className="col-12" style={{ marginTop: "23px", marginLeft:"210px"}}>
+                <button type="submit" className="btn bg-color btn-primary" style={{marginLeft:50,width:"5rem"}}
                 onClick={handleSaveButton}>
                   Save
                 </button>
@@ -165,6 +170,7 @@ const AddressModification = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

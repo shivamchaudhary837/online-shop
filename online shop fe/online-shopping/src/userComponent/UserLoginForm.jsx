@@ -8,6 +8,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import validation from "./validation"
 
 const UserLoginForm = () => {
   let navigate = useNavigate();
@@ -163,8 +164,9 @@ const UserLoginForm = () => {
               <h4 className="card-title" style={{marginLeft:"7.6rem",fontStyle:"italic"}}><b>User Login</b></h4>
             </div>
             <div className="card-body">
-              <form onSubmit={loginAction}>
+              <form className="needs-validation" onSubmit={loginAction}>
                 <div className="mb-3">
+                
                   <div className="form-floating">
                     <input
                       type="email"
@@ -179,7 +181,9 @@ const UserLoginForm = () => {
                     />
                     <label htmlFor="emailId">Email ID *</label>
                   </div>
+                  
                 </div>
+
                 <div className="mb-3">
                   <div className="form-floating">
                     <input

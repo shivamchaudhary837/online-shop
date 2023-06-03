@@ -40,6 +40,7 @@ const AdminHeader = () => {
         <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
           <li>
             <Link to="/addcategory" className="dropdown-item">
+            <i class="fa-solid fa-plus fa-beat-fade"></i>
               Add Category
             </Link>
           </li>
@@ -67,6 +68,7 @@ const AdminHeader = () => {
           aria-current="page"
           onClick={adminLogout}
         >
+           <i class="fa-sharp fa-solid fa-power-off" style={{marginRight:"4px"}}></i>
           <b className="text-color">Logout</b>
         </Link>
         <ToastContainer />

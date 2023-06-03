@@ -18,12 +18,21 @@ const HeaderUser = () => {
     sessionStorage.removeItem("active-user");
     navigate("/home")
     window.location.reload(true);
-    
+
   };
 
   return (
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
+      <li className="nav-item">
+        <Link to="/user/mycart" className="nav-link active" aria-current="page">
+          {/* <img src="../images/e_logo.png"  width="100" height="120" /> */}
+          <i className="fa-solid fa-cart-shopping" style={{ marginLeft: "14px", margin: '4px' }}></i>
+          <b className="text-color" style={{ marginRight: "4px" }}>Cart</b>
+
+        </Link>
+      </li>
       <li className="nav-item dropdown">
+
         <Link
           className="nav-link dropdown-toggle"
           to="#"
@@ -32,39 +41,55 @@ const HeaderUser = () => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <b className="text-color">MyAccount</b>
+          {/* <Link to="/user/mycart" className="dropdown-item">
+              My Cart
+            </Link> */}
+          <i className="fa-solid fa-user" style={{ margin: "2px" }}></i>
+          <b className="text-color" style={{ marginLeft: "4px" }}>MyAccount</b>
         </Link>
         <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
           <li>
-            <Link to="/user/mycart" className="dropdown-item">
+            {/* <Link to="/user/mycart" className="dropdown-item">
               My Cart
-            </Link>
+            </Link> */}
           </li>
           <li>
             <Link to="/user/myprofile" className="dropdown-item">
+              <i className="fa-solid fa-user" style={{margin:"4px"}}></i>
               My Profile
             </Link>
+
           </li>
           <li>
             <Link to="/user/myorder" className="dropdown-item">
+            <i className="fa-sharp fa-regular fa-folder-open" style={{margin:"4px"}}></i>
               My Orders
+
             </Link>
           </li>
+          <li>
+            <li className="nav-item">
+
+              <Link
+                to=""
+                className="nav-link active"
+                aria-current="page"
+                onClick={userLogout} style={{ marginLeft: '6.5px', marginTop: "-4.5px" }}
+              >
+                {/* <i className="fa-sharp fa-light fa-unlock-keyhole"></i> */}
+                {/* <b className="text-color" style={{margin:'6px'}}>Logout</b> */}
+                <i className="fa-sharp fa-solid fa-power-off" style={{margin:"4px"}}></i>
+                Logout
+              </Link>
+
+              <ToastContainer />
+            </li>
+          </li>
+
+
         </ul>
       </li>
 
-      <li className="nav-item">
-        <Link
-          to=""
-          className="nav-link active"
-          aria-current="page"
-          onClick={userLogout}
-        >
-          <b className="text-color">Logout</b>
-        </Link>
-
-        <ToastContainer />
-      </li>
     </ul>
   );
 };

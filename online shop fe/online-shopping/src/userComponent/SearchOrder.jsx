@@ -35,6 +35,10 @@ const SearchOrder = () => {
     });
   };
 
+  useEffect(()=>{
+
+     getAllOrder()
+  })
   const getAllOrder = async () => {
     const allOrder = await retrieveAllOrder();
     if (allOrder) {
@@ -42,9 +46,10 @@ const SearchOrder = () => {
     }
   };
 
+
   const retrieveAllOrder = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/user/admin/showorder?orderId=" + orderId
+      "http://localhost:8080/api/user/admin/showorder?orderId=" + pathOrderId.orderId.toString()
     );
     console.log(response.data);
     return response.data;

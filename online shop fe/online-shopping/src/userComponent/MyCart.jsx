@@ -42,6 +42,11 @@ const MyCart = () => {
   };
 
   const checkout = (e) => {
+    if (myCartData.length === 0) {
+      console.log("Add products to cart");
+      alert("Add products to cart")
+      return;
+    }
     e.preventDefault();
     console.log("CHECKOUT PAGE REQUEST");
     navigate("/user/order/payment", { state: { priceToPay: totatPrice } });

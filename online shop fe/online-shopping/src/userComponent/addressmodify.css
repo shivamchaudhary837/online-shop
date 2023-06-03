@@ -1,0 +1,13 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    
+}
+.address-img{
+    background-image: url(../images/addressimg.jpg);
+    position: fixed;
+    height: 93%;
+    width: 100%;
+    background-repeat: no-repeat ;
+    /* color:rgb(190, 72, 98); */
+}
