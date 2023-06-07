@@ -27,6 +27,7 @@ const HeaderUser = () => {
         <Link to="/user/mycart" className="nav-link active" aria-current="page">
           {/* <img src="../images/e_logo.png"  width="100" height="120" /> */}
           <i className="fa-solid fa-cart-shopping" style={{ marginLeft: "14px", margin: '4px' }}></i>
+          {/* <i class="fa-solid fa-cart-shopping fa-beat"></i> */}
           <b className="text-color" style={{ marginRight: "4px" }}>Cart</b>
 
         </Link>
@@ -55,14 +56,16 @@ const HeaderUser = () => {
           </li>
           <li>
             <Link to="/user/myprofile" className="dropdown-item">
-              <i className="fa-solid fa-user" style={{margin:"4px"}}></i>
+            <i class="fa-solid fa-user fa-beat" style={{margin:'4px'}}></i>
+              {/* <i className="fa-solid fa-user" style={{margin:"4px"}}></i> */}
               My Profile
             </Link>
 
           </li>
           <li>
             <Link to="/user/myorder" className="dropdown-item">
-            <i className="fa-sharp fa-regular fa-folder-open" style={{margin:"4px"}}></i>
+            {/* <i className="fa-sharp fa-regular fa-folder-open" style={{margin:"4px"}}></i> */}
+            <i class="fa-regular fa-folder-open fa-beat"style={{margin:'4px'}}></i>
               My Orders
 
             </Link>
@@ -79,6 +82,7 @@ const HeaderUser = () => {
                 {/* <i className="fa-sharp fa-light fa-unlock-keyhole"></i> */}
                 {/* <b className="text-color" style={{margin:'6px'}}>Logout</b> */}
                 <i className="fa-sharp fa-solid fa-power-off" style={{margin:"4px"}}></i>
+                {/* <i class="fa-solid fa-power-off fa-beat" style={{margin:'4px'}}></i> */}
                 Logout
               </Link>
 

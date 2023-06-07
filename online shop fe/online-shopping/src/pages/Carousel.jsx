@@ -1,6 +1,6 @@
 import carousel1 from "../images/namkeen3.jpg";
 import carousel2 from "../images/namkeen2.jpg";
-import carousel3 from "../images/namkeen4.jpg";
+import carousel3 from "../images/namkeen11.jpg";
 
 const Carousel = () => {
   return (

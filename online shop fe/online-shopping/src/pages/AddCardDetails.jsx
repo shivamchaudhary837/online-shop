@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { icons } from 'react-icons'
-import {FaEdit,FaWallet,FaMoneyBillWave, FaMoneyCheckAlt} from 'react-icons/fa'
+import {FaEdit,FaWallet,FaMoneyBillWave, FaMoneyCheckAlt ,FaAwes} from 'react-icons/fa'
 import { Link } from "react-router-dom";
+import './addcard.css'
 
 const AddCardDetails = () => {
   const location = useLocation();
@@ -137,15 +138,19 @@ const AddCardDetails = () => {
   };
 
   return (
-    <div>
-      <div class="mt-2 pt-5 d-flex aligns-items-center justify-content-center">
-        <div class="card form-card t-5  border-color" style={{ width: "40rem" , marginTop: "7rem"}}>
+    <>
+    <div className="pay_img">
+    
+      <div className="mt-2 pt-5 d-flex aligns-items-center justify-content-center">
+        <div 
+        className="card"
+        style={{ width: "40rem" , marginTop: "5rem",marginLeft:"-27rem"}}>
     
           <div className="card-header custom-bg text-color">
-            <h5 class="card-title text-center">Payment Details</h5>
+            <h5 className="card-title text-center">Payment Details</h5>
           </div>
           
-          <div class="card-body text-color card-color">
+          <div className="card-body text-color card-color">
 
           <div className="form-check">
             <h6 style={{fontStyle:"bold"}}>Drop-Off Address</h6>
@@ -160,16 +165,6 @@ const AddCardDetails = () => {
     
     <Link to={`/user/AddressModification`}><FaEdit className="icons edit" style={{width:"2.8rem",height:"2.8rem",marginLeft:"2rem",marginTop:"-0.1rem", color:"rgba(16, 65, 50, 0.87)"}}/></Link>  
     
-    {/* <button
-  className="btn btn-primary btn-sm ml-auto"
-  onClick={() => navigate("/edit-address")}
-  style={{ width: "20%",height:"20%", padding: "0.5rem", border: "1px solid gray", borderRadius: "3px",marginTop:"0.3rem",marginLeft:"1rem" }}
-
->
-  Edit
-</button> */}
-
-      
       <label className="form-check-label" htmlFor="CONFORM ADDRESS">
        
       </label>
@@ -223,7 +218,7 @@ const AddCardDetails = () => {
                <input 
                 type="submit"
                 class="btn custom-bg-text bg-color"
-                value={paymentType ==="wallet" ? "Buy Now" : "Proceed"}
+                value={paymentType ==="wallet" ? "Pay " +priceToPay : "Proceed"}
                 
                 style={{display: "flex", flexDirection: "row" ,marginTop:"1.1rem",marginLeft:"14.5rem",width:"10rem",paddingInline:"3.2rem"}}
               />
@@ -241,13 +236,15 @@ const AddCardDetails = () => {
               </button>
             </div>
             )}
+
+          
             
             </div>
           </div>
         </div>
       </div>
     </div>
-
+  </>
   );
 };
 

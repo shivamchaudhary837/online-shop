@@ -40,17 +40,21 @@ const AdminHeader = () => {
         <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
           <li>
             <Link to="/addcategory" className="dropdown-item">
-            <i class="fa-solid fa-plus fa-beat-fade"></i>
+            <i class="fa-solid fa-plus fa-beat-fade" style={{margin:'2px'}}></i>
               Add Category
             </Link>
           </li>
           <li>
+          
             <Link to="/addproduct" className="dropdown-item">
+            <i class="fa-solid fa-plus fa-beat-fade" style={{margin:'2px'}}></i>
               Add Product
             </Link>
           </li>
+
           <li>
             <Link to="/user/admin/allorder" className="dropdown-item">
+            <i class="fa-regular fa-folder-open fa-beat" style={{margin:'2px'}}></i>
               All Orders
             </Link>
           </li>

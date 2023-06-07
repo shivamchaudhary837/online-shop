@@ -1,5 +1,7 @@
 package com.onlineshopping.dto;
 
+import com.onlineshopping.model.Address;
+
 public class AddUserRequest {
 
 	private String firstName;
@@ -15,8 +17,9 @@ public class AddUserRequest {
 	private String street;
 
 	private String city;
-
+    
 	private int pincode;
+	
 	
 	private String role;
 

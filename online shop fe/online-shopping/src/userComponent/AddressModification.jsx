@@ -26,8 +26,8 @@ const AddressModification = () => {
 
   const proceedfunc = () => {
     navigate("/user/order/payment")
-    // window.location.href="/user/order/payment"
-    // console.log("hello");
+    window.location.href="/user/order/payment"
+    console.log("hello");
     // <Link to="/user/order/payment/successpage"></Link>
   };
 

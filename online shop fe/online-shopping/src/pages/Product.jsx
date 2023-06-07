@@ -74,7 +74,7 @@ const Product = () => {
     }).then((result) => {
       console.log("result", result);
       
-      if(result!=null){
+      if(result!=null ){
       toast.success("Products added to Cart Successfully!!!", {
         position: "top-center",
         autoClose: 1000,
@@ -103,29 +103,57 @@ const Product = () => {
   };
 
   const addToCart = (e) => {
-    console.log(quantity);
-
-    // if(quantity === 0){
-    //   toast.success("Add right quantity", {
-    //     position: "top-center",
-    //     autoClose: 1000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //   });
-    // }
     
-      if (user === null) {
+    
+    let value1=parseInt(quantity);
+    let value2=parseInt(product.quantity)
+
+    if(value2 === 0){
+      toast.error("Out of Stock!!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+       
+    }
+    else if(value1 <= 0 || value1 > value2){
+      
+
+      toast.error("Enter Quantity in range", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      
+    }
+    else if (user === null) {
       alert("Please login to buy the products!!!");
-      e.preventDefault();
+      //e.preventDefault();
     } else {
       saveProductToCart(user.id);
       setQuantity("");
-      e.preventDefault();
+      
+      const getProduct = async () => {
+        const retrievedProduct = await retrieveProduct();
+    
+        setProduct(retrievedProduct);
+      };
+      getProduct()
+      //e.preventDefault();
     }
+
+     e.preventDefault();
   };
+
+  
 
   return (
     <div className="container-fluid">
