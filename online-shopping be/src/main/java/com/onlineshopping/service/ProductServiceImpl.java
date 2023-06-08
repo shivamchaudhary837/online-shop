@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> searchProducts(String keyword) {
 		// TODO Auto-generated method stub
-		return productDao.findByTitleContaining(keyword);
+		return productDao.findByTitleContainingIgnoreCase(keyword);
 	}
 
 	

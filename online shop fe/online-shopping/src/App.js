@@ -23,7 +23,7 @@ import MyProfile from "./userComponent/MyProfile";
 import ProductDetail from "./productComponent/ProductDetail";
 import SuccessPage from "./userComponent/SuccessPage";
 import AddressModification from "./userComponent/AddressModification";
-
+import SearchBox from './pages/SearchBox'
 function App() {
   return (
     <div>
@@ -73,6 +73,7 @@ function App() {
         <Route path="/user/product/productdetail/:productId" element={<ProductDetail/>} />
 
         <Route path="/user/order/payment/successpage" element={<SuccessPage/>} />
+        <Route path="/search" element={<SearchBox/>}/>
       </Routes>
     </div>
   );

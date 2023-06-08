@@ -24,6 +24,11 @@ const HeaderUser = () => {
   return (
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
       <li className="nav-item">
+        <Link to="/search" className="nav-link active" aria-current="page">
+          <b className="text-color">Search</b>
+        </Link>
+      </li>
+      <li className="nav-item">
         <Link to="/user/mycart" className="nav-link active" aria-current="page">
           {/* <img src="../images/e_logo.png"  width="100" height="120" /> */}
           <i className="fa-solid fa-cart-shopping" style={{ marginLeft: "14px", margin: '4px' }}></i>
