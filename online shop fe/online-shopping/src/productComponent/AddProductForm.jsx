@@ -19,8 +19,9 @@ const AddProductForm = () => {
 
     getAllCategories();
   }, []);
-
+  
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  
   const [product, setProduct] = useState({
     title: "",
     description: "",

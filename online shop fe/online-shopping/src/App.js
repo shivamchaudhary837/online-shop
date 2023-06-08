@@ -24,6 +24,7 @@ import ProductDetail from "./productComponent/ProductDetail";
 import SuccessPage from "./userComponent/SuccessPage";
 import AddressModification from "./userComponent/AddressModification";
 import SearchBox from './pages/SearchBox'
+import UpdateStock from "./productComponent/UpdateStock";
 function App() {
   return (
     <div>
@@ -74,6 +75,8 @@ function App() {
 
         <Route path="/user/order/payment/successpage" element={<SuccessPage/>} />
         <Route path="/search" element={<SearchBox/>}/>
+
+        <Route path="/updatestock/:productId" element={<UpdateStock/>}/>
       </Routes>
     </div>
   );

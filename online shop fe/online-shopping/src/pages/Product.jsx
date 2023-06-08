@@ -12,9 +12,7 @@ const Product = () => {
   let user = JSON.parse(sessionStorage.getItem("active-user"));
 
   const [quantity, setQuantity] = useState("");
-
   const [products, setProducts] = useState([]);
-
   const [product, setProduct] = useState({
     id: "",
     title: "",
@@ -29,14 +27,12 @@ const Product = () => {
     const response = await axios.get(
       "http://localhost:8080/api/product/id?productId=" + productId
     );
-
     return response.data;
   };
 
   useEffect(() => {
     const getProduct = async () => {
       const retrievedProduct = await retrieveProduct();
-
       setProduct(retrievedProduct);
     };
 
@@ -49,7 +45,7 @@ const Product = () => {
 
     getProduct();
     getProductsByCategory();
-  }, [productId]);
+  }, []);
 
   const retrieveProductsByCategory = async () => {
     const response = await axios.get(
@@ -71,44 +67,42 @@ const Product = () => {
         userId: userId,
         productId: productId,
       }),
-    }).then((result) => {
-      console.log("result", result);
-      
-      if(result!=null ){
-      toast.success("Products added to Cart Successfully!!!", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      }
-      else{
-        toast.success("Something went wrong", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
+    })
+      .then((result) => {
+        console.log("result", result);
+        if (result != null) {
+          toast.success("Products added to Cart Successfully!!!", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          toast.success("Something went wrong", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+        result.json().then((res) => {
+          console.log("response", res);
         });
-      }
-      result.json().then((res) => {
-        console.log("response", res);
+        getProductss(); // Move this line here
       });
-    });
   };
 
   const addToCart = (e) => {
-    
-    
-    let value1=parseInt(quantity);
-    let value2=parseInt(product.quantity)
+    let value1 = parseInt(quantity);
+    let value2 = parseInt(product.quantity);
 
-    if(value2 === 0){
+    if (value2 === 0) {
       toast.error("Out of Stock!!", {
         position: "top-center",
         autoClose: 2000,
@@ -118,11 +112,7 @@ const Product = () => {
         draggable: true,
         progress: undefined,
       });
-       
-    }
-    else if(value1 <= 0 || value1 > value2){
-      
-
+    } else if (value1 <= 0 || value1 > value2) {
       toast.error("Enter Quantity in range", {
         position: "top-center",
         autoClose: 2000,
@@ -132,28 +122,20 @@ const Product = () => {
         draggable: true,
         progress: undefined,
       });
-      
-    }
-    else if (user === null) {
+    } else if (user === null) {
       alert("Please login to buy the products!!!");
-      //e.preventDefault();
     } else {
       saveProductToCart(user.id);
       setQuantity("");
-      
-      const getProduct = async () => {
-        const retrievedProduct = await retrieveProduct();
-    
-        setProduct(retrievedProduct);
-      };
-      getProduct()
-      //e.preventDefault();
     }
 
-     e.preventDefault();
+    e.preventDefault();
   };
 
-  
+  const getProductss = async () => {
+    const retrievedProduct = await retrieveProduct();
+    setProduct(retrievedProduct);
+  };
 
   return (
     <div className="container-fluid">

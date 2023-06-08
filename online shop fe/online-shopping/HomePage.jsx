@@ -5,7 +5,12 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+
 const HomePage = () => {
+  const user = JSON.parse(sessionStorage.getItem("active-user"));
+  const admin = JSON.parse(sessionStorage.getItem("active-admin"));
+
+
   const [products, setProducts] = useState([]);
 
   const { categoryId } = useParams();
@@ -58,8 +63,13 @@ const HomePage = () => {
           </div>
           <div className="col-md-10">
             <div className="row row-cols-1 row-cols-md-4 g-4">
-              
-                {products.map((product) => {
+                
+                {admin!=null && products.map((product) => {
+                  return <AdminProductCard item={product} />;
+                  }) 
+                }
+
+                {user!=null && products.map((product) => {
                   return <ProductCard item={product} />;
                 })}
               </div>

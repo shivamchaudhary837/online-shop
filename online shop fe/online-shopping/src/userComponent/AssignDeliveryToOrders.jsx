@@ -110,7 +110,7 @@ const AssignDeliveryToOrders = (props) => {
   return (
     <div>
 
-<div>
+        <div>
         <div className="card form-card ms-2 me-2 mb-2 border-color card-color" style={{marginTop:"20px"}}>
           
            
@@ -165,6 +165,7 @@ const AssignDeliveryToOrders = (props) => {
           </div>
         </div>
       </div>
+
       <div
         className="card form-card mt-1 ms-2 me-2 mb-2 card-color border-color"
         style={{
@@ -179,25 +180,7 @@ const AssignDeliveryToOrders = (props) => {
           }}
         >
           <form class="row g-3">
-            {/* <div class="col-auto">
-              <input
-                type="text"
-                class="form-control"
-                id="inputPassword2"
-                placeholder="Enter Order Id..."
-                onChange={(e) => setOrderId(e.target.value)}
-                value={orderId}
-              />
-            </div>
-            <div class="col-auto">
-              <button
-                type="submit"
-                class="btn bg-color custom-bg-text mb-3"
-                onClick={searchOrderById}
-              >
-                Search
-              </button>
-            </div> */}
+            
           </form>
           <div className="table-responsive">
             <table className="table table-hover text-center">
