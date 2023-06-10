@@ -207,12 +207,22 @@ const UserLoginForm = () => {
                     type="submit"
                     className="btn bg-color custom-bg-text"
                     // onClick={loginAction}
-                    style={{ marginTop: "1.5rem" }}
+                    style={{ marginTop: "1.5rem" , marginLeft:"9.2rem" }}
+                    // , backgroundColor:"whitesmoke",color:"black"
                   >
                     Login
                   </button>
+                </div>
+                <div className="line">
+        <hr class="l1" style={{width:"9rem",height:"1px",backgroundColor:"white",marginTop:"1.6rem",marginLeft:"1rem"}}/>
+        <h6 style={{marginLeft:"10.5rem",marginTop:"-1.7rem",fontStyle:"italic"}}>OR</h6>
+        <hr class="l2" style={{width:"9rem",marginLeft:"12.3rem",marginTop:"-1.05rem"}}/>
+    </div>
+                {/* <h5 style={{marginTop:"1.5rem",marginLeft:"10rem"}}>OR</h5> */}
+                <div className="login-gmail">  
                   <button
-                   style={{marginTop:"1.5rem"}}>
+                  style={{marginTop:"1rem",marginLeft:"6rem",borderRadius:"2rem"}}
+                   >
                     <GoogleOAuthProvider clientId="668976964137-tljnqvmeh5jq54u9ldevost06cn878pl.apps.googleusercontent.com">
                       <GoogleLogin
                         onSuccess={(credentialResponse) => {
@@ -226,6 +236,7 @@ const UserLoginForm = () => {
                         onError={() => {
                           console.log("Login Failed");
                         }}
+                        
                        
                       >
                         Login Via Google

@@ -25,6 +25,9 @@ import SuccessPage from "./userComponent/SuccessPage";
 import AddressModification from "./userComponent/AddressModification";
 import SearchBox from './pages/SearchBox'
 import UpdateStock from "./productComponent/UpdateStock";
+import Modal from "./pages/Modal";
+import Modall from "./pages/Modall";
+
 function App() {
   return (
     <div>
@@ -77,6 +80,10 @@ function App() {
         <Route path="/search" element={<SearchBox/>}/>
 
         <Route path="/updatestock/:productId" element={<UpdateStock/>}/>
+
+        <Route path="/user/order/payment/modal" element={<Modal />} />
+        <Route path="/user/order/payment/modall" element={<Modall/>} />
+
       </Routes>
     </div>
   );

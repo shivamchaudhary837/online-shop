@@ -64,12 +64,12 @@ const HomePage = () => {
           <div className="col-md-10">
             <div className="row row-cols-1 row-cols-md-4 g-4">
                 
-                {admin!=null && products.map((product) => {
+                {/* {admin!=null && products.map((product) => {
                   return <AdminProductCard item={product} />;
                   }) 
-                }
+                } */}
 
-                {user!=null && products.map((product) => {
+                {products.map((product) => {
                   return <ProductCard item={product} />;
                 })}
               </div>

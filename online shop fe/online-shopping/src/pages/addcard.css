@@ -14,3 +14,18 @@
 .card{
     background-color: rgba(255, 255, 255,.2);
 }
+.pincode-label{
+    position: absolute;
+    margin-top: -3.7%;
+    margin-left: 3.6%;
+}
+/* .icons-edit{
+    position: absolute;
+    margin-top: -4%;
+    margin-right: 2%;
+} */
+
+.form-label h6{
+    position: absolute;
+    margin-top: -6%;
+}

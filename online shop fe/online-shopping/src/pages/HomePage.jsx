@@ -72,6 +72,11 @@ const HomePage = () => {
                 {user!=null && products.map((product) => {
                   return <ProductCard item={product} />;
                 })}
+                   
+                { products.map((product) => {
+                  return <ProductCard item={product} />;
+                })}
+
               </div>
             
           </div>

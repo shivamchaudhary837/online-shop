@@ -1,0 +1,99 @@
+.modallBackground{
+    width: 100vw;
+    height: 90vh;
+    background-color: rgba(190, 161, 161, 0.2);
+    /* background-color:rgb(200,200,200); */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -155px;
+    margin-top: -139px;
+}
+
+.modallcontainer{
+    width: 550px;
+    height: 355px;
+    border-radius: 12px;
+    background-color: white ;
+    box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    margin-top: -318px;
+}
+
+.modallcontainer .title {
+    display: inline-block;
+    text-align:center;
+    margin-top: -12px;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* font-size: ; */
+    margin-left: 8px;
+}
+/* .modallcontainer .title h4{
+    margin-left: 150px;
+}
+.modallcontainer .title h2{
+    margin-left: -95px;
+} */
+
+.title-close-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -15px;
+    
+}
+
+.title-close-btn button{
+    background-color: transparent;
+    /* border: 2px solid; */
+    border: none;
+    /* width: 35px; */
+    /* height: 30px; */
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: -5.7px;
+    margin-right: -22.5px;
+}
+
+/* .title-close-btn button :hover{
+    background-color: red;
+} */
+
+.modallcontainer .body{
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    /* margin-top: ; */
+}
+/* .modallcontainer .card-body{
+    margin-top: "-1rem";
+} */
+
+.modallcontainer .footer{
+    flex: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.modallcontainer .footer button{
+    width: 150px;
+    height: 45px;
+    margin: 10px;
+    border: none;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#cancelbtn{
+    background-color: crimson;
+}
