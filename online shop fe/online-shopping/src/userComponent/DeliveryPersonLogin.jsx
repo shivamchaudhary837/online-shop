@@ -30,8 +30,7 @@ const DeliveryPersonLogin = () => {
     }).then((result) => {
       console.log("result", result);
       result.json().then((res) => {
-
-        if(res && res.role === "Delivery"){
+        if (res && res.role === "Delivery") {
           sessionStorage.setItem("active-delivery", JSON.stringify(res));
           toast.success("logged in successfully!!!", {
             position: "top-center",
@@ -44,9 +43,7 @@ const DeliveryPersonLogin = () => {
           });
           navigate("/user/delivery/myorders");
           window.location.reload(true);
-        }
-        else{
-              
+        } else {
           toast.error("Invalid email and password", {
             position: "top-center",
             autoClose: 2000,
@@ -58,24 +55,34 @@ const DeliveryPersonLogin = () => {
           });
           return;
         }
-        
       });
     });
     e.preventDefault();
   };
 
+  const validateForm = (event) => {
+    const form = document.getElementById("loginForm");
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    form.classList.add("was-validated");
+  };
+
   return (
-    <div className="delivery-img" >
-      <div
-        className="mt-2 d-flex aligns-items-center justify-content-center"
-        
-      >
-        <div className="card form-card border-color" style={{ width: "25rem" ,marginLeft:"-52rem", marginTop:"10rem"}}>
+    <div className="delivery-img">
+      <div className="mt-2 d-flex aligns-items-center justify-content-center">
+        <div
+          className="card form-card border-color"
+          style={{ width: "25rem", marginLeft: "-52rem", marginTop: "10rem" }}
+        >
           <div className="card-header">
-            <h4 className="card-title" style={{marginLeft:"3.3rem",fontStyle:"italic"}}>Delivery Person Login</h4>
+            <h4 className="card-title" style={{ marginLeft: "3.3rem", fontStyle: "italic" }}>
+              Delivery Person Login
+            </h4>
           </div>
           <div className="card-body">
-            <form onSubmit={loginAction}>
+            <form id="loginForm" onSubmit={loginAction} noValidate>
               <div className="form-floating mb-3">
                 <input
                   type="email"
@@ -85,9 +92,10 @@ const DeliveryPersonLogin = () => {
                   onChange={handleUserInput}
                   required
                   placeholder="Email Id"
-                  style={{height:"3rem",marginTop:"1rem"}}
+                  style={{ height: "3rem", marginTop: "1rem" }}
                 />
                 <label htmlFor="emailId">Email Id *</label>
+                <div className="invalid-feedback">Please enter a valid email address.</div>
               </div>
               <div className="form-floating mb-3">
                 <input
@@ -99,16 +107,17 @@ const DeliveryPersonLogin = () => {
                   required
                   autoComplete="on"
                   placeholder="Password"
-                  style={{height:"3rem"}}
+                  style={{ height: "3rem" }}
                 />
                 <label htmlFor="password">Password *</label>
+                <div className="invalid-feedback">Please enter a password.</div>
               </div>
 
               <button
                 type="submit"
                 className="btn bg-color custom-bg-text"
-                // onClick={loginAction}
-                style={{marginLeft:"9rem",marginTop:"1rem"}}
+                onClick={validateForm}
+                style={{ marginLeft: "9rem", marginTop: "1rem" }}
               >
                 Login
               </button>

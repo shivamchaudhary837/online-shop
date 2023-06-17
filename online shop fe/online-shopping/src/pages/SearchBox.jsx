@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import './searchbox.css';
 
 const SearchBox = () => {
   const [keyword, setKeyword] = useState("");
@@ -32,6 +33,9 @@ const SearchBox = () => {
     border: '1px solid #ccc',
     borderRadius: '5px',
     padding: '5px',
+    // width:'500px',
+    marginLeft:'-50px',
+    marginTop:'3px',
   };
   
   const searchInputStyle = {
@@ -39,14 +43,20 @@ const SearchBox = () => {
     flex: 1,
     padding: '5px',
     fontSize: '16px',
+    // marginLeft:'-30px',
+    width:'550px',
   };
   
   const searchIconStyle = {
     margin: '10px',
-    fontSize: '16px',
+    fontSize: '22px',
     color: '#888',
     cursor: 'pointer',
   };
+
+  const backbtn =() => {
+    window.history.back();
+  }
   
   return (
     <div className="search-container">
@@ -58,7 +68,8 @@ const SearchBox = () => {
               onChange={(e) => setKeyword(e.target.value)}
               value={keyword}
               style={searchInputStyle}
-              placeholder="Enter Product Title"
+              placeholder="Search for items..."
+              
             />
             <i
               className="fa-solid fa-magnifying-glass"
@@ -92,46 +103,18 @@ const SearchBox = () => {
               <div>{result.title}</div>
             </div>
           </Link>
+
         ))}
       </div>
 
-      <style jsx>{`
-        .search-container {
-          position: sticky;
-          top: 0;
-          background-color: #fff;
-          z-index: 1;
-        }
-
-        .container {
-          padding-top: 22px;
-        }
-
-        .search-results {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          padding: 0;
-          margin-top: 10px;
-        }
-
-        .search-result-item {
-          flex-basis: 33.33%;
-          text-decoration: none;
-          color: inherit;
-        }
-
-        .search-result-item-content {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
-          padding: 10px;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          margin: 5px;
-        }
-      `}</style>
+      <div className="footer-btn">
+        <button className="back-btn"
+        onClick={()=>{
+          backbtn()
+        }}>
+          BACK
+        </button>
+      </div>
     </div>
   );
 };

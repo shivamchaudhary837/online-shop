@@ -27,32 +27,43 @@ const AdminLoginPage = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(loginRequest),
-    }).then((result) => {
-      console.log("RESULT", result);
-      result
-        .json()
-        .then((res) => {
-          if (res  && res.role==="Admin") {
-            
-            sessionStorage.setItem("active-admin", JSON.stringify(res));
-            console.log("Working fine:)");
-    
-            toast.success("logged in successfully!!!", {
-              position: "top-center",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-    
-            navigate("/home");
-            window.location.reload(true);
-            
-          }
-          else{
-          
+    })
+      .then((result) => {
+        console.log("RESULT", result);
+        result
+          .json()
+          .then((res) => {
+            if (res && res.role === "Admin") {
+              sessionStorage.setItem("active-admin", JSON.stringify(res));
+              console.log("Working fine:)");
+
+              toast.success("logged in successfully!!!", {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+
+              navigate("/home");
+              window.location.reload(true);
+            } else {
+              toast.error("Wrong Email Id or Password, Try Again", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            // Handle the error here, such as displaying an error message to the user
             toast.error("Wrong Email Id or Password, Try Again", {
               position: "top-center",
               autoClose: 2000,
@@ -62,39 +73,48 @@ const AdminLoginPage = () => {
               draggable: true,
               progress: undefined,
             });
-        }
-        })
-        .catch((error) => {
-          console.error(error);
-          // Handle the error here, such as displaying an error message to the user
-          toast.error("Wrong Email Id or Password, Try Again", {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
           });
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle the error here, such as displaying an error message to the user
+        toast.error("Wrong Email Id or Password, Try Again", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
         });
-    });
-  
+      });
+
     e.preventDefault();
   };
-  
+
+  const validateForm = (event) => {
+    const form = document.getElementById("loginForm");
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    form.classList.add("was-validated");
+  };
 
   return (
     <div className="admin-img">
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
         <div
           className="card"
-          style={{ width: "25rem" ,marginLeft:"-52rem", marginTop:"11.5rem"}}
+          style={{ width: "25rem", marginLeft: "-52rem", marginTop: "11.5rem" }}
         >
           <div className="card-header ">
-            <h4 className="card-title" style={{marginLeft:"6.3rem",fontStyle:"italic"}}>Admin Login</h4>
+            <h4 className="card-title" style={{ marginLeft: "6.3rem", fontStyle: "italic" }}>
+              Admin Login
+            </h4>
           </div>
           <div className="card-body">
-            <form  onSubmit={loginAction}>
+            <form id="loginForm" onSubmit={loginAction} noValidate>
               <div className="mb-3">
                 <div className="form-floating">
                   <input
@@ -104,11 +124,11 @@ const AdminLoginPage = () => {
                     name="emailId"
                     placeholder="Email Id"
                     onChange={handleUserInput}
-                    // value={loginRequest.emailId}
                     required
-                    style={{height:"3rem",marginTop:"1rem"}}
+                    style={{ height: "3rem", marginTop: "1rem" }}
                   />
                   <label htmlFor="emailId">Email Id *</label>
+                  <div className="invalid-feedback">Please enter a valid email address.</div>
                 </div>
               </div>
               <div className="mb-3">
@@ -120,20 +140,20 @@ const AdminLoginPage = () => {
                     name="password"
                     placeholder="Password"
                     onChange={handleUserInput}
-                    // value={loginRequest.password}
                     autoComplete="on"
                     required
-                    style={{height:"3rem",marginTop:"1rem"}}
+                    style={{ height: "3rem", marginTop: "1rem" }}
                   />
                   <label htmlFor="password">Password *</label>
+                  <div className="invalid-feedback">Please enter a password.</div>
                 </div>
               </div>
-              
+
               <button
                 type="submit"
                 className="btn bg-color custom-bg-text"
-                // onClick={loginAction}
-                style={{marginLeft:"9rem",marginTop:"1rem"}}
+                onClick={validateForm}
+                style={{ marginLeft: "9rem", marginTop: "1rem" }}
               >
                 Login
               </button>

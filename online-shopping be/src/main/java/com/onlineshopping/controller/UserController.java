@@ -60,7 +60,8 @@ public class UserController {
 		User user1=userDao.findByEmailId(userRequest.getEmailId());
 		
 		if(user1!=null) {
-			throw new DuplicateUserExecption("User with this email exist");
+			//throw new DuplicateUserExecption("User with this email exist");
+			return ResponseEntity.badRequest().body(null);
 		}
 		
         
