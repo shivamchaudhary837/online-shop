@@ -1,6 +1,6 @@
 .modallBackground{
-    width: 100vw;
-    height: 90vh;
+    width: 237%;
+    height: 250%;
     background-color: rgba(190, 161, 161, 0.2);
     /* background-color:rgb(200,200,200); */
     position: absolute;
@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     margin-left: -155px;
-    margin-top: -139px;
+    margin-top: -545px;
 }
 
 .modallcontainer{
@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     padding: 25px;
-    margin-top: -318px;
+    margin-top: -31px;
 }
 
 .modallcontainer .title {

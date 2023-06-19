@@ -48,6 +48,16 @@ public class ProductController {
 	@Autowired
 	private UserDao userDao;
 	
+	@PostMapping("update/{productId}")
+	public ResponseEntity<?> updateProduct(@PathVariable Integer productId,@RequestBody String inStocks){
+		
+		
+		Product product=productService.updateProduct(productId,inStocks);
+		
+		return ResponseEntity.ok(product);
+	}
+	
+	
 //	@PostMapping("add")
 //	public ResponseEntity<?> addProduct(ProductAddRequest productDto) {
 //		
@@ -79,15 +89,6 @@ public class ProductController {
 		System.out.println("response sent!!!");
 		return ResponseEntity.ok(product);
 		
-	}
-	
-	@PostMapping("update/{productId}")
-	public ResponseEntity<?> updateProduct(@PathVariable Integer productId,@RequestBody String inStocks){
-		
-		
-		Product product=productService.updateProduct(productId,inStocks);
-		
-		return ResponseEntity.ok(product);
 	}
 	
 	@GetMapping("all")
