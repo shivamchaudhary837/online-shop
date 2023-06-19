@@ -1,9 +1,11 @@
 package com.onlineshopping.service;
 
-import com.onlineshopping.model.Cart;
+import com.onlineshopping.dto.AddToCartRequest;
+import com.onlineshopping.dto.CartDataResponse;
+import com.onlineshopping.dto.CartResponse;
 
 public interface CartService {
-
-	public void add(Cart cart);
-	public void removeCartItem();
+    void addToCart(AddToCartRequest addToCartRequest);
+    CartResponse getMyCart(int userId);
+    void removeCartItem(int cartId);
 }
