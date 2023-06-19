@@ -3,6 +3,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import "./adminlogin.css";
+import carousel1 from "../images/image.png";
+
 
 const AdminLoginPage = () => {
   let navigate = useNavigate();
@@ -102,21 +104,28 @@ const AdminLoginPage = () => {
   };
 
   return (
-    <div className="admin-img">
+    // <div className="admin-img">
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
         <div
           className="card"
-          style={{ width: "25rem", marginLeft: "-52rem", marginTop: "11.5rem" }}
-        >
-          <div className="card-header ">
-            <h4 className="card-title" style={{ marginLeft: "6.3rem", fontStyle: "italic" }}>
-              Admin Login
-            </h4>
-          </div>
+          style={{ width: "68rem" ,marginLeft:"2rem", marginTop:"4.7rem",height:"30rem",boxShadow: "0 13px 15px rgba(128, 20, 20, 0.13) ",backgroundColor:"white"}}
+        > 
+          
+
+          <img src={carousel1} alt="" style={{width:"24rem",height:"21rem",marginTop:"5rem",marginLeft:"6rem"}}/>
+          <div className="text">
+
+<h3 className="villa" style={{marginLeft:"12.7rem",marginTop:"-6.8rem",fontStyle:"italic"}}> Villa</h3>
+<h3 className="villa" style={{marginLeft:"15.4rem",marginTop:"-0.8rem" ,fontStyle:"italic"}}>Namkeen....</h3>
+<h1 className="k" style={{ marginLeft: "44rem", fontStyle: "italic", marginTop:"-20rem"}}>
+   Admin Login
+ </h1>            
+</div>
+
           <div className="card-body">
-            <form id="loginForm" onSubmit={loginAction} noValidate>
+            <form id="loginForm" onSubmit={loginAction} noValidate  style={{marginLeft:"39rem",marginTop:"-16.3rem"}}>
               <div className="mb-3">
-                <div className="form-floating">
+                <div className="form-floating" >
                   <input
                     type="email"
                     className="form-control"
@@ -125,7 +134,7 @@ const AdminLoginPage = () => {
                     placeholder="Email Id"
                     onChange={handleUserInput}
                     required
-                    style={{ height: "3rem", marginTop: "1rem" }}
+                    style={{ height: "3rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                   />
                   <label htmlFor="emailId">Email Id *</label>
                   <div className="invalid-feedback">Please enter a valid email address.</div>
@@ -142,7 +151,7 @@ const AdminLoginPage = () => {
                     onChange={handleUserInput}
                     autoComplete="on"
                     required
-                    style={{ height: "3rem", marginTop: "1rem" }}
+                    style={{ height: "3rem", marginTop: "1rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                   />
                   <label htmlFor="password">Password *</label>
                   <div className="invalid-feedback">Please enter a password.</div>
@@ -153,7 +162,7 @@ const AdminLoginPage = () => {
                 type="submit"
                 className="btn bg-color custom-bg-text"
                 onClick={validateForm}
-                style={{ marginLeft: "9rem", marginTop: "1rem" }}
+                style={{ marginLeft: "6.3rem", marginTop: "1.4rem",borderRadius: "5px 10px 0 15px",width:"8rem" }}
               >
                 Login
               </button>
@@ -162,7 +171,7 @@ const AdminLoginPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 

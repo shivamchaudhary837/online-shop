@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddProductForm = () => {
   const [categories, setCategories] = useState([]);
@@ -34,7 +35,21 @@ const AddProductForm = () => {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
-  const saveProduct = () => {
+  const callToast=(message)=>{
+     
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+  const saveProduct = (e) => {
+    e.preventDefault()
+
     const formData = new FormData();
     formData.append("image", selectedPhoto);
     formData.append("title", product.title);
@@ -47,7 +62,11 @@ const AddProductForm = () => {
       .post("http://localhost:8080/api/product/add", formData)
       .then((resp) => {
         let result = resp.data.data;
-        alert("Product saved successfully");
+        callToast("Product Added Successfully");
+        setProduct({title: "", description: "", price: "",quantity: "",categoryId: "",photo: "",  
+        });
+        setCategories([]);
+        //alert("Product saved successfully");
       })
       .catch((error) => {
         console.log("Error", error);

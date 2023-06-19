@@ -1,10 +1,12 @@
-.img{
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Courgette&family=Dancing+Script:wght@600&family=Playball&family=Rye&display=swap');
+
+/* .img{
     position: absolute;
     background-image: url(../images/bg_register.jpg);
     height: 130%;
     width: 100%;
-    /* margin-left: 10%; */
-}
+    margin-left: 10%;
+} */
 .card {
     /* margin-left: "35rem";
     width: "35%"; */
@@ -23,3 +25,12 @@
     box-shadow: inset;
     box-sizing: content-box;
 } */
+
+.i
+{
+    font-family: 'Rye', cursive;
+}
+.j{
+    /* font-family: 'Playball', cursive; */
+    font-family: 'Rye', cursive;
+}

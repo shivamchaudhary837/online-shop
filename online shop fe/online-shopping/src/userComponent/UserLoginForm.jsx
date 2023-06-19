@@ -8,7 +8,9 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-import bgt from "../images/nam_bg.png";
+// import bgt from "../images/nam_bg.png";
+import carousel1 from "../images/image.png";
+
 
 const UserLoginForm = () => {
   let navigate = useNavigate();
@@ -186,20 +188,27 @@ const UserLoginForm = () => {
     form.classList.add("was-validated");
   };
 
-  return (
-    <>
-      
+  return (  
 
-        <div className="vertical-down container">
-          <div className="mt-2 d-flex aligns-items-center justify-content-center">
-            <div className="card" style={{ width: "25rem", marginLeft: "-52rem", marginTop: "3.7rem" ,background:"#FFFFFF"}}>
-              <div className="card-header">
-                <h4 className="card-title" style={{ marginLeft: "7.6rem", fontStyle: "italic" }}>
-                  <b>User Login</b>
-                </h4>
-              </div>
-              <div className="card">
-                <form id="loginForm" className="needs-validation" onSubmit={loginAction} noValidate>
+      <div className="mt-2 d-flex aligns-items-center justify-content-center">
+        <div
+          className="card"
+          style={{ width: "68rem" ,marginLeft:"2rem", marginTop:"4rem",height:"32rem",boxShadow: "0 13px 15px rgba(128, 20, 20, 0.13) ",backgroundColor:"white"}}
+        > 
+    
+          <img src={carousel1} alt="" style={{width:"24rem",height:"21rem",marginTop:"5rem",marginLeft:"6rem"}}/>
+       
+          <div className="text">
+
+           <h3 className="villa" style={{marginLeft:"12.7rem",marginTop:"-6.8rem",fontStyle:"italic"}}> Villa</h3>
+           <h3 className="villa" style={{marginLeft:"15.4rem",marginTop:"-0.8rem" ,fontStyle:"italic"}}>Namkeen....</h3>
+          <h1 className="k" style={{ marginLeft: "45rem", fontStyle: "italic", marginTop:"-20rem"}}>
+              User Login
+            </h1>            
+          </div>
+
+              <div className="card-body">
+                <form id="loginForm" className="needs-validation" onSubmit={loginAction} noValidate style={{marginLeft:"39rem",marginTop:"-17.3rem"}}>
                   <div className="mb-3">
                     <div className="form-floating">
                       <input
@@ -211,7 +220,7 @@ const UserLoginForm = () => {
                         onChange={handleUserInput}
                         value={loginRequest.emailId}
                         required
-                        style={{ marginTop: "1rem", height: "3rem" }}
+                        style={{ height: "3rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                       />
                       <label htmlFor="emailId">Email ID *</label>
                       <div className="invalid-feedback">Please provide a valid email.</div>
@@ -230,7 +239,7 @@ const UserLoginForm = () => {
                         value={loginRequest.password}
                         autoComplete="on"
                         required
-                        style={{ marginTop: "0.5rem", height: "3rem" }}
+                        style={{ height: "3rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                       />
                       <label htmlFor="password">Password *</label>
                       <div className="invalid-feedback">Please provide a password.</div>
@@ -242,18 +251,18 @@ const UserLoginForm = () => {
                       type="submit"
                       className="btn bg-color custom-bg-text"
                       onClick={validateForm}
-                      style={{ marginTop: "1.5rem", marginLeft: "9.2rem" }}
+                      style={{ marginLeft: "6.1rem", marginTop: "1.4rem",borderRadius: "5px 10px 0 15px",width:"8rem" }}
                     >
                       Login
                     </button>
                   </div>
                   <div className="line">
-                    <hr class="l1" style={{ width: "9rem", height: "1px", backgroundColor: "white", marginTop: "1.6rem", marginLeft: "1rem" }} />
-                    <h6 style={{ marginLeft: "10.5rem", marginTop: "-1.7rem", fontStyle: "italic" }}>OR</h6>
-                    <hr class="l2" style={{ width: "9rem", marginLeft: "12.3rem", marginTop: "-1.05rem" }} />
+                    <hr class="l1" style={{ width: "9rem", height: "1px", backgroundColor: "white", marginTop: "1.6rem", marginLeft: "0rem" }} />
+                    <h6 style={{ marginLeft: "9.5rem", marginTop: "-1.7rem", fontStyle: "italic" }}>OR</h6>
+                    <hr class="l2" style={{ width: "9rem", marginLeft: "11.3rem", marginTop: "-1.05rem" }} />
                   </div>
                   <div className="login-gmail">
-                    <button style={{ marginTop: "1rem", marginLeft: "6rem", borderRadius: "2rem" }}>
+                    <button style={{ marginTop: "1rem", marginLeft: "3.7rem", borderRadius: "5rem",borderColor:"white" }}>
                       <GoogleOAuthProvider clientId="668976964137-tljnqvmeh5jq54u9ldevost06cn878pl.apps.googleusercontent.com">
                         <GoogleLogin
                           onSuccess={(credentialResponse) => {
@@ -275,9 +284,9 @@ const UserLoginForm = () => {
               </div>
             </div>
           </div>
-        </div>
+        // </div>
       
-    </>
+    
   );
 };
 

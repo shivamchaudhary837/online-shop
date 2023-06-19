@@ -4,60 +4,34 @@ import axios from "axios";
 const MyProfile = () => {
   const user = JSON.parse(sessionStorage.getItem("active-user"));
 
-  const [profile, setProfile] = useState({
-    firstName: "",
-    lastName: "",
-    emailId: "",
-    phoneNo: "",
-    address: {
-      street: "",
-      city: "",
-      pincode: "",
-    },
-    walletAmount: 0,
-  });
+  const [profile, setProfile] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getMyProfile = async () => {
-      const profileResult = await retrieveUser();
-
-      if (profileResult) {
-        console.log("my profile is present", profileResult);
+      try {
+        const profileResult = await retrieveUser();
+        setProfile(profileResult);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
-      setProfile(profileResult);
     };
 
     getMyProfile();
   }, []);
 
   const retrieveUser = async () => {
-    const res = await axios.get(
-      "http://localhost:8080/api/user/profile/" + user.id
-    );
-    console.log(res.data);
-    return res.data;
-  };
-
-  const handleFirstName = (e) => {
-    // const { value } = e.target;
-    // setProfile((prevProfile) => ({
-    //   ...prevProfile,
-    //   firstName: value,
-    // }));
-  };
-
-  const handleLastName = (e) => {
-    // setProfile((prevProfile) => ({
-    //   ...prevProfile,
-    //   lastName: e.target.value,
-    // }));
-  };
-
-  const handleEmailId = (e) => {
-    // setProfile((prevProfile) => ({
-    //   ...prevProfile,
-    //   emailId: e.target.value,
-    // }));
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/user/profile/${user.id}`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error("Failed to retrieve user profile");
+    }
   };
 
   const handlePhoneNo = (e) => {
@@ -73,6 +47,7 @@ const MyProfile = () => {
       walletAmount: e.target.value,
     }));
   };
+
   const handleAddress = (e) => {
     setProfile((prevProfile) => ({
       ...prevProfile,
@@ -105,24 +80,19 @@ const MyProfile = () => {
 
   const handleSaveButton = async () => {
     try {
-      // setProfile(profile)
       const response = await axios.post(
-        "http://localhost:8080/api/user/profile/" + user.id,
+        `http://localhost:8080/api/user/profile/${user.id}`,
         profile
       );
       console.log(response.data);
     } catch (error) {
       console.error(error);
     }
-    // setTimeout(()=>{
-    //   window.location.reload(true);
-    // },2000)
   };
 
   return (
-    <div className="gd">
-    <div className="container">
-      <div  style={{marginTop:"60px"}}>
+    <div className="gd container">
+      <div style={{ marginTop: "60px" }}>
         <div className="card" style={{ borderRadius: "10px" }}>
           <div className="card-header custom-bg">
             <h2>Profile Page</h2>
@@ -137,22 +107,20 @@ const MyProfile = () => {
                   type="text"
                   className="form-control"
                   id="firstName"
-                  value={profile.firstName}
-                  onChange={handleFirstName}
-                  style={{background:"#e8ecef"}}
+                  value={profile?.firstName || ""}
+                  style={{ background: "#e8ecef" }}
                 />
               </div>
               <div className="col-md-6">
-                <label htmlFor="inputPassword4" className="form-label ">
+                <label htmlFor="inputPassword4" className="form-label">
                   Last Name
                 </label>
                 <input
                   type="text"
                   className="form-control"
                   id="inputPassword4"
-                  value={profile.lastName}
-                  onChange={handleLastName}
-                  style={{background:"#e8ecef"}}
+                  value={profile?.lastName || ""}
+                  style={{ background: "#e8ecef" }}
                 />
               </div>
               <div className="col-6">
@@ -164,9 +132,8 @@ const MyProfile = () => {
                   className="form-control"
                   id="inputEmailId"
                   placeholder="1234 Main St"
-                  value={profile.emailId || ""}
-                  onChange={handleEmailId}
-                  style={{background:"#e8ecef"}}
+                  value={profile?.emailId || ""}
+                  style={{ background: "#e8ecef" }}
                 />
               </div>
               <div className="col-12">
@@ -178,7 +145,7 @@ const MyProfile = () => {
                   className="form-control"
                   id="inputAddress2"
                   placeholder="Apartment, studio, or floor"
-                  value={profile.address.street}
+                  value={profile?.address?.street || ""}
                   onChange={handleAddress}
                 />
               </div>
@@ -190,7 +157,7 @@ const MyProfile = () => {
                   type="text"
                   className="form-control"
                   id="inputCity"
-                  value={profile.address.city}
+                  value={profile?.address?.city || ""}
                   onChange={handleCity}
                 />
               </div>
@@ -202,7 +169,7 @@ const MyProfile = () => {
                   type="text"
                   className="form-control"
                   id="inputstate"
-                  value={profile.phoneNo}
+                  value={profile?.phoneNo || ""}
                   onChange={handlePhoneNo}
                 />
               </div>
@@ -214,27 +181,24 @@ const MyProfile = () => {
                   type="text"
                   className="form-control"
                   id="inputZip"
-                  value={profile.address.pincode}
+                  value={profile?.address?.pincode || ""}
                   onChange={handlePincode}
                 />
               </div>
-              
               <div className="col-6" style={{ marginTop: "30px" }}>
                 <label htmlFor="inputZip" className="form-label">
-                 
                   <h5>Wallet Amount:</h5>
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  value={profile.walletAmount}
+                  value={profile?.walletAmount || 0}
                   onChange={handleWallet}
                   readOnly
-                  style={{background:"#e8ecef"}}
+                  style={{ background: "#e8ecef" }}
                 />
-                 
               </div>
-              <div className="col-12" >
+              <div className="col-12">
                 <div className="d-flex justify-content-end">
                   <button
                     type="submit"
@@ -244,12 +208,11 @@ const MyProfile = () => {
                     Save
                   </button>
                 </div>
-                </div>
+              </div>
             </form>
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

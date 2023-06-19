@@ -3,6 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import "./deliverypersonlogin.css";
+import carousel1 from "../images/delivery.png";
 
 const DeliveryPersonLogin = () => {
   let navigate = useNavigate();
@@ -70,19 +71,26 @@ const DeliveryPersonLogin = () => {
   };
 
   return (
-    <div className="delivery-img">
-      <div className="mt-2 d-flex aligns-items-center justify-content-center">
+    <div className="mt-2 d-flex aligns-items-center justify-content-center">
         <div
-          className="card form-card border-color"
-          style={{ width: "25rem", marginLeft: "-52rem", marginTop: "10rem" }}
-        >
-          <div className="card-header">
-            <h4 className="card-title" style={{ marginLeft: "3.3rem", fontStyle: "italic" }}>
+          className="card"
+          style={{ width: "65rem" ,marginLeft:"2rem", marginTop:"5.7rem",height:"28rem",boxShadow: "0 13px 15px rgba(128, 20, 20, 0.13) "}}
+        > 
+          
+        
+          <div className="text-delivery" >
+
+           {/* <h3 style={{marginLeft:"10rem",marginTop:"2rem"}}> Villa</h3>
+           <h3 style={{marginLeft:"13rem",marginTop:"-0.8rem"}}>Namkeen....</h3> */}
+          <h1 className="dk" style={{ marginLeft: "38.7rem", fontStyle: "italic", marginTop:"3rem" }}>
               Delivery Person Login
-            </h4>
+            </h1>            
           </div>
+
+          <img src={carousel1} alt="" style={{width:"25rem",height:"20rem",marginTop:"-2rem",marginLeft:"5rem"}}/>
+
           <div className="card-body">
-            <form id="loginForm" onSubmit={loginAction} noValidate>
+            <form id="loginForm" onSubmit={loginAction} noValidate style={{marginLeft:"37.6rem",marginTop:"-15.7rem"}}>
               <div className="form-floating mb-3">
                 <input
                   type="email"
@@ -92,7 +100,7 @@ const DeliveryPersonLogin = () => {
                   onChange={handleUserInput}
                   required
                   placeholder="Email Id"
-                  style={{ height: "3rem", marginTop: "1rem" }}
+                  style={{ height: "3rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                 />
                 <label htmlFor="emailId">Email Id *</label>
                 <div className="invalid-feedback">Please enter a valid email address.</div>
@@ -107,7 +115,7 @@ const DeliveryPersonLogin = () => {
                   required
                   autoComplete="on"
                   placeholder="Password"
-                  style={{ height: "3rem" }}
+                  style={{ height: "3rem", marginTop: "1rem"  ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                 />
                 <label htmlFor="password">Password *</label>
                 <div className="invalid-feedback">Please enter a password.</div>
@@ -117,7 +125,7 @@ const DeliveryPersonLogin = () => {
                 type="submit"
                 className="btn bg-color custom-bg-text"
                 onClick={validateForm}
-                style={{ marginLeft: "9rem", marginTop: "1rem" }}
+                style={{ marginLeft: "6.1rem", marginTop: "1.8rem",borderRadius: "5px 10px 0 15px",width:"8rem" }}
               >
                 Login
               </button>
@@ -126,7 +134,7 @@ const DeliveryPersonLogin = () => {
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 

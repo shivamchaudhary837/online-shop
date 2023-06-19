@@ -2,72 +2,192 @@
     margin: 0%;
     padding: 0%;
 }
-.imagee{
+.contact_card{
+    margin-top:6%;
+    border: 1px whitesmoke;
+    margin-left: 23%;
+    background-color: whitesmoke;
+    /* width: 3rem; */
+    height: 50%;
+}
+.input-fname input{
+    width: 27%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 1px solid #333;
+    outline: none;
+    margin-left: 20rem;
+    margin-top: 7rem;
+    background-color: whitesmoke;
+}
+.input-lname input{
+    width: 27%;
+    padding: 5px 0;
+    font-size: 16px;
+    /* margin: 10px 0; */
+    border: none;
+    border-bottom: 1px solid #333;
+    outline: none;
+    margin-left: 40rem;
+    /* margin-top: -6.5rem; */
+    background-color: whitesmoke;
+}
+.input-mail input{
+    width: 27%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 1px solid #333;
+    outline: none;
+    margin-left: 20rem;
+    margin-top: 2.7rem;
+    background-color: whitesmoke;
+}
+.input-mobile input{
+    width: 27%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 1px solid #333;
+    outline: none;
+    margin-left: 40rem;
+    /* margin-top: 1.3rem; */
+    background-color: whitesmoke;
+}
+.input-msg textarea{
+    width: 58%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 1px solid #333;
+    outline: none;
+    margin-left: 20rem;
+    margin-top: 2.6rem;
+    height: 5rem;
+    background-color: whitesmoke;
+}
+
+.contact_card button{
     position: absolute;
-    background-image: url(../images/abc.jpeg);
-    height: 55%;
-    width: 79%;
+    margin-left: 36rem;
+    margin-top: 3.4rem;
+    width: 6rem;
+    height: 2rem;
+    background-color:rgb(38, 73, 75);
+    color: antiquewhite;
+}
+
+.contact_card h2{
+    position: absolute;
+    margin-left: 20rem;
+    margin-top: 2rem;
+    font-family: 'EB Garamond', serif;
+}
+
+.contactdiv{
+    position: absolute;
+    background-color: rgb(38, 73, 75);
+    margin-top: 1rem;
+    width: 22rem;
+    margin-left: -9rem;
+    height: 28rem; 
     
-    left: 10%;
 }
-.icons{
-    height: 70px;
-    width: 70px;
+.contactdiv h2{
+    color: antiquewhite;
+    font-size: 1.7rem;
+    position: absolute;
+    margin-left: 6.3rem ;
+    /* margin-top: 1.8rem; */
+    font-style: italic;
+    font-family: 'EB Garamond', serif;
 }
-.Phone{
-    color:darkslategray;
-    margin-top: 28%;
-    margin-left: 20%;
+.contactdiv .icons-address {
+    color: antiquewhite;
+    margin-top: 7rem;
+    margin-left: 1.7rem;
+    font-size: 2rem;
 
 }
+.address-shopname{
+    margin-top: -2.3rem;
+    margin-left: 4.6rem;
+    color: antiquewhite;
+    font-style: italic; 
+    font-family: 'Kalam', cursive;
+}
+.address-location{
+    margin-top: -0.6rem;
+    margin-left: 4.6rem;
+    color: antiquewhite;
+    font-style: italic;
+    font-family: 'Kalam', cursive; 
+}
+.address-pincode{
+    margin-top: -0.5rem;
+    margin-left: 4.7rem;
+    color: antiquewhite;
+    font-style: italic; 
+    font-family: 'Kalam', cursive;
+}
 
-.whatsapp{
-    color: rgb(29, 185, 94);
-    margin-top: 28%;
-    margin-left: 22%;
+.icons-Phone{
+    color: antiquewhite;
+    margin-top: 1.3rem;
+    margin-left: 1.7rem;
+    font-size: 1.6rem;
 }
-.instagram{
-    color: rgb(202, 39, 115);
-    margin-top: 28%;
-    margin-left: 24%;
-}
-.mailbulk{
-    color: rgb(202, 50, 39);
-    margin-top: 6%;
-    margin-left: 33%;
-}
-.twitter{
-    color: rgb(39,148, 202);
-    margin-top: 6%;
-    margin-left: 23.5%;
-}
+
 .phoneno{
-    position: absolute;
-    top: 76%;
-    left: 15%;
+    margin-top: -1.3rem;
+    margin-left: 4.6rem;
+    color: antiquewhite;
+    font-style: italic; 
+    font-family: 'Kalam', cursive;
 }
-.phoneno2{
-    position: absolute;
-    top: 80%;
-    left: 15%;
+
+.icons-mailbulk{
+    color: antiquewhite;
+    margin-top: 1.9rem;
+    margin-left: 1.7rem;
+    font-size: 1.6rem;
 }
-.whatsappno{
-    position: absolute;
-    top: 76%;
-    left: 42%;
-}   
-.instaid{
-    position: absolute;
-    top: 76%;
-    left: 72%;
-} 
+
 .mailid{
-    position:absolute;
-    top: 97%;
-    left: 27%;
-} 
-.twitterid{
-    position: absolute;
-    top:97%;
-    left:59%;
-};
+    margin-top: -1.6rem;
+    margin-left: 4.6rem;
+    color: antiquewhite;
+    font-style: italic; 
+    font-family: 'Kalam', cursive;
+}
+
+.instagram{
+    margin-top: 8rem;
+    font-size: 1.6rem;
+    color: white;
+    margin-left: 6rem;
+}
+
+.twitter{
+    margin-top: 8rem;
+    font-size: 1.6rem;
+    color: white;
+    margin-left: 1rem;
+}
+.linkedin{
+    margin-top: 8rem;
+    font-size: 1.6rem;
+    color: white;
+    margin-left: 1rem;
+}
+.pinterest{
+    margin-top: 8rem;
+    font-size: 1.6rem;
+    color: white;
+    margin-left: 1rem;
+}

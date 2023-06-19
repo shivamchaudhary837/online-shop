@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import './addcard.css'
 import Modal from "./Modal";
 import Modall from "./Modall";
+import carousel1 from "../images/imagee.png";
 
 const AddCardDetails = () => {
   const location = useLocation();
@@ -140,77 +141,155 @@ const AddCardDetails = () => {
     });
   };
 
+  const [totatPrice, setTotalPrice] = useState("");
+  const [myCartData, setMyCartData] = useState([]);
+
+  useEffect(() => {
+    const getMyCart = async () => {
+      const myCart = await retrieveMyyCart();
+      if (myCart) {
+        console.log("cart data is present :)");
+        console.log(myCart.totalCartPrice);
+        console.log(myCart.cartData);
+        setTotalPrice(myCart.totalCartPrice);
+        setMyCartData(myCart.cartData);
+      }
+    };
+
+    getMyCart();
+  }, []);
+
+  const retrieveMyyCart = async () => {
+    const response = await axios.get(
+      "http://localhost:8080/api/user/mycart?userId=" + user.id
+    );
+    console.log(response.data);
+    return response.data;
+  };
+
+  const deleteProductFromCart = (cartId, e) => {
+    const response = axios.get(
+      "http://localhost:8080/api/user/mycart/remove?cartId=" + cartId
+    );
+
+    console.log(response);
+    window.location.reload(true);
+  };
+
+  const deliveryDate=()=>{
+
+    const currentDate = new Date();
+
+    // Add three days to the current date
+    const expectedDeliveryDate = new Date();
+    expectedDeliveryDate.setDate(currentDate.getDate() + 4);
+    
+    const options = { day: "numeric", month: "short" };
+    const formattedDeliveryDate = expectedDeliveryDate.toLocaleString("default", options);
+    return formattedDeliveryDate;
+  }
   return (
     <>
     <div className="pay_img">
-    
+
       <div className="mt-2 pt-5 d-flex aligns-items-center justify-content-center">
+
+      <div className="table-responsive">
+            <table className="table table-hover bg-color-text text-center" style={{width:"80rem",marginLeft:"12rem",marginTop:"0rem"}}>
+              <thead className="custom-bg table-bordered border-color">
+                <tr style={{backgroundColor:"#7fc6cf",height:"3rem"}}>
+                  <th scope="col">Product</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody className="text-color">
+                {myCartData.map((cartData) => {
+                  return (
+                    <tr>
+                      <td>
+                        <img
+                          src={
+                            "http://localhost:8080/api/product/" +
+                            cartData.productImage
+                          }
+                          class="img-fluid"
+                          alt="product_pic"
+                          style={{
+                            maxWidth: "90px",
+                          }}
+                        />
+                      </td>
+                      <td>
+                        <b>{cartData.productName}</b>
+                      </td>
+                      <td>
+                        <b>{cartData.productDescription}</b>
+                      </td>
+                      <td>
+                        <b>{cartData.quantity}</b>
+                      </td>
+                      <td>
+                        <button
+                          className="btn bg-color custom-bg-text btn-sm"
+                          onClick={() => deleteProductFromCart(cartData.cartId)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                    
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div  >
+            <h5  style={{marginLeft:"80rem"}}><b>Expected Delivery Date:</b> {deliveryDate()}</h5>
+        </div>
+
+        <div>
+           <img src={carousel1} alt="" 
+           style={{marginLeft:"70rem",marginTop:"3rem",width:"25rem",height:"25rem"}}/>
+        </div>
+    
         <div 
         className="card"
-        style={{ width: "40rem" , marginTop: "5rem",marginLeft:"-27rem"}}>
+        style={{ width: "40rem" , marginTop: "-25rem",marginLeft:"19rem",boxShadow: "0 13px 15px rgba(128, 20, 20, 0.13)"}}>
     
           {/* <div className="card-header custom-bg text-color">
             <h5 className="card-title text-center">Payment Details</h5>
           </div> */}
           
-          <div className="card-body text-color card-color">
+            <div className="card-body text-color card-color">
 
           <div className="form-check">
             <h6 style={{fontStyle:"italic",marginLeft:"11rem",fontSize:"1.4rem"}}>Drop-Off Address</h6>
           
-           <div className="street-div">
-           <label htmlFor="street" className="street-label" style={{marginLeft:"-29rem",fontStyle:"bold"}}>
-                  Street
-                </label>
-      <input
-        className="form-check-input"
-        placeholder="CONFIRM ADDRESS"
-        value={address.street}
-        style={{ width: "80%",height:"20%", padding: "0.5rem", borderRadius: "3px" ,backgroundColor:"whitesmoke",marginLeft:"0.1rem",marginTop:"1.8rem"}}
-      />
-           </div>
-
-
-      <div className="city-div">
-           <label htmlFor="city" className="city-label" style={{marginLeft:"-29rem",fontStyle:"bold",marginTop:"3.5rem"}}>
-                  City                           
-                </label>     
-      <input
-        className="form-check-input"
-        placeholder="CONFIRM ADDRESS"
-        value={address.city}
-        style={{ width: "38.5%",height:"20%", padding: "0.5rem", borderRadius: "3px" ,backgroundColor:"whitesmoke",marginLeft:"0.1rem",marginTop:"2.5rem"}}
-      />
-      </div>
-
-      <div className="pincode-div">
-           <label htmlFor="pincode" className="pincode-label" style={{fontStyle:"bold"}}>
-                  Pincode
-                </label>
-      <input
-        className="form-check-input"
-        placeholder="CONFIRM ADDRESS"
-        value={address.pincode}
-        style={{ width: "38.5%",height:"20%", padding: "0.5rem", borderRadius: "3px" ,backgroundColor:"whitesmoke",marginLeft:"1.3rem",marginTop:"0.4rem"}}
-        
-
-      />
-      </div>
-    
-    {/* <Link to={`/user/AddressModification`}> */}
-      <FaEdit className="icons edit" style={{width:"2.8rem",height:"2.8rem",marginLeft:"32.4rem",marginTop:"-10.1rem", color:"rgba(16, 65, 50, 0.87)"}}
+            <div className="address" style={{border:"1px solid black",width:"28rem",marginTop:"2.4rem",height:"6rem"}}>
+            <input
+            type="radio"
+            style={{marginTop:"2rem",marginLeft:"1rem",width:"0.9rem"}}></input>
+            <h6 style={{marginLeft:"2.3rem",marginTop:"-1.6rem"}}>{address.street} ,{address.city}</h6>
+            {/* <h5></h5> */}
+            <h6 style={{marginLeft:"2.3rem"}}>{address.pincode}</h6>
+          </div>
+         
+           
+      <div>
+         <FaEdit className="icons edit" style={{width:"2.8rem",height:"2.8rem",marginLeft:"32.4rem",marginTop:"-8.1rem", color:"rgba(16, 65, 50, 0.87)"}}
       onClick={() => {
         setOpenModall(true);
       }}
       />
-      {/* </Link>   */}
-    
-      {/* <label className="form-check-label" htmlFor="CONFORM ADDRESS">
-       
-      </label> */}
-    </div>
+      </div>
+    </div>   
 
-          <div className="mb-3" style={{marginTop:"2rem"}}>
+    <div className="mb-3" style={{marginTop:"2rem"}}>
   <label htmlFor="paymentType" className="form-label" style={{marginLeft:"13.7rem"}}>
     <h6 style={{fontSize:"1.3rem",fontStyle:"italic"}}>Payment Type</h6>
   </label>
@@ -290,9 +369,9 @@ const AddCardDetails = () => {
           {openModall &&  <Modall closeModall={setOpenModall} />}
         </div>
       </div>
+
+      
      
-    </div>
-   
   </>
   );
 };

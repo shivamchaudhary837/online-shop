@@ -146,14 +146,16 @@ const Modal = ({closeModal}) => {
           
           <div className="title">
               <h2>Are You Sure....</h2>
+              
               <h4>You want to Continue</h4>
           </div>
           {/* <div className="body">
               <p>hello </p>
           </div> */}
           <div className="footer" >
-              <button id="cancelbtn" onClick={() => closeModal(false)}>Cancel</button>
               <button onClick={() =>payForOrder()}>Yes</button>
+              <button id="cancelbtn" onClick={() => closeModal(false)}>No</button>
+              
           </div>
       </div>
     </div>

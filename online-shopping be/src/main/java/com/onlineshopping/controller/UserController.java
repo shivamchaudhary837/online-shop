@@ -61,7 +61,7 @@ public class UserController {
 		
 		if(user1!=null) {
 			//throw new DuplicateUserExecption("User with this email exist");
-			return ResponseEntity.badRequest().body(null);
+			return ResponseEntity.ok(null);
 		}
 		
         

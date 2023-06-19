@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import "./adduserform.css";
+import carousel1 from "../images/register2.png";
 
 const AddUserForm = () => {
   const [user, setUser] = useState({
@@ -20,8 +21,38 @@ const AddUserForm = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  const callToast=(message)=>{
+       
+           
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+      
+  }
+
+  const callToastError=(message)=>{
+
+        
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+      
+  }
   const saveUser = (event) => {
     event.preventDefault();
+  
     fetch("http://localhost:8080/api/user/register", {
       method: "POST",
       headers: {
@@ -29,27 +60,25 @@ const AddUserForm = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(user),
-    }).then((result) => {
-      toast.success("Registered Successfully!!!", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+    })
+      .then((result) => result.json())
+      .then((res) => {
+        if (res != null) {
+          console.log("Response", res);
+          callToast("Registered Successfully!!!");
+            
+          window.setTimeout(() => {
+            window.location.reload(true); // Reload the page
+          }, 2000);
+
+        }
+      })
+      .catch((error) => {
+        console.log("******", error);
+        callToastError("User Already Exists With Email Id");
       });
 
-      result
-        .json()
-        .then((res) => {
-          console.log("response", res);
-        })
-        .catch((error) => {
-          console.log("******", error);
-          console.log(error);
-        });
-    });
+
   };
 
   const validateForm = (event) => {
@@ -61,32 +90,41 @@ const AddUserForm = () => {
     form.classList.add("was-validated");
   };
 
+
   return (
-    <>
-      <div className="img">
+    
         <div className="mt-2 d-flex aligns-items-center justify-content-center ms-2 me-2 mb-2">
           <div
             className="card"
-            style={{ width: "30rem", marginLeft: "39rem", marginTop: "3.5rem" }}
+            style={{ width: "68rem" ,marginLeft:"2rem", marginTop:"4rem",height:"62rem",boxShadow: "0 16px 21px rgba(128, 20, 20, 0.13) ",backgroundColor:"white"}}
           >
-            <div className="card-header">
-              <h5 className="card-title" style={{ marginLeft: "12rem", fontStyle: "italic" }}>
-                <b>Sign-Up</b>
-              </h5>
-            </div>
+
+          <img src={carousel1} alt="" style={{width:"25rem",height:"22rem",marginTop:"20rem",marginLeft:"6rem"}}/>
+
+          <div className="text">
+           
+            <h1 className="k" style={{ marginLeft: "45rem", fontStyle: "italic", marginTop:"-40rem"}}>
+                 Sign-Up
+            </h1>
+            <h1 className="i" style={{marginLeft:"5rem",marginTop:"-1rem",fontFamily:"'Rye', cursive"}}>Namkeen Villa</h1>
+            <h1 className="j" style={{marginLeft:"15.5rem",marginTop:"0rem"}}>Welcomes You</h1>            
+          </div>
+
             <div className="card-body">
               <form
                 id="addUserForm"
                 className="needs-validation"
                 onSubmit={saveUser}
                 noValidate
+                style={{marginLeft:"39rem",marginTop:"-35rem"}}
               >
-                <div className="form-floating mb-3 text-color">
+                <div className="form-floating mb-3 text-color" >
                         <select
                           onChange={handleUserInput}
                           className="form-select"
                           name="role"
                           id="floatingRole"
+                          style={{ height: "4rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                           value={user.role}
                           required
                         >
@@ -106,11 +144,12 @@ const AddUserForm = () => {
                     name="firstName"
                     placeholder="First Name"
                     onChange={handleUserInput}
+                    style={{ height: "3rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                     value={user.firstName}
                     required
                   />
                   <label htmlFor="floatingFirstName">First Name *</label>
-                  <div className="valid-feedback"> Good</div>
+                  {/* <div className="valid-feedback"> Good</div> */}
                   <div className="invalid-feedback">Please enter a first name.</div>
                 </div>
 
@@ -121,6 +160,7 @@ const AddUserForm = () => {
                     id="floatingLastName"
                     name="lastName"
                     placeholder="Last Name"
+                    style={{ height: "3rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                     onChange={handleUserInput}
                     required
                   />
@@ -135,6 +175,7 @@ const AddUserForm = () => {
                     id="floatingEmailId"
                     name="emailId"
                     placeholder="Email Id"
+                    style={{ height: "3rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                     onChange={handleUserInput}
                     required
                   />
@@ -149,6 +190,7 @@ const AddUserForm = () => {
                     id="floatingPassword"
                     name="password"
                     placeholder="Password"
+                    style={{ height: "3rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                     onChange={handleUserInput}
                     required
                   />
@@ -163,6 +205,7 @@ const AddUserForm = () => {
                     id="floatingPhoneNo"
                     name="phoneNo"
                     placeholder="Mobile No"
+                    style={{ height: "3rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                     onChange={handleUserInput}
                     required
                   />
@@ -177,11 +220,13 @@ const AddUserForm = () => {
                     name="street"
                     rows="3"
                     placeholder="Street"
+                    style={{ height: "5rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                     onChange={handleUserInput}
                     value={user.street}
+                    // style={{height:"3rem fixed"}}
                     required
                   ></textarea>
-                  <label htmlFor="floatingStreet">Street*</label>
+                  <label htmlFor="floatingStreet" >Street*</label>
                   <div className="invalid-feedback">Please enter street</div>
                 </div>
 
@@ -192,10 +237,11 @@ const AddUserForm = () => {
                     id="floatingCity"
                     name="city"
                     placeholder="City"
+                    style={{ height: "3rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                     onChange={handleUserInput}
                     required
                   />
-                  <label htmlFor="floatingCity">City*</label>
+                  <label htmlFor="floatingCity" >City*</label>
                   <div className="invalid-feedback">Please enter city</div>
                 </div>
 
@@ -206,29 +252,30 @@ const AddUserForm = () => {
                     id="floatingPincode"
                     name="pincode"
                     placeholder="Pincode"
+                    style={{ height: "3rem" ,maxWidth:"20rem",borderRadius: "5px 10px 0 15px"}}
                     onChange={handleUserInput}
                     required
                   />
-                  <label htmlFor="floatingPincode">Pincode*</label>
+                  <label htmlFor="floatingPincode" >Pincode*</label>
                   <div className="invalid-feedback">Please enter pincode</div>
                 </div>
 
-                <input
-                  type="submit"
-                  className="btn bg-color custom-bg-text"
-                  value="Register"
-                  style={{ marginLeft: "11.5rem" }}
-                  onClick={validateForm}
-                />
+                <div className="mt-3" style={{ marginLeft: "120px" }}>
+                  <input 
+                    type="submit"
+                    className="btn bg-color custom-bg-text"
+                    value="Register"
+                    onClick={validateForm}
+                    style={{ position: "sticky", bottom: "0", zIndex: "1" ,borderRadius: "5px 10px 0 15px"}} // Add sticky positioning
+                  />
+                </div>
 
                 <ToastContainer />
               </form>
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+  )
 };
 
 export default AddUserForm;

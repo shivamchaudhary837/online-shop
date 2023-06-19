@@ -1,6 +1,9 @@
 package com.onlineshopping.dao;
 
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import com.onlineshopping.model.Orders;
@@ -15,4 +18,6 @@ public interface OrderDao extends JpaRepository<Orders, Integer> {
 	List<Orders> findByUser(User user);
 	List<Orders> findByDeliveryPersonId(int deliveryPersonId);
 	 
+    List<Orders> findByUser_idAndOrderDateContaining(Integer userId,String orderDate);
+    
 }

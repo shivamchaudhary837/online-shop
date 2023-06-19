@@ -7,6 +7,7 @@ const MyCart = () => {
   let navigate = useNavigate();
   const user = JSON.parse(sessionStorage.getItem("active-user"));
   const [totatPrice, setTotalPrice] = useState("");
+  
   const [myCartData, setMyCartData] = useState([]);
 
   useEffect(() => {

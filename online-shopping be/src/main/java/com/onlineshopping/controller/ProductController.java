@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +23,6 @@ import com.onlineshopping.dao.CategoryDao;
 import com.onlineshopping.dao.ProductDao;
 import com.onlineshopping.dao.UserDao;
 import com.onlineshopping.dto.ProductAddRequest;
-import com.onlineshopping.dto.UpdateProductRequest;
 import com.onlineshopping.model.Category;
 import com.onlineshopping.model.Product;
 import com.onlineshopping.service.ProductService;
@@ -50,12 +48,22 @@ public class ProductController {
 	@Autowired
 	private UserDao userDao;
 	
+//	@PostMapping("add")
+//	public ResponseEntity<?> addProduct(ProductAddRequest productDto) {
+//		
+//		System.out.println("recieved request for ADD PRODUCT");
+//		System.out.println(productDto);
+//		
+//		Product product =productService.addProduct(productDto);
+//		
+//		return ResponseEntity.ok(product);
+//		
+//	}
+//	
 	@PostMapping("add")
 	public ResponseEntity<?> addProduct(ProductAddRequest productDto) {
-		
 		System.out.println("recieved request for ADD PRODUCT");
 		System.out.println(productDto);
-		
 		Product product=ProductAddRequest.toEntity(productDto);
 		
 		Optional<Category> optional = categoryDao.findById(productDto.getCategoryId());
@@ -74,32 +82,18 @@ public class ProductController {
 	}
 	
 	@PostMapping("update/{productId}")
-	public ResponseEntity<?> updateProduct(@PathVariable Integer productId,@RequestBody String stocking){
-		System.out.println("request come for update stock");
-		Optional<Product> res = productDao.findById(productId);
-		Product product=res.get();
-		try {
-	     String numericString = stocking.replaceAll("[^0-9]", "");
-		Integer stock=Integer.parseInt(numericString);
-		product.setQuantity(stock);
-		}
-		catch(Exception exception) {
-			System.out.println("error occurss "+exception.toString());
-		}
+	public ResponseEntity<?> updateProduct(@PathVariable Integer productId,@RequestBody String inStocks){
 		
-		return ResponseEntity.ok(productDao.save(product));
+		
+		Product product=productService.updateProduct(productId,inStocks);
+		
+		return ResponseEntity.ok(product);
 	}
 	
 	@GetMapping("all")
 	public ResponseEntity<?> getAllProducts() {
 		
-		System.out.println("request came for getting all products");
-		
-		List<Product> products = new ArrayList<Product>();
-		
-		products = productDao.findAll();
-		
-		System.out.println("response sent!!!");
+		List<Product> products = productService.getAllProducts();
 		
 		return ResponseEntity.ok(products);
 		
@@ -108,51 +102,32 @@ public class ProductController {
 	@GetMapping("/{productId}")
 	public ResponseEntity<?> getProductById(@PathVariable Integer productId) {
 		
-		System.out.println("request came for getting Product by Product Id");
-		
-		Product product = new Product();
-		
-		Optional<Product> optional = productDao.findById(productId);
-		
-		if(optional.isPresent()) {
-			product = optional.get();
-		}
-		System.out.println("response sent!!!");
-		
+		Product product = productService.getProductById(productId);
+	
 		return ResponseEntity.ok(product);
 		
 	}
 	
+     
+	
 	@GetMapping("id")
     public ResponseEntity<?> getProductById(@RequestParam("productId") int productId) {
 		
-		System.out.println("request came for getting Product by Product Id");
 		
-		Product product = new Product();
-		
-		Optional<Product> optional = productDao.findById(productId);
-		
-		if(optional.isPresent()) {
-			product = optional.get();
-		}
-		System.out.println("response sent!!!");
+		Product product = productService.getProductById(productId);
 		
 		return ResponseEntity.ok(product);
 		
 	}
 	
 	@GetMapping("category")
-	public ResponseEntity<?> getProductsByCategories(@RequestParam("categoryId") int categoryId) {
+	public ResponseEntity<List<Product>> getProductsByCategories(@RequestParam("categoryId") int categoryId) {
 		
-		System.out.println("request came for getting all products by category");
 		
-		List<Product> products = new ArrayList<Product>();
 		
-		products = productDao.findByCategoryId(categoryId);
+		List<Product> productList=productService.getProductsByCategories(categoryId);
 		
-		System.out.println("response sent!!!");
-		
-		return ResponseEntity.ok(products);
+		return ResponseEntity.ok(productList);
 		
 	}
 	
@@ -160,6 +135,7 @@ public class ProductController {
 	public void fetchProductImage(@PathVariable("productImageName") String productImageName, HttpServletResponse resp) {
 		System.out.println("request came for fetching product pic");
 		System.out.println("Loading file: " + productImageName);
+		
 		Resource resource = storageService.load(productImageName);
 		
 		if(resource != null) {

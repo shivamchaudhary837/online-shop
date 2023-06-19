@@ -1,11 +1,27 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AddCategoryForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const saveCategory = () => {
+  const callToast=(message)=>{
+     
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+
+  const saveCategory = (event) => {
     let data = { title, description };
+
+    event.preventDefault();
 
     fetch("http://localhost:8080/api/category/add", {
       method: "POST",
@@ -15,7 +31,11 @@ const AddCategoryForm = () => {
       },
       body: JSON.stringify(data),
     }).then((result) => {
-      console.warn("result", result);
+      //console.warn("result", result);
+      callToast("Category Added Successfully")
+      setTitle("")
+      setDescription("")
+      
       result.json().then((res) => {
         console.log("response", res);
       });
@@ -33,7 +53,7 @@ const AddCategoryForm = () => {
             <h5 className="card-title">Add Category</h5>
           </div>
           <div className="card-body text-color">
-            <form>
+            <form  onSubmit={saveCategory}>
               <div className="mb-3">
                 <label for="title" className="form-label">
                   <b>Category Title</b>
@@ -69,7 +89,6 @@ const AddCategoryForm = () => {
 
               <button
                 type="submit"
-                onClick={saveCategory}
                 className="btn bg-color custom-bg-text"
               >
                 Add Category

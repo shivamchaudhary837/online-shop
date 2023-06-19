@@ -5,14 +5,17 @@
 }
 .pay_img{
     position: absolute;
-    background-image: url(../images/bg-pay1.jpg);
+    /* background-image: url(../images/imagee.png); */
     height: 92%;
     width: 110%;
-    margin-left: -10%;    /* background-repeat: no-repeat ; */
-    /* margintop */
+    margin-left: -10%;   
+     background-repeat: no-repeat ;
+     
+    
 }
 .card{
     background-color: rgba(255, 255, 255,.2);
+    
 }
 .pincode-label{
     position: absolute;

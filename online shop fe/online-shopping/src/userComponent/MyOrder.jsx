@@ -52,7 +52,7 @@ const MyOrder = () => {
                   <th scope="col">Order Id</th>
                   <th scope="col">Product</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Description</th>
+                 
                   <th scope="col">Quantity</th>
                   <th scope="col">Total Price</th>
                   <th scope="col">Order Date</th>
@@ -85,9 +85,7 @@ const MyOrder = () => {
                       <td>
                         <b>{orderData.productName}</b>
                       </td>
-                      <td>
-                        <b>{orderData.productDescription}</b>
-                      </td>
+                      
                       <td>
                         <b>{orderData.quantity}</b>
                       </td>
@@ -95,7 +93,7 @@ const MyOrder = () => {
                         <b>{orderData.totalPrice}</b>
                       </td>
                       <td>
-                        <b>{orderData.orderDate}</b>
+                        <b>{orderData.orderDate.split(" ")[0]}</b>
                       </td>
                       <td>
                         <b>{orderData.deliveryDate}</b>

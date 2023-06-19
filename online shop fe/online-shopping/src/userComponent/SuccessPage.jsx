@@ -1,12 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // import { Link } from "react-router-dom";
 import ProductCard from "../productComponent/ProductCard";
 import {FaCheckCircle} from 'react-icons/fa'
 import { icons } from 'react-icons'
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const Successpage = () => {
   const navigate = useNavigate();
+  const user = JSON.parse(sessionStorage.getItem("active-user"));
+
+  const [myCartData, setMyCartData] = useState([]);
+  
+  useEffect(() => {
+    const getMyCart = async () => {
+      const myCart = await retrieveMyCart();
+      if (myCart) {
+        console.log("cart data is present :)");
+        console.log("totalPrice",myCart.totalCartPrice);
+        console.log(myCart.cartData);
+        setMyCartData(myCart.cartData);
+      }
+    };
+
+    getMyCart();
+  }, []);
+
+  const retrieveMyCart = async () => {
+    const response = await axios.get(
+      "http://localhost:8080/api/user/mycart?userId=" + user.id
+    );
+    console.log(response.data);
+    console.log("userId",user.id)
+    return response.data;
+  };
+
+
   return (
     <div className="main-container">
        <div className="congrats" style={{fontFamily:"'Kalam', cursive"}}>
@@ -21,7 +50,7 @@ const Successpage = () => {
       <div className="thanks" style={{marginTop:"3rem",fontFamily:"'Kalam', cursive",marginLeft:"34.5rem"}}>
         <h2>Thank You for Your Purchase!!</h2>
       </div>
-
+       <div>
        <button
   className="btn "
   onClick={() => navigate("/")}
@@ -30,7 +59,51 @@ const Successpage = () => {
 >
   Continue Shopping
 </button>
-       
+       </div>
+
+       {/* <div className="table-responsive"  style={{marginTop:"25px"}}>
+            <table className="table table-hover bg-color-text text-center">
+              <thead className="custom-bg table-bordered border-color">
+                <tr>
+                  <th scope="col">Product</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Quantity</th>
+                </tr>
+              </thead>
+              <tbody className="text-color">
+                {myCartData.map((cartData) => {
+                  return (
+                    <tr>
+                      <td>
+                        <img
+                          src={
+                            "http://localhost:8080/api/product/" +
+                            cartData.productImage
+                          }
+                          class="img-fluid"
+                          alt="product_pic"
+                          style={{
+                            maxWidth: "90px",
+                          }}
+                        />
+                      </td>
+                      <td>
+                        <b>{cartData.productName}</b>
+                      </td>
+                      <td>
+                        <b>{cartData.productDescription}</b>
+                      </td>
+                      <td>
+                        <b>{cartData.quantity}</b>
+                      </td>
+                      
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div> */}
     </div>
   )
 }

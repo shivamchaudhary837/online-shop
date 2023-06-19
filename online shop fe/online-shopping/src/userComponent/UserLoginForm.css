@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Courgette&family=Dancing+Script:wght@600&display=swap');
+
 *{
     margin: 0%;
     padding: 0%;
-    
+    /* background-color: whitesmoke; */
 }
+
 .login-img{
     position: absolute;
     background-image: url(../images/bg_login1.jpg);
@@ -22,4 +26,13 @@
 .card-title{
     /* position: absolute; */
     margin-left: "25%";
+}
+.text .k{
+    font-family: 'Dancing Script', cursive;
+    
+}
+
+.text .villa{
+    font-family: 'Courgette', cursive;
+    /* , fontFamily:"fantasy", */
 }

@@ -25,8 +25,8 @@ const HeaderUser = () => {
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
       <li className="nav-item">
         <Link to="/search" className="nav-link active" aria-current="page">
+        <i class="fa-solid fa-magnifying-glass fa-beat" style={{marginRight:"5px"}}></i>
           <b className="text-color">Search</b>
-          <i class="fa-solid fa-magnifying-glass fa-beat" style={{marginLeft:"5px"}}></i>
         </Link>
       </li>
       <li className="nav-item">
