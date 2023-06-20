@@ -11,6 +11,7 @@ import Modal from "./Modal";
 import Modall from "./Modall";
 import carousel1 from "../images/imagee.png";
 
+
 const AddCardDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -166,6 +167,9 @@ const AddCardDetails = () => {
     console.log(response.data);
     return response.data;
   };
+
+   const [myOrderData,setMyOrderData]=useState([])
+  
 
   const deleteProductFromCart = (cartId, e) => {
     const response = axios.get(
@@ -333,7 +337,7 @@ const AddCardDetails = () => {
   </div>
 </div>
 <div className="xyz" style={{display: "flex"}}>  
-            {/* <form > */}
+            
                <input 
                 type="submit"
                 class="btn custom-bg-text bg-color"
@@ -344,14 +348,15 @@ const AddCardDetails = () => {
                 style={{ marginTop:"2.7rem",marginLeft:"29.3rem",width:"7rem"}}
               />
                <ToastContainer />
-            {/* </form> */}
+            
             
             {paymentType === "wallet" && (
             <div className="mb-3"
               style={{display:"inline-block"}}
               >    
               
-               <button className="btn " style={{marginTop:"-6rem",border:"none",marginLeft:"-3.3rem",fontSize:"2.5rem"}}  onClick={checkBalance}>
+               <button className="btn " style={{marginTop:"-6rem",border:"none",marginLeft:"-3.3rem",fontSize:"2.5rem"}}
+                 onClick={checkBalance}>
               <FaMoneyCheckAlt style={{ color:"rgba(16, 65, 50, 0.87)"}}/>
               </button>
             </div>

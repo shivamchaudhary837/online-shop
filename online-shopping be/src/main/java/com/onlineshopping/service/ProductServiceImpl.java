@@ -81,39 +81,30 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.save(product);
 	}
     
+	
+
 	@Override
-	public void addProduct(Product product, MultipartFile productImmage) {
+	public Product addProduct(ProductAddRequest productDto) {
+		// TODO Auto-generated method stub
+		
+		Product product=ProductAddRequest.toEntity(productDto);
+		
+		Optional<Category> optional = categoryDao.findById(productDto.getCategoryId());
+		Category category = null;
+		
+		if(optional.isPresent()) {
+			category = optional.get();
+		}
+		
+		product.setCategory(category);
+		MultipartFile productImmage=productDto.getImage();
 		
 		String productImageName = storageService.store(productImmage);
-		
 		product.setImageName(productImageName);
+		productDao.save(product);
 		
-		this.productDao.save(product);
+		return product;
 	}
 	
-//	@Override
-//	public Product addProduct(ProductAddRequest productDto) {
-//		// TODO Auto-generated method stub
-//		
-//        Product product=ProductAddRequest.toEntity(productDto);
-//			
-//		Optional<Category> optional = categoryDao.findById(productDto.getCategoryId());
-//		Category category = null;
-//		
-//		if(optional.isPresent()) {
-//			category = optional.get();
-//		}
-//		
-//		product.setCategory(category);
-//		
-//		MultipartFile productImmage=productDto.getImage();
-//		String productImageName = storageService.store(productImmage);
-//		product.setImageName(productImageName);
-//		
-//		//addProduct(product, productDto.getImage());
-//		
-//		return productDao.save(product);
-//	}
-
 	
 }

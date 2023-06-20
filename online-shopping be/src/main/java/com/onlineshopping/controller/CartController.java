@@ -41,14 +41,20 @@ public class CartController {
     }
 
     @GetMapping("mycart")
-    public ResponseEntity<CartResponse> getMyCart(@RequestParam("userId") int userId) throws JsonProcessingException {
+    public ResponseEntity<?> getMyCart(@RequestParam("userId") int userId) throws JsonProcessingException {
       
-
+        try {
         CartResponse cartResponse = cartService.getMyCart(userId);
         String json = objectMapper.writeValueAsString(cartResponse);
         System.out.println(json);
 
         return ResponseEntity.ok(cartResponse);
+        }
+        catch (Exception e) {
+			// TODO: handle exception
+        	e.printStackTrace();
+        	 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage()); 
+		}
     }
 
     @GetMapping("mycart/remove")

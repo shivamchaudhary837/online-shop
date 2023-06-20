@@ -66,7 +66,6 @@ const AddProductForm = () => {
         setProduct({title: "", description: "", price: "",quantity: "",categoryId: "",photo: "",  
         });
         setCategories([]);
-        //alert("Product saved successfully");
       })
       .catch((error) => {
         console.log("Error", error);

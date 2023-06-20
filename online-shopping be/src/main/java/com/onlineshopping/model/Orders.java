@@ -42,6 +42,14 @@ public class Orders {
 
 	
 
+	@Override
+	public String toString() {
+		return "Orders [id=" + id + ", orderId=" + orderId + ", product=" + product + ", user=" + user + ", quantity="
+				+ quantity + ", orderDate=" + orderDate + ", deliveryStatus=" + deliveryStatus + ", deliveryDate="
+				+ deliveryDate + ", deliveryTime=" + deliveryTime + ", deliveryAssigned=" + deliveryAssigned
+				+ ", deliveryPersonId=" + deliveryPersonId + ", paymentStatus=" + paymentStatus + "]";
+	}
+
 	public String getPaymentStatus() {
 		return paymentStatus;
 	}

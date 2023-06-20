@@ -8,6 +8,8 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 
 const Modal = ({closeModal}) => {
+ 
+
     const location = useLocation();
   const navigate = useNavigate();
   const user = JSON.parse(sessionStorage.getItem("active-user"));
@@ -26,12 +28,19 @@ const Modal = ({closeModal}) => {
 
   const [orderStatus, setOrderStatus] = useState(null);
 
+  const callSuccessPage=(res)=>{
+
+    navigate("/user/order/payment/successpage", { state: { res } });
+    // console.log("This********",res)
+  }
+
   const payAndOrder = () => {
     const requestData = {
       userId: user.id,
       priceToPay: priceToPay,
       paymentType: paymentType,
     };
+  
     fetch("http://localhost:8080/api/user/order", {
       method: "POST",
       headers: {
@@ -39,19 +48,33 @@ const Modal = ({closeModal}) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(requestData),
-    }).then((result) => {
-      console.log("result", result);
-      result.json().then((res) => {
-        console.log(res);
-
-        if (res === "Order Failed") {
-          setOrderStatus("failed");
+    })
+      .then(async (result) => {
+        // Check if the response is successful
+        console.log("Check REsult",result)
+        if (result.ok) {
+          const data = await result.json()
+          return data;
         } else {
-          setOrderStatus("success");
+          throw new Error("Error occurred while processing the order.");
         }
+      })
+      .then((res) => {
+        console.log("list of array", res);
+  
+        if (res != null) {
+          callSuccessPage(res);
+        }
+        setOrderStatus("success");
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error);
+        // Handle the error condition here
+        // For example, you can set an error state or display an error message
       });
-    });
   };
+  
+  
 
   const payForOrder = () => {
     payAndOrder();
@@ -66,8 +89,8 @@ const Modal = ({closeModal}) => {
       progress: undefined,
     });
   
-    navigate("/user/order/payment/successpage");
-    window.location.reload(true);
+        // navigate("/user/order/payment/successpage");
+        // window.location.reload(true);
   };
 
   const [paymentType,setPaymentType] = useState("wallet");
@@ -137,6 +160,7 @@ const Modal = ({closeModal}) => {
     });
   };
 
+ 
   return (
     <div className="modalBackground">
       <div className="modalcontainer">
@@ -153,8 +177,8 @@ const Modal = ({closeModal}) => {
               <p>hello </p>
           </div> */}
           <div className="footer" >
-              <button onClick={() =>payForOrder()}>Yes</button>
-              <button id="cancelbtn" onClick={() => closeModal(false)}>No</button>
+              <button onClick={() =>payForOrder()}>Confirm</button>
+              <button id="cancelbtn" onClick={() => closeModal(false)}>Cancel</button>
               
           </div>
       </div>

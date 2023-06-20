@@ -9,7 +9,6 @@ import com.onlineshopping.model.Product;
 
 public interface ProductService {
 	
-	void addProduct(Product product, MultipartFile productImmage);
 
 	List<Product> searchProducts(String keyword);
 
@@ -21,6 +20,6 @@ public interface ProductService {
 
 	Product updateProduct(Integer productId, String inStocks);
 
-	//Product addProduct(ProductAddRequest productDto);
+	Product addProduct(ProductAddRequest productDto);
 
 }

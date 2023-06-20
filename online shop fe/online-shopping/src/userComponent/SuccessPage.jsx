@@ -1,18 +1,30 @@
 import React, { useEffect, useState } from 'react'
-// import { Link } from "react-router-dom";
 import ProductCard from "../productComponent/ProductCard";
 import {FaCheckCircle} from 'react-icons/fa'
 import { icons } from 'react-icons'
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 const Successpage = () => {
+  
+
+  const location = useLocation();
   const navigate = useNavigate();
+
   const user = JSON.parse(sessionStorage.getItem("active-user"));
+
+  const [orderList,setOrderList] = useState([]);
 
   const [myCartData, setMyCartData] = useState([]);
   
+  useEffect(()=>{
+      setOrderList(location.state.res)
+      console.log("******check2222",orderList)
+  },[orderList])
+
   useEffect(() => {
+    console.log("******this",orderList)
+
     const getMyCart = async () => {
       const myCart = await retrieveMyCart();
       if (myCart) {
@@ -35,7 +47,23 @@ const Successpage = () => {
     return response.data;
   };
 
+  const handleShoppingBtn=()=>{
+    navigate("/")
+    //console.log("******Checkingggg",orderList)
+  }
 
+  const deliveryDate=()=>{
+
+    const currentDate = new Date();
+
+    // Add three days to the current date
+    const expectedDeliveryDate = new Date();
+    expectedDeliveryDate.setDate(currentDate.getDate() + 4);
+    
+    const options = { day: "numeric", month: "short" };
+    const formattedDeliveryDate = expectedDeliveryDate.toLocaleString("default", options);
+    return formattedDeliveryDate;
+  }
   return (
     <div className="main-container">
        <div className="congrats" style={{fontFamily:"'Kalam', cursive"}}>
@@ -50,36 +78,35 @@ const Successpage = () => {
       <div className="thanks" style={{marginTop:"3rem",fontFamily:"'Kalam', cursive",marginLeft:"34.5rem"}}>
         <h2>Thank You for Your Purchase!!</h2>
       </div>
-       <div>
-       <button
-  className="btn "
-  onClick={() => navigate("/")}
-  style={{ width: "15%",height:"20%", padding: "0.5rem", border: "1px solid gray", borderRadius: "3px",marginTop:"1rem",marginLeft:"41.1rem" , backgroundColor:"#ec5610",fontStyle:"bold"}}
+       
 
->
-  Continue Shopping
-</button>
-       </div>
-
-       {/* <div className="table-responsive"  style={{marginTop:"25px"}}>
+       <div className="table-responsive"  style={{margin:"25px"}}>
             <table className="table table-hover bg-color-text text-center">
               <thead className="custom-bg table-bordered border-color">
                 <tr>
-                  <th scope="col">Product</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Quantity</th>
+                  <th scope="col">Order Id</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Product Image</th>
+                  <th scope="col">Expected Date</th>
                 </tr>
               </thead>
               <tbody className="text-color">
-                {myCartData.map((cartData) => {
+                {orderList.map((orders) => {
                   return (
                     <tr>
+                       
+                      <td>
+                        <b>{orders.orderId}</b>
+                      </td>
+                      <td>
+                        <b>{orders.product.title}</b>
+                      </td>
+                      
                       <td>
                         <img
                           src={
                             "http://localhost:8080/api/product/" +
-                            cartData.productImage
+                            orders.product.imageName
                           }
                           class="img-fluid"
                           alt="product_pic"
@@ -87,23 +114,29 @@ const Successpage = () => {
                             maxWidth: "90px",
                           }}
                         />
-                      </td>
-                      <td>
-                        <b>{cartData.productName}</b>
-                      </td>
-                      <td>
-                        <b>{cartData.productDescription}</b>
-                      </td>
-                      <td>
-                        <b>{cartData.quantity}</b>
-                      </td>
-                      
+                      </td> 
+                         
+                         <td>
+                           <b> {deliveryDate()}</b>
+                         </td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
-          </div> */}
+          </div>
+          
+          <div>
+       <button
+            className="btn "
+            onClick={handleShoppingBtn}
+            style={{ width: "15%",height:"20%", padding: "0.5rem", marginBottom:"20px",
+            border: "1px solid gray", borderRadius: "3px",marginTop:"1rem",marginLeft:"41.1rem" , backgroundColor:"#7fc6cf",fontStyle:"bold"}}
+
+           >
+              Continue Shopping
+            </button>
+       </div>
     </div>
   )
 }

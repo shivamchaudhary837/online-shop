@@ -23,11 +23,17 @@ public class CategoryController {
     }
 
     @GetMapping("all")
-    public ResponseEntity<List<Category>> getAllCategories() {
+    public ResponseEntity<?> getAllCategories() {
         
+    	try {
         List<Category> categories = categoryService.getAllCategories();
         System.out.println("Response sent");
         return ResponseEntity.ok(categories);
+    	}catch (Exception e) {
+			// TODO: handle exception
+    		e.printStackTrace();
+    		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
     }
 
     @PostMapping("add")

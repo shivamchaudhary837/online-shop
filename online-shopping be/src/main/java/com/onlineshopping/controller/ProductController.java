@@ -9,6 +9,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,127 +38,122 @@ public class ProductController {
 	private ProductService productService;
 	
 	@Autowired
-	private ProductDao productDao;
-	
-	@Autowired
 	private CategoryDao categoryDao;
 	
 	@Autowired
 	private StorageService storageService;
 	
-	@Autowired
-	private UserDao userDao;
 	
 	@PostMapping("update/{productId}")
-	public ResponseEntity<?> updateProduct(@PathVariable Integer productId,@RequestBody String inStocks){
-		
-		
-		Product product=productService.updateProduct(productId,inStocks);
-		
-		return ResponseEntity.ok(product);
-	}
+	    public ResponseEntity<?> updateProduct(@PathVariable Integer productId, @RequestBody String inStocks) {
+	        try {
+	            Product product = productService.updateProduct(productId, inStocks);
+	            return ResponseEntity.ok(product);
+	        } catch (Exception e) {
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update product.");
+	        }
+	    }
+
 	
-	
-//	@PostMapping("add")
-//	public ResponseEntity<?> addProduct(ProductAddRequest productDto) {
-//		
-//		System.out.println("recieved request for ADD PRODUCT");
-//		System.out.println(productDto);
-//		
-//		Product product =productService.addProduct(productDto);
-//		
-//		return ResponseEntity.ok(product);
-//		
-//	}
-//	
-	@PostMapping("add")
-	public ResponseEntity<?> addProduct(ProductAddRequest productDto) {
-		System.out.println("recieved request for ADD PRODUCT");
-		System.out.println(productDto);
-		Product product=ProductAddRequest.toEntity(productDto);
-		
-		Optional<Category> optional = categoryDao.findById(productDto.getCategoryId());
-		Category category = null;
-		
-		if(optional.isPresent()) {
-			category = optional.get();
-		}
-		
-		product.setCategory(category);
-		productService.addProduct(product, productDto.getImage());
-		
-		System.out.println("response sent!!!");
-		return ResponseEntity.ok(product);
-		
-	}
 	
 	@GetMapping("all")
-	public ResponseEntity<?> getAllProducts() {
-		
-		List<Product> products = productService.getAllProducts();
-		
-		return ResponseEntity.ok(products);
-		
-	}
+    public ResponseEntity<?> getAllProducts() {
+        try {
+            List<Product> products = productService.getAllProducts();
+            return ResponseEntity.ok(products);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to retrieve products.");
+        }
+    }
+	
 	
 	@GetMapping("/{productId}")
-	public ResponseEntity<?> getProductById(@PathVariable Integer productId) {
-		
-		Product product = productService.getProductById(productId);
+    public ResponseEntity<?> getProductById(@PathVariable Integer productId) {
+        try {
+            Product product = productService.getProductById(productId);
+            if (product != null) {
+                return ResponseEntity.ok(product);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to retrieve product.");
+        }
+    }
 	
-		return ResponseEntity.ok(product);
-		
-	}
 	
-     
 	
-	@GetMapping("id")
-    public ResponseEntity<?> getProductById(@RequestParam("productId") int productId) {
-		
-		
-		Product product = productService.getProductById(productId);
-		
-		return ResponseEntity.ok(product);
-		
-	}
 	
 	@GetMapping("category")
 	public ResponseEntity<List<Product>> getProductsByCategories(@RequestParam("categoryId") int categoryId) {
 		
 		
-		
+		try {
 		List<Product> productList=productService.getProductsByCategories(categoryId);
-		
 		return ResponseEntity.ok(productList);
-		
-	}
-	
-	@GetMapping(value="/{productImageName}", produces = "image/*")
-	public void fetchProductImage(@PathVariable("productImageName") String productImageName, HttpServletResponse resp) {
-		System.out.println("request came for fetching product pic");
-		System.out.println("Loading file: " + productImageName);
-		
-		Resource resource = storageService.load(productImageName);
-		
-		if(resource != null) {
-			try(InputStream in = resource.getInputStream()) {
-				ServletOutputStream out = resp.getOutputStream();
-				FileCopyUtils.copy(in, out);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 		
-		System.out.println("response sent!");
 	}
 	
-	@GetMapping("search/{keyword}")
-	public ResponseEntity<List<Product>> searchProducts(@PathVariable("keyword") String keyword){
-		
-		
-		List<Product> list=productService.searchProducts(keyword);
-		
-		return ResponseEntity.ok(list);
-	}
-
+	 @GetMapping(value = "/{productImageName}", produces = "image/*")
+	 public void fetchProductImage(@PathVariable("productImageName") String productImageName, HttpServletResponse resp) {
+		 
+	        try {
+	            Resource resource = storageService.load(productImageName);
+	            if (resource != null) {
+	                try (InputStream in = resource.getInputStream()) {
+	                    ServletOutputStream out = resp.getOutputStream();
+	                    FileCopyUtils.copy(in, out);
+	                } catch (IOException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	   }
+	
+	    @GetMapping("search/{keyword}")
+	    public ResponseEntity<?> searchProducts(@PathVariable("keyword") String keyword) {
+	        try {
+	            List<Product> list = productService.searchProducts(keyword);
+	            return ResponseEntity.ok(list);
+	        } catch (Exception e) {
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to search products.");
+	        }
+	    }
+	    
+	    @GetMapping("id")
+	    public ResponseEntity<?> getProductById(@RequestParam("productId") int productId) {
+			
+			try {
+			Product product = productService.getProductById(productId);
+			
+			return ResponseEntity.ok(product);
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+			}
+		}
+	    
+	    
+	    @PostMapping("add")
+		public ResponseEntity<?> addProduct(ProductAddRequest productDto) {
+			
+			try {
+			Product resProduct=productService.addProduct(productDto);
+			return ResponseEntity.ok(resProduct);
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+			}
+		}
 }
