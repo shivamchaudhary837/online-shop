@@ -45,11 +45,7 @@ const ContactUs = () => {
   };
 
   const handleSubmit = (event) => {
-    //event.preventDefault();
-    // Handle form submission logic here
-    //console.log(formData);
-    // Reset form fields
-    //setFormData({ fname: "", lname: "", email: "", phone: "", message: "" });
+   
     window.location.reload(true)
   };
 

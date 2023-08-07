@@ -11,41 +11,15 @@ const Successpage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const user = JSON.parse(sessionStorage.getItem("active-user"));
 
   const [orderList,setOrderList] = useState([]);
 
-  const [myCartData, setMyCartData] = useState([]);
   
   useEffect(()=>{
       setOrderList(location.state.res)
       console.log("******check2222",orderList)
   },[orderList])
 
-  useEffect(() => {
-    console.log("******this",orderList)
-
-    const getMyCart = async () => {
-      const myCart = await retrieveMyCart();
-      if (myCart) {
-        console.log("cart data is present :)");
-        console.log("totalPrice",myCart.totalCartPrice);
-        console.log(myCart.cartData);
-        setMyCartData(myCart.cartData);
-      }
-    };
-
-    getMyCart();
-  }, []);
-
-  const retrieveMyCart = async () => {
-    const response = await axios.get(
-      "http://localhost:8080/api/user/mycart?userId=" + user.id
-    );
-    console.log(response.data);
-    console.log("userId",user.id)
-    return response.data;
-  };
 
   const handleShoppingBtn=()=>{
     navigate("/")
@@ -56,7 +30,7 @@ const Successpage = () => {
 
     const currentDate = new Date();
 
-    // Add three days to the current date
+    // Add 4 days to the current date
     const expectedDeliveryDate = new Date();
     expectedDeliveryDate.setDate(currentDate.getDate() + 4);
     
@@ -69,6 +43,15 @@ const Successpage = () => {
        <div className="congrats" style={{fontFamily:"'Kalam', cursive"}}>
        <h1 className="enlightment" style={{marginLeft:"44rem",marginTop:"6rem"}}>Hurry!!</h1>
        <h1 className="confirmation" style={{marginLeft:"32rem",marginTop:"1rem"}}>Your Order has been Placed</h1>
+       {orderList.map((orders) => {
+                  return (
+                    <>
+                       <h5 style={{marginLeft:"35rem"}}>#{orders.orderId} </h5>
+                        
+                       <h5 style={{marginLeft:"47rem",marginTop:"-2rem"}}> ,Expected Delivery by {deliveryDate()}</h5>
+                    </>
+                  )
+                })}
 
        {/* style={{fontSize:80}} */}
        </div>
@@ -78,55 +61,8 @@ const Successpage = () => {
       <div className="thanks" style={{marginTop:"3rem",fontFamily:"'Kalam', cursive",marginLeft:"34.5rem"}}>
         <h2>Thank You for Your Purchase!!</h2>
       </div>
-       
-
-       <div className="table-responsive"  style={{margin:"25px"}}>
-            <table className="table table-hover bg-color-text text-center">
-              <thead className="custom-bg table-bordered border-color">
-                <tr>
-                  <th scope="col">Order Id</th>
-                  <th scope="col">Product Name</th>
-                  <th scope="col">Product Image</th>
-                  <th scope="col">Expected Date</th>
-                </tr>
-              </thead>
-              <tbody className="text-color">
-                {orderList.map((orders) => {
-                  return (
-                    <tr>
-                       
-                      <td>
-                        <b>{orders.orderId}</b>
-                      </td>
-                      <td>
-                        <b>{orders.product.title}</b>
-                      </td>
-                      
-                      <td>
-                        <img
-                          src={
-                            "http://localhost:8080/api/product/" +
-                            orders.product.imageName
-                          }
-                          class="img-fluid"
-                          alt="product_pic"
-                          style={{
-                            maxWidth: "90px",
-                          }}
-                        />
-                      </td> 
-                         
-                         <td>
-                           <b> {deliveryDate()}</b>
-                         </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
           
-          <div>
+      <div>
        <button
             className="btn "
             onClick={handleShoppingBtn}
@@ -135,7 +71,7 @@ const Successpage = () => {
 
            >
               Continue Shopping
-            </button>
+          </button>
        </div>
     </div>
   )

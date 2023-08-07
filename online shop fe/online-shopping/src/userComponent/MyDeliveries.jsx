@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 
 const MyDeliveries = () => {
   const delivery = JSON.parse(sessionStorage.getItem("active-delivery"));
+
   const [myOrderData, setMyOrderData] = useState([]);
 
   useEffect(() => {
     const getMyOrder = async () => {
       const myOrder = await retrieveMyOrder();
       if (myOrder) {
-        console.log("my order data is present :)");
-
+        //console.log("my order data is present :)");
         setMyOrderData(myOrder);
       }
     };
@@ -65,8 +65,7 @@ const MyDeliveries = () => {
                   <th scope="col">Order Date</th>
                   <th scope="col">Delivery Date</th>
                   <th scope="col">Delivery Status</th>
-                  <th scope="col">Delivery Person</th>
-                  <th scope="col">Delivery Mobile No</th>
+                  
                 </tr>
               </thead>
               <tbody className="text-color">
@@ -118,7 +117,7 @@ const MyDeliveries = () => {
                         <b>{orderData.userPhone}</b>
                       </td>
                       <td>
-                        <b>{orderData.orderDate}</b>
+                        <b>{orderData.orderDate.split(" ")[0]}</b>
                       </td>
                       <td>
                         <b>{orderData.deliveryDate}</b>
@@ -126,12 +125,7 @@ const MyDeliveries = () => {
                       <td>
                         <b>{orderData.deliveryStatus}</b>
                       </td>
-                      <td>
-                        <b>{orderData.deliveryPersonName}</b>
-                      </td>
-                      <td>
-                        <b>{orderData.deliveryPersonContact}</b>
-                      </td>
+                      
                     </tr>
                   );
                 })}

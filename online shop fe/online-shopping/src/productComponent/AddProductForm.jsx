@@ -72,7 +72,12 @@ const AddProductForm = () => {
         alert("Error saving product");
       });
   };
-
+  
+  const handleImage=(e)=>{
+    console.log("Imageeeeeee",e.target.files)
+    console.log("checkk",selectedPhoto)
+      setSelectedPhoto(e.target.files[0])
+  }
   return (
     <div>
       <div class="mt-2 d-flex aligns-items-center justify-content-center">
@@ -174,7 +179,7 @@ const AddProductForm = () => {
                   id="formFile"
                   name="photo"
                   value={product.photo}
-                  onChange={(e) => setSelectedPhoto(e.target.files[0])}
+                  onChange={handleImage}
                   required
                 />
               </div>

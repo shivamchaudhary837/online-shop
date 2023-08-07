@@ -5,6 +5,7 @@ const MyProfile = () => {
   const user = JSON.parse(sessionStorage.getItem("active-user"));
 
   const [profile, setProfile] = useState(null);
+  
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -88,6 +89,7 @@ const MyProfile = () => {
     } catch (error) {
       console.error(error);
     }
+
   };
 
   return (
@@ -109,6 +111,7 @@ const MyProfile = () => {
                   id="firstName"
                   value={profile?.firstName || ""}
                   style={{ background: "#e8ecef" }}
+                  disabled
                 />
               </div>
               <div className="col-md-6">
@@ -121,6 +124,7 @@ const MyProfile = () => {
                   id="inputPassword4"
                   value={profile?.lastName || ""}
                   style={{ background: "#e8ecef" }}
+                  disabled
                 />
               </div>
               <div className="col-6">
@@ -134,6 +138,7 @@ const MyProfile = () => {
                   placeholder="1234 Main St"
                   value={profile?.emailId || ""}
                   style={{ background: "#e8ecef" }}
+                  disabled
                 />
               </div>
               <div className="col-12">

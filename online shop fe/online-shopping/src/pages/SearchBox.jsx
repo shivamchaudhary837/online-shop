@@ -26,6 +26,8 @@ const SearchBox = () => {
     }
   }, [keyword]);
 
+  
+
   const searchInputContainerStyle = {
     display: 'flex',
     alignItems: 'center',
@@ -79,7 +81,7 @@ const SearchBox = () => {
         </div>
       </div>
       <div className="search-results">
-        {/* Render search results */}
+        
         {searchResults.map((result) => (
           <Link
             key={result.id}

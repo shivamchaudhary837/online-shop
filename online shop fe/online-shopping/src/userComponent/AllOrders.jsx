@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
-import AssignDeliveryToOrders from "./AssignDeliveryToOrders";
 
 const AllOrders = () => {
   const [allOrderData, setAllOrderData] = useState([]);
+
 
   useEffect(() => {
     const getAllOrder = async () => {
@@ -22,13 +22,10 @@ const AllOrders = () => {
     const response = await axios.get(
       "http://localhost:8080/api/user/admin/allorder"
     );
-    console.log(response.data);
     return response.data;
   };
 
-  // const handleRow= ()=>{
-  //   window.location.href="/user/admin/assigndelivery"
-  // }
+  
 
   return (
     <div className="mt-3">

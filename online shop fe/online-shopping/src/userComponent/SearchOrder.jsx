@@ -7,8 +7,6 @@ const SearchOrder = () => {
   let pathOrderId=useParams()
 
   const [allOrderData, setAllOrderData] = useState([]);
-  const [orderId, setOrderId] = useState("");
-
   const deliveryStatus = ["Delivered", "On the Way", "Processing"];
   const deliveryTime = ["Morning", "Afternoon", "Evening", "Night"];
 
@@ -39,6 +37,7 @@ const SearchOrder = () => {
 
      getAllOrder()
   })
+
   const getAllOrder = async () => {
     const allOrder = await retrieveAllOrder();
     if (allOrder) {
@@ -55,11 +54,7 @@ const SearchOrder = () => {
     return response.data;
   };
 
-  const searchOrderById = (e) => {
-    getAllOrder();
-    setOrderId("");
-    e.preventDefault();
-  };
+  
 
   const updateDeliveryStatus = (e) => {
     console.log("CLICKED DELIVERY STATUS UPDATED");

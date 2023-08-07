@@ -2,7 +2,7 @@ package com.onlineshopping.service;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
+
 
 import com.onlineshopping.dto.ProductAddRequest;
 import com.onlineshopping.model.Product;

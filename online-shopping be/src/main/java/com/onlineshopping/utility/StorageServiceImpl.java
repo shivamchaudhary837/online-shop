@@ -27,11 +27,14 @@ public class StorageServiceImpl implements StorageService {
 
 	@Override
 	public String store(MultipartFile file) {
-		System.out.println(file.getOriginalFilename());
+		
+		//System.out.println(file.getOriginalFilename());
 		String ext=file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-		System.out.println(ext);
+		//System.out.println(ext);
+		
 		String fileName = UUID.randomUUID().toString().replaceAll("-", "")+ext;
 		File filePath = new File(BASEPATH, fileName);
+		
 		try(FileOutputStream out = new FileOutputStream(filePath)) {
 			FileCopyUtils.copy(file.getInputStream(), out);
 			return fileName;
@@ -47,6 +50,7 @@ public class StorageServiceImpl implements StorageService {
 		
 		if(filePath.exists())
 			return new FileSystemResource(filePath);
+		
 		return null;
 	}
 

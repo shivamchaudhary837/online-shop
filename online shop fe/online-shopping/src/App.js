@@ -32,6 +32,7 @@ function App() {
   return (
     <div>
       <Header />
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
@@ -85,6 +86,8 @@ function App() {
         <Route path="/user/order/payment/modall" element={<Modall/>} />
 
       </Routes>
+
+      
     </div>
   );
 }

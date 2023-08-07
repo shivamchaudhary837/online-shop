@@ -10,8 +10,10 @@ const AssignDeliveryToOrders = (props) => {
    let pathOrderId=useParams()
    
  
-  const [orderId, setOrderId] = useState("");
+  
+
   const [allOrderData, setAllOrderData] = useState([]);
+
   const [deliveryPersons, setDeliveryPersons] = useState([]);
 
   const [assignDelivery, setAssignDelivery] = useState({
@@ -29,20 +31,7 @@ const AssignDeliveryToOrders = (props) => {
     
 
   }, []);
-
   
-
-  const handleInput = (e) => {
-    setAssignDelivery({ ...assignDelivery, [e.target.name]: e.target.value });
-  };
-
-  const retrieveAllDeliveryPerson = async () => {
-    const response = await axios.get(
-      "http://localhost:8080/api/user/deliveryperson/all"
-    );
-    return response.data;
-  };
-
   useEffect(() => {
     
     const getAllDeliveryPerson = async () => {
@@ -55,17 +44,26 @@ const AssignDeliveryToOrders = (props) => {
     getAllDeliveryPerson();
   }, []);
 
-  const getAllOrder = async () => {
-    
-    const allOrder = await retrieveAllOrder();
-    console.log("ORDER",allOrder)
-    if (allOrder) {
-      setAllOrderData(allOrder);
-    }
+  const retrieveAllDeliveryPerson = async () => {
+    const response = await axios.get(
+      "http://localhost:8080/api/user/deliveryperson/all"
+    );
+    return response.data;
   };
 
+  
+
   useEffect(()=>{
-         getAllOrder()
+    const getAllOrder = async () => {
+    
+      const allOrder = await retrieveAllOrder();
+      console.log("ORDER",allOrder)
+      if (allOrder) {
+        setAllOrderData(allOrder);
+      }
+    };
+
+        getAllOrder()
   },[])
   
   const retrieveAllOrder = async () => {
@@ -76,12 +74,7 @@ const AssignDeliveryToOrders = (props) => {
     return response.data;
   };
 
-  const searchOrderById = (e) => {
-    // console.log("this is order",props.orderId)
-    getAllOrder();
-    setOrderId("");
-    e.preventDefault();
-  };
+  
 
   const assignDeliveryToOrders = (e) => {
     fetch("http://localhost:8080/api/user/admin/order/assignDelivery", {
@@ -93,8 +86,10 @@ const AssignDeliveryToOrders = (props) => {
       body: JSON.stringify(assignDelivery),
     }).then((result) => {
       console.log("result", result);
+
       result.json().then((res) => {
         console.log("response", res);
+        
         setAllOrderData({
           orderId: "",
           deliveryId: "",
@@ -107,6 +102,11 @@ const AssignDeliveryToOrders = (props) => {
     e.preventDefault();
   };
 
+  
+  const handleInput = (e) => {
+    setAssignDelivery({ ...assignDelivery, [e.target.name]: e.target.value });
+  };
+
   return (
     <div>
 
@@ -116,8 +116,8 @@ const AssignDeliveryToOrders = (props) => {
            
          
           <div className="card-body text-color" >
-            <form class="row g-3">
-              <div class="col-auto">
+            <form className="row g-3">
+              <div className="col-auto">
                 <label>
                   <b>Order Id</b>
                 </label>

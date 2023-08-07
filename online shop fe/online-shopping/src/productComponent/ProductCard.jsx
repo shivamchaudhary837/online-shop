@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import CategoryNavigator from "./CategoryNavigator";
 
 const ProductCard = (product) => {
+  
   return (
     <div className="col">
     <div className="card border-color rounded-card card-hover product-card card-color h-100">

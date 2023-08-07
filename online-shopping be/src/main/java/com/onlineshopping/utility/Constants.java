@@ -3,6 +3,7 @@ package com.onlineshopping.utility;
 public class Constants {
 	
 	public enum DeliveryStatus {
+		
 		DELIVERED("Delivered"),
 		ON_THE_WAY("On the Way"),
 		PENDING("Pending"),   // If admin doesn't take any action

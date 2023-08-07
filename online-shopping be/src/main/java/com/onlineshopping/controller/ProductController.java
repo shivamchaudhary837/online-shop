@@ -2,9 +2,7 @@ package com.onlineshopping.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.onlineshopping.dao.CategoryDao;
-import com.onlineshopping.dao.ProductDao;
-import com.onlineshopping.dao.UserDao;
 import com.onlineshopping.dto.ProductAddRequest;
-import com.onlineshopping.model.Category;
 import com.onlineshopping.model.Product;
 import com.onlineshopping.service.ProductService;
 import com.onlineshopping.utility.StorageService;
@@ -38,26 +32,13 @@ public class ProductController {
 	private ProductService productService;
 	
 	@Autowired
-	private CategoryDao categoryDao;
-	
-	@Autowired
 	private StorageService storageService;
 	
-	
-	@PostMapping("update/{productId}")
-	    public ResponseEntity<?> updateProduct(@PathVariable Integer productId, @RequestBody String inStocks) {
-	        try {
-	            Product product = productService.updateProduct(productId, inStocks);
-	            return ResponseEntity.ok(product);
-	        } catch (Exception e) {
-	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update product.");
-	        }
-	    }
-
 	
 	
 	@GetMapping("all")
     public ResponseEntity<?> getAllProducts() {
+		
         try {
             List<Product> products = productService.getAllProducts();
             return ResponseEntity.ok(products);
@@ -66,7 +47,16 @@ public class ProductController {
         }
     }
 	
-	
+	 @PostMapping("update/{productId}")
+	  public ResponseEntity<?> updateProduct(@PathVariable Integer productId, @RequestBody String inStocks) {
+	        try {
+	            Product product = productService.updateProduct(productId, inStocks);
+	            return ResponseEntity.ok(product);
+	        } catch (Exception e) {
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update product.");
+	        }
+	    }
+	 
 	@GetMapping("/{productId}")
     public ResponseEntity<?> getProductById(@PathVariable Integer productId) {
         try {
@@ -104,6 +94,7 @@ public class ProductController {
 		 
 	        try {
 	            Resource resource = storageService.load(productImageName);
+	            
 	            if (resource != null) {
 	                try (InputStream in = resource.getInputStream()) {
 	                    ServletOutputStream out = resp.getOutputStream();
@@ -156,4 +147,6 @@ public class ProductController {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
 			}
 		}
+	    
+	    
 }

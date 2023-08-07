@@ -241,6 +241,7 @@ public class OrderServiceImpl implements OrderService{
 
 		for (Orders order : userOrder) {
 			MyOrderResponse orderData = new MyOrderResponse();
+			
 			orderData.setOrderId(order.getOrderId());
 			orderData.setProductDescription(order.getProduct().getDescription());
 			orderData.setProductName(order.getProduct().getTitle());
@@ -250,8 +251,7 @@ public class OrderServiceImpl implements OrderService{
 			orderData.setProductId(order.getProduct().getId());
 			orderData.setDeliveryDate(order.getDeliveryDate() + " " + order.getDeliveryTime());
 			orderData.setDeliveryStatus(order.getDeliveryStatus());
-			orderData.setTotalPrice(
-					String.valueOf(order.getQuantity() * Double.parseDouble(order.getProduct().getPrice().toString())));
+			orderData.setTotalPrice(String.valueOf(order.getQuantity() * Double.parseDouble(order.getProduct().getPrice().toString())));
 			orderData.setUserId(order.getUser().getId());
 			orderData.setUserName(order.getUser().getFirstName() + " " + order.getUser().getLastName());
 			orderData.setUserPhone(order.getUser().getPhoneNo());
@@ -409,7 +409,8 @@ public class OrderServiceImpl implements OrderService{
 
 			Orders order = new Orders();
 			
-			order.setOrderId(orderId);
+			order.setOrderId(orderId+""+cart.getId());
+			
 			order.setUser(cart.getUser());
 			order.setProduct(cart.getProduct());
 			order.setQuantity(cart.getQuantity());
@@ -419,6 +420,7 @@ public class OrderServiceImpl implements OrderService{
 			order.setDeliveryTime(DeliveryTime.DEFAULT.value());
 			order.setDeliveryAssigned(IsDeliveryAssigned.NO.value());
 			order.setPaymentStatus(pRequest.getPaymentType());
+			
 			if(user.isPresent() &&pRequest.getPaymentType().equals("wallet")) {
 				//&& pRequest.getPaymentType()=="wallet"
 				User temp=user.get();

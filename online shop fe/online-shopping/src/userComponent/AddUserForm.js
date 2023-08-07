@@ -52,7 +52,8 @@ const AddUserForm = () => {
   }
   const saveUser = (event) => {
     event.preventDefault();
-  
+    console.log("check",user.role)
+
     fetch("http://localhost:8080/api/user/register", {
       method: "POST",
       headers: {
@@ -128,6 +129,7 @@ const AddUserForm = () => {
                           value={user.role}
                           required
                         >
+                          <option value="0">Select Role</option>
                           <option value="Customer">Customer</option>
                           <option value="Admin">Admin</option>
                           <option value="Delivery">Delivery Person</option>

@@ -41,7 +41,7 @@ const HomePage = () => {
 
   const retrieveAllProducts = async () => {
     const response = await axios.get("http://localhost:8080/api/product/all");
-
+    //console.log("Product -section",response)
     return response.data;
   };
 
@@ -56,11 +56,13 @@ const HomePage = () => {
   return (
     <div className="container-fluid mb-2">
       <Carousel />
+
       <div className="mt-2 mb-5">
         <div className="row">
           <div className="col-md-2">
             <GetAllCategories />
           </div>
+          
           <div className="col-md-10">
             <div className="row row-cols-1 row-cols-md-4 g-4">
                 
